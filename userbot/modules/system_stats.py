@@ -122,12 +122,17 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^\.alive$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
-    await alive.edit("`"
-                     "My bot is running \n\n"
-                     f"Telethon version: {version.__version__} \n"
-                     f"Python: {python_version()} \n"
-                     f"User: {DEFAULTUSER}"
-                     "`")
+    if not msg.text[0].isalpha() and msg.text[0] in ("."):
+        rtt = check_output("ping -c 1 1.1.1.1 | grep -oP '.*time=\K(\d*\.\d*).*'", shell=True).decode()
+        await msg.edit("`"
+                         "System Status: "
+                         f"Online \n \n"
+                         f"Telethon version: {version.__version__} \n"
+                         f"Python: {python_version()} \n"
+                         f"User: {DEFAULTUSER}\n"
+                         f"RTT: {rtt}"
+                         f"Version: {VERSION}"
+                         "`")
 
 
 @register(outgoing=True, pattern="^\.aliveu")
