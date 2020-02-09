@@ -134,9 +134,9 @@ async def ANTI_SPAMBOT(welcm):
                     if ANTI_SPAMBOT_SHOUT:
                         await welcm.reply(
                             "@admins\n"
-                            "`ANTI SPAMBOT DETECTOR!\n"
-                            "THIS USER MATCHES MY ALGORITHMS AS A SPAMBOT!`"
-                            f"REASON: {reason}")
+                            "`Detected a spambot!\n"
+                            "User banned in Combot Anti-Spam System`"
+                            f"Reason : {reason}")
                         kicked = False
                         reported = True
                 else:
@@ -157,10 +157,10 @@ async def ANTI_SPAMBOT(welcm):
                     except BaseException:
                         if ANTI_SPAMBOT_SHOUT:
                             await welcm.reply(
-                                "@admins\n"
-                                "`ANTI SPAMBOT DETECTOR!\n"
-                                "THIS USER MATCHES MY ALGORITHMS AS A SPAMBOT!`"
-                                f"REASON: {reason}")
+                            "@admins\n"
+                            "`Detected a spambot!\n"
+                            "User banned in Combot Anti-Spam System`"
+                            f"Reason : {reason}")
                             kicked = False
                             reported = True
 

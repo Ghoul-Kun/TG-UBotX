@@ -124,7 +124,7 @@ async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     if not msg.text[0].isalpha() and msg.text[0] in ("."):
         rtt = check_output("ping -c 1 1.1.1.1 | grep -oP '.*time=\K(\d*\.\d*).*'", shell=True).decode()
-        await msg.edit("`"
+        await alive.edit("`"
                          "System Status: "
                          f"Online \n \n"
                          f"Telethon version: {version.__version__} \n"

@@ -53,7 +53,7 @@ async def device_info(request):
         return
     found = [
         i for i in get(DEVICES_DATA).json()
-        if i["device"] == device or i["model"] == device
+        if i["device"] == device or i["model"] == device or i["name"] == device
     ]
     if found:
         reply = f'Search results for {device}:\n\n'
