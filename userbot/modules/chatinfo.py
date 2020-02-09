@@ -104,5 +104,5 @@ CMD_HELP.update({
     \n\n.id: Return only the id.\
     \n.general: Show general information related to the chat.\
     \n.admins: Show chat admins (does not mention them).\
-    \n.all: Show everything.\"
+    \n.all: Show everything."
 })
