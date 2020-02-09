@@ -14,6 +14,7 @@ from telethon import version
 
 from userbot import CMD_HELP, ALIVE_NAME
 from userbot.events import register
+from userbot.modules import ALL_MODULES
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
@@ -127,6 +128,7 @@ async def amireallyalive(alive):
                      f"Telethon version: {version.__version__} \n"
                      f"Python: {python_version()} \n"
                      f"User: {DEFAULTUSER}"
+                     f"Modules loaded: {len(ALL_MODULES)}"
                      "`")
 
 
