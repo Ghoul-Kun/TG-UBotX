@@ -17,7 +17,7 @@ import json
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.oub$")
+@register(outgoing=True, pattern="^.ubo$")
 async def shalom(e):
     await e.edit(
         "\n💰💰💰💰💰💰💰💰💰"
