@@ -13,7 +13,7 @@ from userbot.events import register
 from userbot.utils.tgdoc import *
 
 
-@register(outgoing=True, group_only=True, pattern=r"^\.cleanup(\s+[\S\s]+|$)")
+@register(outgoing=True, groups_only=True, pattern=r"^\.cleanup(\s+[\S\s]+|$)")
 async def cleanup(e: NewMessage.Event) -> None:
     """Command to remove Deleted Accounts from a group or network."""
     params = e.pattern_match.group(1) or ""
