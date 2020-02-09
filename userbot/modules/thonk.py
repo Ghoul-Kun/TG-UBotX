@@ -61,7 +61,5 @@ async def thonkify(thonk):
 
 CMD_HELP.update({
     "thonkify":
-    ".thonk (message)
-    \n\nOr, in reply to a message
-    \n.thonk"
+    ".thonk <text> or reply."
 })

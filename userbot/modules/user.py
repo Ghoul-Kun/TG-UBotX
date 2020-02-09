@@ -105,14 +105,14 @@ async def fetch_info(replied_user, **kwargs):
 
 CMD_HELP.update({
     "userinfo":
-    ".u(ser) [options] (username|id)
-    \n\nOr, in response to a message
-    \n.u(ser) [options]
-    \n\n.id: Show only the user's ID
-    \n.general: Show general user info
-    \n.bot: Show bot related info
-    \n.misc: Show miscelanious info
-    \n.all: Show all info (overrides other options)
-    \n.mention: Inline mention the user
+    ".u(ser) [options] (username|id) \
+    \n\nOr, in response to a message \
+    \n.u(ser) [options] \
+    \n\n.id: Show only the user's ID \
+    \n.general: Show general user Info \
+    \n.bot: Show bot related Info \
+    \n.misc: Show miscelanious Info \
+    \n.all: Show all info (overrides other options) \
+    \n.mention: Inline mention the user \
     \n.forward: Follow forwarded message"
 })
