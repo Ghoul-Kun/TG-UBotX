@@ -12,7 +12,7 @@ from shutil import which
 from os import remove
 from telethon import version
 
-from userbot import CMD_HELP, ALIVE_NAME
+from userbot import CMD_HELP, ALIVE_NAME, VERSION
 from userbot.events import register
 from userbot.modules import ALL_MODULES
 
@@ -128,6 +128,7 @@ async def amireallyalive(alive):
                      f"Telethon version: {version.__version__} \n"
                      f"Python: {python_version()} \n"
                      f"User: {DEFAULTUSER} \n"
+                     f"UBot Version: {VERSION} \n"
                      f"Modules loaded: {len(ALL_MODULES)}"
                      "`")
 
