@@ -122,14 +122,14 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^\.alive$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
-        await alive.edit("`"
-                         "System Status: "
-                         f"Online \n \n"
-                         f"Telethon version: {version.__version__} \n"
-                         f"Python: {python_version()} \n"
-                         f"User: {DEFAULTUSER}\n"
-                         f"UBot Version: {VERSION}"
-                         "`")
+    await alive.edit("`"
+                     "System Status: "
+                     f"Online \n \n"
+                     f"Telethon version: {version.__version__} \n"
+                     f"Python: {python_version()} \n"
+                     f"User: {DEFAULTUSER}\n"
+                     f"UBot Version: {VERSION}"
+                     "`")
 
 
 @register(outgoing=True, pattern="^\.aliveu")
