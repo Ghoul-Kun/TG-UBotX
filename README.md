@@ -1,4 +1,4 @@
-# TG-UBotX - Telegram Userbot
+# TG-UBotX
 
 <p align="center"><a href="#how-to-host">How To Host</a> | <a href="#credits">Credits</a> | <a href="#license">License</a></p>
 <p align="center">&nbsp;</p>
@@ -6,8 +6,6 @@
 <h5 align="center">The easiest way to deploy this derpfest!</h5>
 <p align="center"><a href="https://heroku.com/deploy?template=https://github.com/HitaloKun/TG-UBotX/tree/master"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
 <p align="center">&nbsp;</p>
-<h2 align="center">License</h2>
-<p align="center"><a href="https://github.com/HitaloKun/TG-UBotX/blob/master/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019</p>
 
 ```
 #include <std/disclaimer.h>
@@ -27,15 +25,7 @@
 
 A modular telegram Python UserBot running on python3 with a sqlalchemy database.
 
-Started up as a simple bot, which helps with deleting messages and other stuffs when I didn't possess a smartphone(selecting each message indeed difficult) with a ton of meme features kanged from [SkittBot](https://github.com/skittles9823/SkittBot), it has evolved, becoming extremely modular and simple to use.
-
 For configuring this userbot, you can checkout the [Wiki]()
-
-
-### Contributing to the source:
-
-We love to see you contributing and helping us improve on our way to a perfect userbot.
-
 
 ### Credits:
 
@@ -58,3 +48,6 @@ I would like to thank people who assisted me throughout this project:
 and Huge thanks to <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contributors">many more</a> people who aren't mentioned here.
 
 Found Bugs? Create an issue on the issue tracker.
+
+### License
+<a href="https://github.com/HitaloKun/TG-UBotX/blob/master/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019
