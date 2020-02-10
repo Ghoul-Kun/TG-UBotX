@@ -19,7 +19,7 @@
 
 A modular telegram Python UserBot running on python3 with a sqlalchemy database.
 
-For configuring this userbot, you can checkout the [Wiki]()
+For configuring this userbot, you can checkout the [Wiki](https://github.com/HitaloKun/TG-UBotX/wiki)
 
 
 ## How To Host

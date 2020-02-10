@@ -60,7 +60,7 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone https://github.com/HitaloKun/TG-UBotX.git /root/userbot
+RUN git clone 'https://github.com/HitaloKun/TG-UBotX.git' /root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
 
@@ -73,4 +73,5 @@ COPY ./sample_config.env ./userbot.session* ./config.env* /root/userbot/
 # Install requirements
 #
 RUN pip3 install -r requirements.txt
+RUN pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U
 CMD ["python3","-m","userbot"]
