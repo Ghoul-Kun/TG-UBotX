@@ -18,6 +18,29 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, UPSTREAM_REPO_URL
 from userbot.events import register
 
 
+@register(outgoing=True, pattern="^.community$")
+async def bot_community(community):
+    """ For .community command, just returns OG Paperplane's group link. """
+    await community.edit(
+        "Join RaphielGang's awesome userbot community: @userbot_support"
+        "\nDo note that TG-UBotX is an unoficial fork of their "
+        "Paperplane project and it may get limited or no support for bugs.")
+
+
+@register(outgoing=True, pattern="^.creator$")
+async def creator(e):
+    await e.edit("[Hitalo](https://t.me/HitaloSama)")
+
+
+@register(outgoing=True, pattern="^.readme$")
+async def reedme(e):
+    await e.edit(
+        "Here's something for you to read:\n"
+        "\n[TG-UBotX's README.md file](https://github.com/HitaloKun/TG-UBotX/blob/master/README.md)"
+        "\n[Setup Guide - Basic](https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02)"
+        "\n[Setup Guide - Google Drive](https://telegra.ph/How-To-Setup-GDrive-11-02)")
+
+
 @register(outgoing=True, pattern="^\.random")
 async def randomise(items):
     """ For .random command, get a random item from the list of items. """
@@ -142,6 +165,16 @@ CMD_HELP.update({
     '.repo\
 \nUsage: If you are curious what makes the userbot work, this is what you need.'
 })
+
+CMD_HELP.update({
+    'community':
+    ".community\
+\nUsage: Join the awesome Paperplane userbot community !!"
+})
+
+CMD_HELP.update(
+    {"creator": ".creator\
+\nUsage: Know who created this awesome userbot !!"})
 
 CMD_HELP.update({
     "readme":

@@ -27,7 +27,7 @@ except PhoneNumberInvalidError:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("You are running TG-UBotX [v5.3.1]")
+LOGS.info("You are running TG-UBotX")
 
 LOGS.info("Congratulations, your userbot is now running !!"
           "Test it by typing .alive in any chat.")
