@@ -17,7 +17,7 @@ GITHUB_REPO_RE = r"(?:github\.com\/|^|\s+)([\w\d_\-]+)\/([\w\d_\-.]+)"
 @register(outgoing=True, pattern=r"^\.gh(\s+[\S\s]+|$)")
 async def github_info(e):
     if not github:
-        await e.edit("Github information has not been set up", delete_in=3)
+        await e.edit("Github information has not been set up")
         return
 
     message = e.pattern_match.group(1)
@@ -60,7 +60,7 @@ async def github_info(e):
 
         await e.edit(message)
     else:
-        await e.edit("No GitHub repos found", delete_in=3)
+        await e.edit("No GitHub repos found")
         return
 
 
