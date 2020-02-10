@@ -45,7 +45,7 @@ I would like to thank people who assisted me throughout this project:
 * [@pqhaz](https://github.com/pqhaz)
 * [@yshalsager](https://github.com/yshalsager)
 
-and Huge thanks to <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contributors">many more</a> people who aren't mentioned here.
+And huge thanks to <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contributors">many more</a> people who aren't mentioned here.
 
 Found Bugs? Create an issue on the issue tracker.
 
