@@ -135,7 +135,7 @@ async def upstream(ups):
         heroku_applications = heroku.apps()
         if not HEROKU_APPNAME:
             await ups.edit(
-                '`[HEROKU MEMEZ] Please set up the HEROKU_APPNAME variable to be able to update userbot.`'
+                '`[HEROKU UPDATER] Please set up the HEROKU_APPNAME variable to be able to update userbot.`'
             )
             repo.__del__()
             return
@@ -149,7 +149,7 @@ async def upstream(ups):
             )
             repo.__del__()
             return
-        await ups.edit('`[HEROKU MEMEZ]\
+        await ups.edit('`[HEROKU UPDATER]\
                         \nUserbot dyno build in progress, please wait for it to complete.`'
                        )
         ups_rem.fetch(ac_br)
@@ -185,7 +185,7 @@ async def upstream(ups):
 
 
 CMD_HELP.update({
-    'update':
+    'updater':
     ".update\
 \nUsage: Checks if the main userbot repository has any updates and shows a changelog if so.\
 \n\n.update now\
