@@ -37,8 +37,8 @@ async def reedme(e):
     await e.edit(
         "Here's something for you to read:\n"
         "\n[TG-UBotX's README.md file](https://github.com/HitaloKun/TG-UBotX/blob/master/README.md)"
-        "\n[Setup Guide - Basic](https://telegra.ph/How-to-host-a-Telegram-Userbot-07-24)"
-        "\n[Setup Guide - Google Drive](https://telegra.ph/How-To-Setup-GDrive-11-02)")
+        "\n[Setup Guide - Basic](https://github.com/HitaloKun/TG-UBotX/wiki/How-to-host-TG-UBotX)"
+        "\n[Setup Guide - Google Drive](https://github.com/HitaloKun/TG-UBotX/wiki/How-To-Setup-GDrive)")
 
 
 @register(outgoing=True, pattern="^\.random")
