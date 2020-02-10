@@ -161,7 +161,7 @@ CMD_HELP.update({
     \n\n.aliveu <text>\
     \nUsage: Changes the 'user' in alive to the text you want.\
     \n\n.resetalive\
-    \nUsage: Resets the user to default.
+    \nUsage: Resets the user to default.\
     \n\n.botver\
     \nUsage: Shows the userbot version.\
     \n\n.pip <module(s)>\
