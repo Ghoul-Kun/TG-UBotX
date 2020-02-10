@@ -1,11 +1,5 @@
 # TG-UBotX
 
-<p align="center"><a href="#how-to-host">How To Host</a> | <a href="#credits">Credits</a> | <a href="#license">License</a></p>
-<p align="center">&nbsp;</p>
-<h2 align="center">How To Host</h2>
-<h5 align="center">The easiest way to deploy this derpfest!</h5>
-<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/HitaloKun/TG-UBotX/tree/master"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
-<p align="center">&nbsp;</p>
 
 ```
 #include <std/disclaimer.h>
@@ -26,6 +20,13 @@
 A modular telegram Python UserBot running on python3 with a sqlalchemy database.
 
 For configuring this userbot, you can checkout the [Wiki]()
+
+
+## How To Host
+
+The easiest way to deploy this derpfest!
+<a href="https://heroku.com/deploy?template=https://github.com/HitaloKun/TG-UBotX/tree/master"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a>
+
 
 ### Credits:
 
@@ -49,5 +50,7 @@ And huge thanks to <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contrib
 
 Found Bugs? Create an issue on the issue tracker.
 
+
 ### License
+
 <a href="https://github.com/HitaloKun/TG-UBotX/blob/master/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019
