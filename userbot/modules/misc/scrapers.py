@@ -709,7 +709,7 @@ CMD_HELP.update(
     \n\n.carbon <text> [or reply]\
     \nUsage: Beautify your code using carbon.now.sh\nUse .crblang <text> to set language for your code.\
     \n\n.currency <amount> <from> <to>\
-    \nUsage: Converts various currencies for you.
+    \nUsage: Converts various currencies for you.\
     \n\n.img <search_query>\
     \nUsage: Does an image search on Google and shows 5 images."
 })
