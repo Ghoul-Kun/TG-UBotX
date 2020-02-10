@@ -66,6 +66,14 @@ LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
 
+# GitHub Repos Module
+GITHUB_USERNAME = os.environ.get("GITHUB_USERNAME", None)
+GITHUB_PASSWORD = os.environ.get("GITHUB_PASSWORD", None)
+if GITHUB_USERNAME and GITHUB_PASSWORD:
+    github = Github(GITHUB_USERNAME, GITHUB_PASSWORD)
+else:
+    github = None
+
 # Heroku Credentials for updater.
 HEROKU_APPNAME = os.environ.get("HEROKU_APPNAME", None)
 HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)

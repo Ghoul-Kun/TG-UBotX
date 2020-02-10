@@ -1,57 +1,124 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
+import re
+from typing import List
 
-import aiohttp
-from userbot.events import register
+from github import UnknownObjectException
+from github.NamedUser import NamedUser
+from github.Repository import Repository
+
 from userbot import CMD_HELP
+from userbot import github
+from userbot.events import register
+from userbot.utils import parse_arguments
+from userbot.utils.tgdoc import *
+
+GITHUB_REPO_RE = r"(?:github\.com\/|^|\s+)([\w\d_\-]+)\/([\w\d_\-.]+)"
 
 
-@register(pattern=r".git (.*)", outgoing=True)
-async def github(event):
-    URL = f"https://api.github.com/users/{event.pattern_match.group(1)}"
-    chat = await event.get_chat()
-    async with aiohttp.ClientSession() as session:
-        async with session.get(URL) as request:
-            if request.status == 404:
-                await event.reply("`" + event.pattern_match.group(1) +
-                                  " not found`")
-                return
+@register(outgoing=True, pattern=r"^\.gh(\s+[\S\s]+|$)")
+async def github_info(e):
+    if not github:
+        await e.edit("Github information has not been set up", delete_in=3)
+        return
 
-            result = await request.json()
+    message = e.pattern_match.group(1)
+    reply_message = await e.get_reply_message()
 
-            url = result.get("html_url", None)
-            name = result.get("name", None)
-            company = result.get("company", None)
-            bio = result.get("bio", None)
-            created_at = result.get("created_at", "Not Found")
+    if message:
+        message = message.strip()
+        args, message = parse_arguments(message, [
+            'general', 'owner', 'all'
+        ])
+    else:
+        args = {}
 
-            REPLY = f"GitHub Info for `{event.pattern_match.group(1)}`\
-            \nUsername: `{name}`\
-            \nBio: `{bio}`\
-            \nURL: {url}\
-            \nCompany: `{company}`\
-            \nCreated at: `{created_at}`"
+    if not message:
+        if reply_message:
+            message = reply_message.message.strip()
+        else:
+            await e.edit(str(Bold("Can't fetch repo information with no repo")))
+            return
 
-            if not result.get("repos_url", None):
-                await event.edit(REPLY)
-                return
-            async with session.get(result.get("repos_url", None)) as request:
-                result = request.json
-                if request.status == 404:
-                    await event.edit(REPLY)
-                    return
+    repos = re.findall(GITHUB_REPO_RE, message)
+    if repos:
+        await e.edit(f"Fetching information for {len(repos)} repo(s)...")
+        valid_repos: List[str] = []
+        invalid_repos: List[str] = []
+        for user, repo in repos:
+            try:
+                r: Repository = github.get_repo(f"{user}/{repo}")
+                repo = await build_repo_message(r, args)
+                valid_repos.append(str(repo))
+            except UnknownObjectException:
+                invalid_repos.append(f"{user}/{repo}")
+                pass
 
-                result = await request.json()
+        message = ""
+        if valid_repos:
+            message += '\n\n'.join(valid_repos)
+        if invalid_repos:
+            message += '\n'.join(invalid_repos)
 
-                REPLY += "\nRepos:\n"
-
-                for nr in range(len(result)):
-                    REPLY += f"[{result[nr].get('name', None)}]({result[nr].get('html_url', None)})\n"
-
-                await event.edit(REPLY)
+        await e.edit(message)
+    else:
+        await e.edit("No GitHub repos found", delete_in=3)
+        return
 
 
-CMD_HELP.update({"git": "Like .whois but for GitHub usernames."})
+async def build_repo_message(repo, args):
+    show_general = args.get('general', True)
+    show_owner = args.get('owner', False)
+    show_all = args.get('all', False)
+
+    if show_all:
+        show_general = True
+        show_owner = True
+
+    title = Link(repo.name, repo.html_url)
+
+    if show_general:
+        general = SubSection(Bold("general"),
+                             KeyValueItem("id", Code(repo.id)),
+                             KeyValueItem("full name", Code(repo.full_name)),
+                             KeyValueItem("stars", Code(repo.stargazers_count)),
+                             KeyValueItem("watchers", Code(repo.watchers_count)),
+                             KeyValueItem("forks", Code(repo.forks_count)),
+                             KeyValueItem("language", Code(repo.language)),
+                             KeyValueItem("is fork", Code(repo.fork)),
+                             KeyValueItem("issues", Code(repo.open_issues)))
+    else:
+        general = None
+
+    if show_owner:
+        owner: NamedUser = github.get_user(repo.owner.login)
+        bio = str(owner.bio)[:50] + (str(owner.bio)[50:] and '..')
+
+        owner_info = SubSection(Bold("owner"),
+                                KeyValueItem("id", owner.id),
+                                KeyValueItem("login", owner.login),
+                                KeyValueItem("name", owner.name),
+                                KeyValueItem("bio", bio),
+                                KeyValueItem("company", owner.company),
+                                KeyValueItem("email", owner.email),
+                                KeyValueItem("followers", owner.followers),
+                                KeyValueItem("following", owner.following),
+                                KeyValueItem("repos", owner.public_repos))
+    else:
+        owner_info = None
+
+    return Section(
+        title,
+        general if show_general else None,
+        owner_info if show_owner else None
+    )
+
+
+CMD_HELP.update({"github":
+	"Displays information related to a github repo.\
+    \nSimilar to .user\
+    \n\n.gh (repo)\
+    \n\nRepos can be in the format `https://github.com/user/repo` or just `user/repo`\
+    \n\nOptions:\
+    \n.general: Display general information related to the repo.\
+    \n.owner: Display information about the repo owner.\
+    \n.all: Display everything."
+})
