@@ -29,7 +29,7 @@ async def bot_community(community):
 
 @register(outgoing=True, pattern="^.creator$")
 async def creator(e):
-    await e.edit("[Hitalo](https://t.me/HitaloSama)")
+    await e.edit("Here's my God: [Hitalo](https://t.me/HitaloSama)")
 
 
 @register(outgoing=True, pattern="^.readme$")
@@ -37,7 +37,7 @@ async def reedme(e):
     await e.edit(
         "Here's something for you to read:\n"
         "\n[TG-UBotX's README.md file](https://github.com/HitaloKun/TG-UBotX/blob/master/README.md)"
-        "\n[Setup Guide - Basic](https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02)"
+        "\n[Setup Guide - Basic](https://telegra.ph/How-to-host-a-Telegram-Userbot-07-24)"
         "\n[Setup Guide - Google Drive](https://telegra.ph/How-To-Setup-GDrive-11-02)")
 
 
