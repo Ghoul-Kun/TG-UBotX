@@ -168,8 +168,6 @@ CMD_HELP.update({
 \nUsage: Unmutes a muted chat.\
 \n\n.mutechat\
 \nUsage: Allows you to mute any chat.\
-\n\n.link <username/userid> : <optional text> (or) reply to someone's message with .link <optional text>\
-\nUsage: Generate a permanent link to the user's profile with optional custom text.\
 \n\n.regexninja on/off\
 \nUsage: Globally enable/disables the regex ninja module.\
 \nRegex Ninja module helps to delete the regex bot's triggering messages."
