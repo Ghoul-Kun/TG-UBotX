@@ -29,6 +29,7 @@ pylast
 pySmartDL
 python-barcode
 python-dotenv
+PyGithub
 youtube-dl
 pytz
 qrcode
@@ -40,3 +41,4 @@ telethon>=1.10.9
 telethon-session-sqlalchemy>=0.2.6
 tgcrypto
 wikipedia>=1.4.0
+
