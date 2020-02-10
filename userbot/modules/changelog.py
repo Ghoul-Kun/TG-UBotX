@@ -97,7 +97,7 @@ async def chtream(ch):
         else:
             await ch.edit(changelog_str)
         await ch.respond(
-            "`do '.update' to update\nif using Heroku`")
+            "`do \".update \" to update\nif using Heroku`")
         return
 
     await ch.edit('`New update found, updating...`')
