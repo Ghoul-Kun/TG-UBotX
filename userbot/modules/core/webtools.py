@@ -73,7 +73,8 @@ async def pingme(pong):
 
 
 CMD_HELP.update(
-    {"ping": ".ping\
+    {"ping": "**Some useful web tools**\
+    \n\n.ping\
     \nUsage: Shows how long it takes to ping your bot.\
     \n\n.speedtest\
     \nUsage: Does a speedtest and shows the results.\

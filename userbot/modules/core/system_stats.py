@@ -156,7 +156,8 @@ async def amireallyalivereset(ureset):
 
 CMD_HELP.update({
     "systools":
-    ".alive\
+    "**Some useful system tools**\
+    \n\n.alive\
     \nUsage: Type .alive to see wether your bot is working or not.\
     \n\n.aliveu <text>\
     \nUsage: Changes the 'user' in alive to the text you want.\
