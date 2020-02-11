@@ -60,19 +60,6 @@ async def score_user(event, userfull):
     # indicates the opposite.
     score = {}
 
-    # First we'll check their profile pics against registered
-    # hashes that we know are spam
-    hashes = await gather_profile_pic_hashes(event, user)
-    total_hashes = len(hashes)
-    matching_hashes = 0
-    for hsh in hashes:
-        match = await event.client.download_profile_photo(user_id,
-                                                      TEMP_DOWNLOAD_DIRECTORY +
-                                                      str(user_id) + ".jpg",
-                                                      download_big=True)
-        if match and match.get('spam'):
-            matching_hashes += 1
-
     # User was flagged as a scammer
     if user.scam:
         score.update({'flagged as scammer': 5})
