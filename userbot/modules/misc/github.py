@@ -118,8 +118,7 @@ async def build_repo_message(repo, args):
 
 
 CMD_HELP.update({"github":
-	"Displays information related to a github repo.\
-    \nSimilar to .user\
+	"**Displays information related to a github repo. Similar to .user**\
     \n\n.gh (repo)\
     \n\nRepos can be in the format `https://github.com/user/repo` or just `user/repo`\
     \n\nOptions:\
