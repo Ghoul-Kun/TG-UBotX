@@ -76,7 +76,7 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "#Error\n"
+                    text = "#ERROR\n"
                     text += "**USERBOT ERROR REPORT**\n"
                     text += "Nothing is logged except the fact of error and date\n"
 
@@ -112,7 +112,7 @@ def register(**args):
 
                     ftext += result
 
-                    file = open("error.log", "w+")
+                    file = open("ubotx_error.log", "w+")
                     file.write(ftext)
                     file.close()
 
@@ -122,9 +122,9 @@ def register(**args):
                                             )
 
                     await check.client.send_file(send_to,
-                                                 "error.log",
+                                                 "ubotx_error.log",
                                                  caption=text)
-                    remove("error.log")
+                    remove("ubotx_error.log")
             else:
                 pass
 
