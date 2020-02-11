@@ -169,13 +169,13 @@ add_help_item(
     "Admin",
     "Welcome the new members..",
     """
-    `.setwelcome <welcome message> or reply to a message with .setwelcome\
+`.setwelcome <welcome message> or reply to a message with .setwelcome\
 \nUsage: Saves the message as a welcome note in the chat.\
 \n\nAvailable variables for formatting welcome messages :\
 \n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
 \n\n.checkwelcome\
 \nUsage: Check whether you have a welcome note in the chat.\
 \n\n.rmwelcome\
-\nUsage: Deletes the welcome note for the current chat.\
+\nUsage: Deletes the welcome note for the current chat.
     """
 )
