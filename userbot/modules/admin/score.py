@@ -10,7 +10,7 @@ from io import BytesIO
 from PIL import Image
 from photohash import average_hash
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot import spamwatch
 from userbot.events import register
 from userbot.utils import parse_arguments, get_user_from_event, make_mention
@@ -53,6 +53,7 @@ async def spamscan_score(e):
 async def score_user(event, userfull):
     """ Give a user a spam score based on several factors """
     user = userfull.user
+    user_id = replied_user.user.id
 
     # Everyone starts with a score of 0. A lower score indicates
     # a lower chance of being a spammer. A higher score
