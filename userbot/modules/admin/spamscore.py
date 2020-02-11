@@ -59,6 +59,10 @@ async def score_user(event, userfull):
     # indicates the opposite.
     score = {}
 
+    hashes = await gather_profile_pic_hashes(event, user)
+    total_hashes = len(hashes)
+    matching_hashes = 0
+
     # User was flagged as a scammer
     if user.scam:
         score.update({'flagged as scammer': 5})
