@@ -31,23 +31,7 @@ The easiest way to deploy this derpfest!
 
 ### Credits:
 
-I would like to thank people who assisted me throughout this project:
-
-* [@AvinashReddy3108](https://github.com/AvinashReddy3108)
-* [@YouTwitFace](https://github.com/YouTwitFace)
-* [@TheDevXen](https://github.com/TheDevXen)
-* [@Skittles9823](https://github.com/Skittles9823)
-* [@deletescape](https://github.com/deletescape)
-* [@songotenks69](https://github.com/songotenks69)
-* [@Ovenoboyo](https://github.com/Ovenoboyo)
-* [SphericalKat](https://github.com/ATechnoHazard)
-* [@rupansh](https://github.com/rupansh)
-* [@zakaryan2004](https://github.com/zakaryan2004)
-* [@kandnub](https://github.com/kandnub)
-* [@pqhaz](https://github.com/pqhaz)
-* [@yshalsager](https://github.com/yshalsager)
-
-And huge thanks to <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contributors">many more</a> people who aren't mentioned here.
+I would like to thank <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contributors">people</a> who assisted me throughout this project
 
 Found Bugs? Create an issue on the issue tracker.
 
