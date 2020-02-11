@@ -11,8 +11,8 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types.messages import ChatFull
 from telethon.tl.types import Channel, User, ChatInviteExported
 
+from ..help import add_help_item
 from userbot.utils import parse_arguments, list_admins, inline_mention, list_bots, get_chat_from_event
-from userbot import CMD_HELP
 from userbot.events import register
 from userbot.utils.tgdoc import *
 
@@ -103,12 +103,15 @@ async def fetch_info(event, full_chat, **kwargs):
                          bots if show_bots else None))
 
 
-CMD_HELP.update({
-    "chatinfo":
-    "Returns stats for the current chat.\
+add_help_item(
+    "chatinfo",
+    "Admin",
+    "Returns stats for the current chat",
+    """
     \n.chat [options]\
     \n\n.id: Return only the id.\
     \n.general: Show general information related to the chat.\
     \n.admins: Show chat admins (does not mention them).\
-    \n.all: Show everything."
-})
+    \n.all: Show everything.
+    """
+)

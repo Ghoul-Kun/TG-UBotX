@@ -1,8 +1,15 @@
-#this module originally created by @spechide https://github.com/SpEcHiDe/UniBorg/blob/master/stdplugins/invite.py
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
+#
+
+# This module originally created by @spechide https://github.com/SpEcHiDe/UniBorg/blob/master/stdplugins/invite.py
 
 from telethon import functions
+
+from ..help import add_help_item
 from userbot.events import register
-from userbot import CMD_HELP
 
 
 @register(outgoing=True, pattern="^.invite(?: |$)(.*)")
@@ -37,7 +44,12 @@ async def _(event):
                     await event.reply(str(e))
             await event.edit("Invited Successfully")
 
-CMD_HELP.update({
-    "invite": "\
-.invite users to a chat, not to a private message"
-})
+
+add_help_item(
+    "invite",
+    "Admin",
+    "Invite users to a chat, not to a private message",
+    """
+    .invite
+    """
+)

@@ -23,7 +23,8 @@ from telethon.tl.types import (PeerChat, PeerChannel,
                                ChatBannedRights, MessageEntityMentionName,
                                MessageMediaPhoto, ChannelParticipantsBots)
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from ..help import add_help_item
+from userbot import BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register
 
 # =================== CONSTANT ===================
@@ -852,9 +853,12 @@ async def get_user_from_id(user, event):
     return user_obj
 
 
-CMD_HELP.update({
-    "admin":
-    ".promote <username/userid> : <custom rank (optional)> (or) reply to a message with .promote <rank (optional)>\
+add_help_item(
+    "admin",
+    "Admin",
+    "Some admin-related commands",
+    """
+.promote <username/userid> : <custom rank (optional)> (or) reply to a message with .promote <rank (optional)>\
 \nUsage: Provides admin rights to the person in the chat.\
 \n\n.demote <username/userid> (or) reply to a message with .demote\
 \nUsage: Revokes the person's admin permissions in the chat.\
@@ -879,5 +883,6 @@ CMD_HELP.update({
 \n\n.users or .users <search query>\
 \nUsage: Retrieves all (or queried) users in the chat.\
 \n\n.setgpic <reply to image>\
-\nUsage: Changes the group's display picture."
-})
+\nUsage: Changes the group's display picture.
+    """
+)

@@ -1,5 +1,12 @@
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
+#
+
+from ...help import add_help_item
 from userbot.events import register
-from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
+from userbot import bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
 from telethon.events import ChatAction
 
 
@@ -153,7 +160,16 @@ async def del_welcome(event):
 CMD_HELP.update({
     "welcome":
     "\
-.setwelcome <welcome message> or reply to a message with .setwelcome\
+.
+"
+})
+
+add_help_item(
+    "welcomes",
+    "Admin",
+    "Welcome the new members..",
+    """
+    `.setwelcome <welcome message> or reply to a message with .setwelcome\
 \nUsage: Saves the message as a welcome note in the chat.\
 \n\nAvailable variables for formatting welcome messages :\
 \n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
@@ -161,5 +177,5 @@ CMD_HELP.update({
 \nUsage: Check whether you have a welcome note in the chat.\
 \n\n.rmwelcome\
 \nUsage: Deletes the welcome note for the current chat.\
-"
-})
+    """
+)

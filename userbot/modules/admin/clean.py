@@ -13,8 +13,8 @@ from telethon.events import NewMessage
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import Channel, Message, ChatBannedRights, User
 
+from ..help import add_help_item
 from userbot.utils import parse_arguments
-from userbot import CMD_HELP
 from userbot.events import register
 from userbot.utils.tgdoc import *
 
@@ -98,8 +98,11 @@ async def _cleanup_chat(event, count: bool = False,
                 KeyValueItem(Bold('Deleted Admins'), deleted_admins) if deleted_admins else None))
 
 
-CMD_HELP.update({
-    "clean":
-    ".clean\
-    \nClean the current chat of deleted accounts"
-})
+add_help_item(
+    "cleanup",
+    "Admin",
+    "Clean the current chat of deleted accounts",
+    """
+    .clean
+    """
+)

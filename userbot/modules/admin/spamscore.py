@@ -10,7 +10,7 @@ from io import BytesIO
 from PIL import Image
 from photohash import average_hash
 
-from userbot import CMD_HELP
+from ...help import add_help_item
 from userbot import spamwatch
 from userbot.events import register
 from userbot.utils import parse_arguments, get_user_from_event, make_mention
@@ -194,12 +194,17 @@ async def gather_profile_pic_hashes(event, user):
     return hashes
 
 
-CMD_HELP.update({
-    "spamscore":
-    "**Get the spam score of the selected user.**\
-    \n\n`.spamblock score [options] (user id|username)`\
-    \n\nOr, in reply to a message\
-    \n`.spamblock score [options]`\
-    \n\n**Options:**\
-    \n`.forward`: Follow forwarded message."
-})
+add_help_item(
+    "spamscore",
+    "Admin",
+    "Get the spam score of the selected user.",
+    """
+    `.spamblock score [options] (user id|username)`
+
+    Or, in reply to a message
+    `.spamblock score [options]`
+
+    **Options:**
+    `.forward`: Follow forwarded message
+    """
+)

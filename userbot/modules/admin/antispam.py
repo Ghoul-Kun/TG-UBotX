@@ -11,7 +11,8 @@ from requests import get
 from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins, Message
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, bot
+from ..help import add_help_item
+from userbot import BOTLOG, BOTLOG_CHATID, ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, bot
 
 
 @bot.on(ChatAction)
@@ -178,9 +179,13 @@ async def ANTI_SPAMBOT(welcm):
         pass
 
 
-CMD_HELP.update({
-    'antispam':
-    "If enabled in config.env or env var,\
-        \nthis module will ban(or inform the admins of the group about) the\
-        \nspammer(s) if they match the userbot's anti-spam algorithm."
-})
+add_help_item(
+    "antispam",
+    "Admin",
+    "UBotX Anti-Spam System",
+    """
+If enabled in config.env or env var,\
+\nthis module will ban(or inform the admins of the group about) the\
+\nspammer(s) if they match the userbot's anti-spam algorithm.
+    """
+)

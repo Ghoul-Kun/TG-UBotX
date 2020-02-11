@@ -6,7 +6,7 @@
 
 from telethon.tl.functions.users import GetFullUserRequest
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot.events import register
 from userbot.modules.admin.spamscore import score_user
 from userbot.utils import make_mention
@@ -56,10 +56,14 @@ async def spamscan(e):
     await e.edit(str(output))
 
 
-CMD_HELP.update({
-    "spamscan":
-    "Scan the current group for potential spammers\
-    \nUsing the spamscan algorithm.\
-    \n`.spamblock scan`\
-    \n\nWarning: this can take a __very__ long time."
-})
+add_help_item(
+    "spamscan",
+    "Admin",
+    "Scan the current group for potential spammers "
+    "using the spamscan algorithm.",
+    """
+    `.spamblock scan`
+
+    Warning: this can take a __very__ long time.
+    """
+)
