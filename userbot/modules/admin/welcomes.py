@@ -157,13 +157,6 @@ async def del_welcome(event):
         await event.edit("`Do I have a welcome note here ?`")
 
 
-CMD_HELP.update({
-    "welcome":
-    "\
-.
-"
-})
-
 add_help_item(
     "welcomes",
     "Admin",
