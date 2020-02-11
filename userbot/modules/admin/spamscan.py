@@ -2,7 +2,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 
 from userbot import CMD_HELP
 from userbot.events import register
-from userbot.modules.misc.spamscore import score_user
+from userbot.modules.admin.spamscore import score_user
 from userbot.utils import make_mention
 from userbot.utils.tgdoc import Section, Bold, KeyValueItem, String
 
