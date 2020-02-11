@@ -10,10 +10,10 @@
 from telethon.events import NewMessage
 
 # from userbot import spamwatch
+from ..help import add_help_item
 from userbot.events import register
 from userbot.utils import parse_arguments, get_user_from_event
 from userbot.utils.tgdoc import *
-from userbot import CMD_HELP
 
 
 @register(pattern=r"^\.u(?:ser)?(\s+[\S\s]+|$)", outgoing=True)
@@ -109,16 +109,23 @@ async def fetch_info(replied_user, **kwargs):
                    bot if show_bot else None)
 
 
-CMD_HELP.update({
-    "userinfo":
-    ".u(ser) [options] (username|id) \
-    \n\nOr, in response to a message \
-    \n.u(ser) [options] \
-    \n\n.id: Show only the user's ID \
-    \n.general: Show general user Info \
-    \n.bot: Show bot related Info \
-    \n.misc: Show miscelanious Info \
-    \n.all: Show all info (overrides other options) \
-    \n.mention: Inline mention the user \
-    \n.forward: Follow forwarded message"
-})
+add_help_item(
+    "userinfo",
+    "Utilities",
+    "List information about a particular user.",
+    """
+    `.u(ser) [options] (username|id)`
+    
+    Or, in response to a message
+    `.u(ser) [options]`
+    
+    Options:
+    `.id`: Show only the user's ID
+    `.general`: Show general user info
+    `.bot`: Show bot related info
+    `.misc`: Show miscelanious info
+    `.all`: Show all info (overrides other options)
+    `.mention`: Inline mention the user
+    `.forward`: Follow forwarded message
+    """
+)

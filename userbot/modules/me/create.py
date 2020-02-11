@@ -7,8 +7,9 @@
 # This module originally created by @spechide https://github.com/SpEcHiDe/UniBorg/blob/master/stdplugins/create_private_group.py
 
 from telethon.tl import functions, types
+
+from ..help import add_help_item
 from userbot.events import register
-from userbot import CMD_HELP
 
 
 @register(outgoing=True, pattern="^.create (b|g|c)(?: |$)(.*)")
@@ -53,14 +54,17 @@ async def telegraphs(grop):
             except Exception as e:  # pylint:disable=C0103,W0703
                 await grop.edit(str(e))
 
-CMD_HELP.update({
-    "create": "\
-Create\
-\nUsage: Create Channel, Group & Group With Bot.\
+
+add_help_item(
+    "create",
+    "Me",
+    "Creating New Group & Channel",
+    """
 \n\n.create g\
 \nUsage: Create a Private Group.\
 \n\n.create b\
 \nUsage: Create a Group with Bot.\
 \n\n.create c\
-\nUsage: Create a Channel.\
-"})
+\nUsage: Create a Channel.
+    """
+)

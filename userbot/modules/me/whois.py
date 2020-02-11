@@ -13,7 +13,9 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+
+from ..help import add_help_item
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
@@ -147,8 +149,11 @@ async def fetch_info(replied_user, event):
     return photo, caption
 
 
-CMD_HELP.update({
-    "whois":
-    ".whois <username> or reply to someones text with .whois\
-    \nUsage: Gets info of an user."
-})
+add_help_item(
+    "whois",
+    "Me",
+    "Gets info of an user.",
+    """
+    .whois <username> or reply to someones text with .whois
+    """
+)

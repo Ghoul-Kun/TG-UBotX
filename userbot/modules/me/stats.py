@@ -10,8 +10,8 @@ from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
 from telethon.tl.types import Channel, User, Chat
 
+from ..help import add_help_item
 from userbot.utils import inline_mention
-from userbot import CMD_HELP
 from userbot.events import register
 
 
@@ -92,8 +92,11 @@ async def stats(event: NewMessage.Event) -> None:  # pylint: disable = R0912, R0
     await event.edit(response)
 
 
-CMD_HELP.update({
-    "stats":
-    ".stats\
-    \nUsage: Get some basic Telegram stats about yourself."
-})
+add_help_item(
+    "stats",
+    "Me",
+    "Get some basic Telegram stats about yourself.",
+    """
+    `.stats`
+    """
+)
