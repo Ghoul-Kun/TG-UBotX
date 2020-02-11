@@ -155,11 +155,6 @@ async def sedNinjaToggle(event):
         await event.delete()
 
 
-CMD_HELP.update({
-    "chat":
-    "."
-})
-
 add_help_item(
     "chat",
     "Admin",
