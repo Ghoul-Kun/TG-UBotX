@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-from ...help import add_help_item
+from ..help import add_help_item
 from userbot.events import register
 from userbot import bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
 from telethon.events import ChatAction

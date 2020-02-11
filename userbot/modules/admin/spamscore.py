@@ -10,7 +10,7 @@ from io import BytesIO
 from PIL import Image
 from photohash import average_hash
 
-from ...help import add_help_item
+from ..help import add_help_item
 from userbot import spamwatch
 from userbot.events import register
 from userbot.utils import parse_arguments, get_user_from_event, make_mention
