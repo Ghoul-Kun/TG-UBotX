@@ -14,6 +14,7 @@ from distutils.util import strtobool as sb
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from github import Github
+from spamwatch import Client as SpamWatch
 from dotenv import load_dotenv
 from requests import get
 from telethon import TelegramClient
@@ -83,6 +84,13 @@ HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
 UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",
     "https://github.com/HitaloKun/TG-UBotX.git")
+
+# Spamwatch API Key
+SPAMWATCH_API_KEY = os.environ.get("SPAMWATCH_API_KEY", None)
+if SPAMWATCH_API_KEY:
+    spamwatch = SpamWatch(SPAMWATCH_API_KEY, host="https://staging.spamwat.ch")
+else:
+    spamwatch = None
 
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
