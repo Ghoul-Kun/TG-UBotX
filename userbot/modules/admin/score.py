@@ -53,7 +53,6 @@ async def spamscan_score(e):
 async def score_user(event, userfull):
     """ Give a user a spam score based on several factors """
     user = userfull.user
-    user_id = replied_user.user.id
 
     # Everyone starts with a score of 0. A lower score indicates
     # a lower chance of being a spammer. A higher score
