@@ -49,7 +49,7 @@ async def upstream(ups):
     await ups.edit("`Checking for updates, please wait....`")
     conf = ups.pattern_match.group(1)
     off_repo = UPSTREAM_REPO_URL
-    force_update = True
+    force_update = False
 
     try:
         txt = "`Oops.. Updater cannot continue due to "

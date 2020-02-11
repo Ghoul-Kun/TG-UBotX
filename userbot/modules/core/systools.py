@@ -124,12 +124,12 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     await alive.edit("`"
-                     "My bot is running \n\n"
+                     "UBotX Status: On-line\n\n"
                      f"Telethon version: {version.__version__} \n"
-                     f"Python: {python_version()} \n"
-                     f"User: {DEFAULTUSER} \n"
-                     f"UBot Version: {VERSION} \n"
-                     f"Modules loaded: {len(ALL_MODULES)}"
+                     f"Python version: {python_version()} \n"
+                     f"UBot version: {VERSION} \n"
+                     f"Modules loaded: {len(ALL_MODULES)} \n"
+                     f"User: {DEFAULTUSER}"
                      "`")
 
 
