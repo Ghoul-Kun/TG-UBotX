@@ -6,7 +6,8 @@
 import asyncio
 from asyncio import wait, sleep
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from ..help import add_help_item
+from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 
 
@@ -77,9 +78,12 @@ async def spammer(e):
             "DelaySpam was executed successfully")
 
 
-CMD_HELP.update({
-    "spam":
-    ".cspam <text>\
+add_help_item(
+    "spam",
+    "Fun",
+    "Your spam is your death wish.",
+    """
+.cspam <text>\
 \nUsage: Spam the text letter by letter.\
 \n\n.spam <count> <text>\
 \nUsage: Floods text in the chat !!\
@@ -89,5 +93,6 @@ CMD_HELP.update({
 \nUsage: As if text spam was not enough !!\
 \n\n.delayspam <delay> <count> <text>\
 \nUsage: .bigspam but with custom delay.\
-\n\n\nNOTE : Spam at your own risk !!"
-})
+\n\n\nNOTE : Spam at your own risk !!
+    """
+)

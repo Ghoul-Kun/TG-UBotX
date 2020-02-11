@@ -111,7 +111,7 @@ async def fetch_info(replied_user, **kwargs):
 
 add_help_item(
     "userinfo",
-    "Utilities",
+    "Me",
     "List information about a particular user.",
     """
     `.u(ser) [options] (username|id)`

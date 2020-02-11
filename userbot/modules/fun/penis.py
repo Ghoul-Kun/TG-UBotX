@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot.events import register
 
 PENIS_TEMPLATE = """
@@ -37,8 +37,11 @@ async def emoji_penis(e):
     await e.edit(message)
 
 
-CMD_HELP.update({
-    "penis":
-    "Creates a penis using the provided emoji, or 🍆 if no emoji is provided.\
-    \n.penis [emoji]"
-})
+add_help_item(
+    "deepfry",
+    "Fun",
+    "Creates a penis using the provided emoji, or 🍆 if no emoji is provided.",
+    """
+.penis [emoji]
+    """
+)

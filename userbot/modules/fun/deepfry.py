@@ -7,7 +7,7 @@
 import tempfile
 from io import BytesIO
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot import FACE_API_KEY, FACE_API_URL
 from userbot.events import register
 from userbot.modules.fun import resize_photo
@@ -42,8 +42,11 @@ async def fry(message):
         await message.client.send_file(message.chat.id, file=temp.name, reply_to=reply_message)
 
 
-CMD_HELP.update({
-    "deepfry":
-    "Deeprys the selected photo.\
-    \n.deepfry In response to a photo"
-})
+add_help_item(
+    "deepfry",
+    "Fun",
+    "Deeprys the selected photo.",
+    """
+.deepfry In response to a photo
+    """
+)

@@ -12,7 +12,8 @@ from os import remove
 from PIL import Image
 import random
 from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto
-from userbot import bot, CMD_HELP
+from ..help import add_help_item
+from userbot import bot
 from userbot.events import register
 from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.types import InputStickerSetID
@@ -318,9 +319,11 @@ async def get_pack_info(event):
     await event.edit(OUTPUT)
 
 
-CMD_HELP.update({
-    "stickers":
-    ".kang\
+add_help_item(
+    "kang",
+    "Fun",
+    "Steal stickers and animated stickers",
+    """
 \nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
 \n\n.kang [emoji('s)]\
 \nUsage: Works just like .kang but uses the emoji('s) you picked.\
@@ -329,5 +332,6 @@ CMD_HELP.update({
 \n\n.kang [emoji('s)] [number]\
 \nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
 \n\n.stkrinfo\
-\nUsage: Gets info about the sticker pack."
-})
+\nUsage: Gets info about the sticker pack.
+    """
+)

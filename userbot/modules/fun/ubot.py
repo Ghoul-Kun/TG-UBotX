@@ -12,8 +12,10 @@ import os
 import io
 import sys
 import json
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register
+from ..help import add_help_item
+
 
 @register(outgoing=True, pattern="^.ubo$")
 async def shalom(e):
@@ -101,14 +103,17 @@ async def shalom(e):
         "\n💰💰💰💰💰💰💰❄️💰"
         "\n💰💰💰💰💰💰💰❄️💰"
         "\n💰💰💰💰💰💰💰💰💰")
-        
-    
-    CMD_HELP.update({
-    'ubo':
-    '.ubo\
-\nUsage: gives a nice UBOT as output.'
-})
 
+
+add_help_item(
+    "ubotx",
+    "Fun",
+    "UBotX is the best.",
+    """
+.ubo\
+\nUsage: gives a nice UBOT as output.
+    """
+)
 
 
 

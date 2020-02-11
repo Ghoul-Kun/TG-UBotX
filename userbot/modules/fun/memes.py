@@ -15,7 +15,7 @@ import requests
 
 from cowpy import cow
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot.events import register
 from userbot.modules.admin.admin import get_user_from_event
 
@@ -1101,9 +1101,12 @@ async def typewriter(typew):
         await sleep(sleep_time)
 
 
-CMD_HELP.update({
-    "memes":
-    ".cowsay\
+add_help_item(
+    "memes",
+    "Fun",
+    "Thanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these.",
+    """
+.cowsay\
 \nUsage: cow which says things.\
 \n\n:/\
 \nUsage: Check yourself ;)\
@@ -1165,6 +1168,6 @@ CMD_HELP.update({
 \nUsage: Make a quick decision.\
 \n\n.scam <action> <time>\
 \n[Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]\
-\nUsage: Create fake chat actions, for fun. (Default action: typing)\
-\n\n\nThanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these."
-})
+\nUsage: Create fake chat actions, for fun. (Default action: typing).
+    """
+)
