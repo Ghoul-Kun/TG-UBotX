@@ -24,7 +24,6 @@ from wikipedia.exceptions import DisambiguationError, PageError
 import asyncurban
 from requests import get
 from search_engine_parser import GoogleSearch
-from google_images_download import google_images_download
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googletrans import LANGUAGES, Translator
@@ -118,37 +117,6 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-
-
-@register(outgoing=True, pattern="^\.img (.*)")
-async def img_sampler(event):
-    """ For .img command, search and return images matching the query. """
-    await event.edit("Processing...")
-    query = event.pattern_match.group(1)
-    lim = findall(r"lim=\d+", query)
-    try:
-        lim = lim[0]
-        lim = lim.replace("lim=", "")
-        query = query.replace("lim=" + lim[0], "")
-    except IndexError:
-        lim = 3
-    response = google_images_download.googleimagesdownload()
-
-    # creating list of arguments
-    arguments = {
-        "keywords": query,
-        "limit": lim,
-        "format": "jpg",
-        "no_directory": "no_directory"
-    }
-
-    # passing the arguments to the function
-    paths = response.download(arguments)
-    lst = paths[0][query]
-    await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), lst)
-    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
-    await event.delete()
 
 
 @register(outgoing=True, pattern="^\.currency (.*)")
@@ -709,7 +677,5 @@ CMD_HELP.update(
     \n\n.carbon <text> [or reply]\
     \nUsage: Beautify your code using carbon.now.sh\nUse .crblang <text> to set language for your code.\
     \n\n.currency <amount> <from> <to>\
-    \nUsage: Converts various currencies for you.\
-    \n\n.img <search_query>\
-    \nUsage: Does an image search on Google and shows 5 images."
+    \nUsage: Converts various currencies for you."
 })
