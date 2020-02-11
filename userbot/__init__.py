@@ -88,7 +88,7 @@ UPSTREAM_REPO_URL = os.environ.get(
 # Spamwatch API Key
 SPAMWATCH_API_KEY = os.environ.get("SPAMWATCH_API_KEY", None)
 if SPAMWATCH_API_KEY:
-    spamwatch = SpamWatch(SPAMWATCH_API_KEY, host="https://staging.spamwat.ch")
+    spamwatch = SpamWatch(SPAMWATCH_API_KEY, host="https://api.spamwat.ch/")
 else:
     spamwatch = None
 
