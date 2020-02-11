@@ -43,7 +43,7 @@ async def show_help(event):
 
             await event.edit(help_message)
         else:
-            await event.edit("**Please specify a valid module name.**", delete_in=3)
+            await event.edit("**Please specify a valid module name.**")
     else:
         categories = list(CAT_ITEMS.keys())
         categories.sort()

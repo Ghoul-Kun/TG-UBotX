@@ -12,7 +12,8 @@ from shutil import which
 from os import remove
 from telethon import version
 
-from userbot import CMD_HELP, ALIVE_NAME, VERSION
+from ..help import add_help_item
+from userbot import ALIVE_NAME, VERSION
 from userbot.events import register
 from userbot.modules import ALL_MODULES
 
@@ -154,9 +155,11 @@ async def amireallyalivereset(ureset):
     await ureset.edit("`" "Successfully reset user for alive!" "`")
 
 
-CMD_HELP.update({
-    "systools":
-    "**Some useful system tools**\
+add_help_item(
+    "systools",
+    "Core",
+    "Some useful system tools",
+    """
     \n\n.alive\
     \nUsage: Type .alive to see wether your bot is working or not.\
     \n\n.aliveu <text>\
@@ -168,5 +171,6 @@ CMD_HELP.update({
     \n\n.pip <module(s)>\
     \nUsage: Does a search of pip modules(s).\
     \n\n.sysd\
-    \nUsage: Shows system information using neofetch."
-})
+    \nUsage: Shows system information using neofetch.
+    """
+)

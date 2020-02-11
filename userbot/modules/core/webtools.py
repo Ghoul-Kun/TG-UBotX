@@ -10,7 +10,8 @@ from datetime import datetime
 
 from speedtest import Speedtest
 from telethon import functions
-from userbot import CMD_HELP
+
+from ..help import add_help_item
 from userbot.events import register
 
 
@@ -72,12 +73,16 @@ async def pingme(pong):
     await pong.edit("`Pong!\n%sms`" % (duration))
 
 
-CMD_HELP.update(
-    {"webtools": "**Some useful web tools**\
+add_help_item(
+    "webtools",
+    "Core",
+    "Some useful web tools",
+    """
     \n\n.ping\
     \nUsage: Shows how long it takes to ping your bot.\
     \n\n.speedtest\
     \nUsage: Does a speedtest and shows the results.\
     \n\n.dc\
-    \nUsage: Finds the nearest datacenter from your server."
-})
+    \nUsage: Finds the nearest datacenter from your server.
+    """
+)
