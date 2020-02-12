@@ -118,7 +118,7 @@ async def build_repo_message(repo, args):
 
 
 add_help_item(
-    ".gh",
+    "github",
     "Misc",
     "Displays information related to a github repo. "
     "Similar to `.user`.",
