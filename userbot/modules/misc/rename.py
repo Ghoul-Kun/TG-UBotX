@@ -10,7 +10,7 @@ import os
 from pySmartDL import SmartDL
 from telethon.tl.types import DocumentAttributeVideo
 from ..help import add_help_item
-from userbot.misc.upload_download import progress, humanbytes, time_formatter
+from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
 
 
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
