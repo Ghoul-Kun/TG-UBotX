@@ -10,7 +10,6 @@ import os
 from pySmartDL import SmartDL
 from telethon.tl.types import DocumentAttributeVideo
 from ..help import add_help_item
-from userbot import config
 from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
 
 
@@ -20,9 +19,6 @@ async def _(event):
         return
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
-    thumb = None
-    if os.path.exists(thumb_image_path):
-        thumb = thumb_image_path
     start = datetime.now()
     input_str = event.pattern_match.group(1)
     url = input_str
@@ -95,9 +91,6 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    thumb = None
-    if os.path.exists(thumb_image_path):
-        thumb = thumb_image_path
     await event.edit("Rename & Upload in process 🙄🙇‍♂️🙇‍♂️🙇‍♀️ It might take some time if file size is big")
     input_str = event.pattern_match.group(1)
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
@@ -171,9 +164,6 @@ async def _(event):
         end_one = datetime.now()
         ms_one = (end_one - start).seconds
         if os.path.exists(downloaded_file_name):
-            thumb = None
-            if os.path.exists(thumb_image_path):
-                thumb = thumb_image_path
             start = datetime.now()
             metadata = extractMetadata(createParser(downloaded_file_name))
             duration = 0
@@ -181,8 +171,6 @@ async def _(event):
             height = 0
             if metadata.has("duration"):
                 duration = metadata.get('duration').seconds
-            if os.path.exists(thumb_image_path):
-                metadata = extractMetadata(createParser(thumb_image_path))
                 if metadata.has("width"):
                     width = metadata.get("width")
                 if metadata.has("height"):
