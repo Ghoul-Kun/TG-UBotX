@@ -1,5 +1,6 @@
 # TG-UBotX
 
+### Telegram UserBot
 
 ```
 #include <std/disclaimer.h>
@@ -17,25 +18,18 @@
 /**
 ```
 
-A modular telegram Python UserBot running on python3 with a sqlalchemy database.
+Currently work fine perfectly, but some features may give you error. Please report a bug to me if you facing any issues.
 
-For configuring this userbot, you can checkout the [Wiki](https://github.com/HitaloKun/TG-UBotX/wiki)
+### Installation Guide
 
+See our wikis to get [Installation Guide](https://github.com/HitaloKun/TG-UBotX/wiki).
 
-## How To Host
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/HitaloKun/TG-UBotX)
 
-The easiest way to deploy this derpfest!
+### Credits
 
-<a href="https://heroku.com/deploy?template=https://github.com/HitaloKun/TG-UBotX/tree/master"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a>
+- [Telegram Userbot](https://github.com/MyPaperPlane/Telegram-UserBot)
+- [Paperlane Extended](https://github.com/AvinashReddy3108/PaperplaneExtended)
+- [tg_userbot](https://github.com/watzon/tg_userbot)
 
-
-### Credits:
-
-I would like to thank <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contributors">people</a> who assisted me throughout this project
-
-Found Bugs? Create an issue on the issue tracker.
-
-
-### License
-
-<a href="https://github.com/HitaloKun/TG-UBotX/blob/master/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019
+And many other <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contributors">people</a> who assisted me throughout this project.

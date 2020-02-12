@@ -128,7 +128,7 @@ async def amireallyalive(alive):
                      "UBotX Status: On-line\n\n"
                      f"Telethon version: {version.__version__} \n"
                      f"Python version: {python_version()} \n"
-                     f"UBot version: {VERSION} \n"
+                     f"UBotX version: {VERSION} \n"
                      f"Modules loaded: {len(ALL_MODULES)} \n"
                      f"User: {DEFAULTUSER}"
                      "`")
