@@ -38,7 +38,7 @@ async def emoji_penis(e):
 
 
 add_help_item(
-    "deepfry",
+    "penis",
     "Fun",
     "Creates a penis using the provided emoji, or 🍆 if no emoji is provided.",
     """
