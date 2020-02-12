@@ -1,3 +1,8 @@
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
+#
 # Ported from UniBorg by TG-UBotX on GitHub
 
 import asyncio
@@ -10,6 +15,7 @@ import os
 from pySmartDL import SmartDL
 from telethon.tl.types import DocumentAttributeVideo
 from ..help import add_help_item
+from userbot.events import register
 from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
 
 
