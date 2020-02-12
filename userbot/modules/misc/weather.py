@@ -12,7 +12,8 @@ from pytz import country_timezones as c_tz
 from pytz import timezone as tz
 from pytz import country_names as c_n
 
-from userbot import CMD_HELP, WEATHER_DEFCITY
+from ..help import add_help_item
+from userbot import WEATHER_DEFCITY
 from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
 from userbot.events import register
 
@@ -135,8 +136,12 @@ async def get_weather(weather):
         f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
 
 
-CMD_HELP.update({
-    "weather":
-    ".weather <city> or .weather <city>, <country name/code>\
-    \nUsage: Gets the weather of a city."
-})
+add_help_item(
+    "weather",
+    "Misc",
+    "Userbot module for getting the weather of a city.",
+    """
+    .weather <city> or .weather <city>, <country name/code>\
+    \nUsage: Gets the weather of a city
+    """
+)

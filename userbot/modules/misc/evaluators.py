@@ -9,7 +9,9 @@ import asyncio
 from getpass import getuser
 from os import remove
 from sys import executable
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID
+
+from ..help import add_help_item
+from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 
 
@@ -189,8 +191,16 @@ async def terminal_runner(term):
         )
 
 
-CMD_HELP.update({"eval": ".eval 2 + 3\nUsage: Evalute mini-expressions."})
-CMD_HELP.update(
-    {"exec": ".exec print('hello')\nUsage: Execute small python scripts."})
-CMD_HELP.update(
-    {"term": ".term ls\nUsage: Run bash commands and scripts on your server."})
+add_help_item(
+    "evaluators",
+    "Misc",
+    "Userbot module for executing code and terminal commands from Telegram.",
+    """
+.eval 2 + 3\
+\nUsage: Evalute mini-expressions\
+\n\n.exec print('hello')\
+\nUsage: Execute small python scripts.\
+\n\n.term\
+\nUsage: Run bash commands and scripts on your server.
+   """
+)

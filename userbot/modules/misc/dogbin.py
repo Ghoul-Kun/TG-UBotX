@@ -8,7 +8,9 @@
 from requests import get, post, exceptions
 import asyncio
 import os
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
+
+from ..help import add_help_item
+from userbot import BOTLOG, BOTLOG_CHATID, LOGS, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 DOGBIN_URL = "https://del.dog/"
@@ -122,10 +124,14 @@ async def get_dogbin_content(dog_url):
         )
 
 
-CMD_HELP.update({
-    "dogbin":
-    ".paste <text/reply>\
-\nUsage: Create a paste or a shortened url using dogbin (https://del.dog/)\
-\n\n.getpaste\
-\nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)"
-})
+add_help_item(
+    "dogbin",
+    "Misc",
+    "Userbot module containing commands for interacting with dogbin(https://del.dog)",
+    """
+    .paste <text/reply>\
+    \nUsage: Create a paste or a shortened url using dogbin (https://del.dog/)\
+    \n\n.getpaste\
+    \nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)
+    """
+)

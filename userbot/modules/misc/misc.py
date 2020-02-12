@@ -14,7 +14,8 @@ import os
 import io
 import sys
 import json
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, UPSTREAM_REPO_URL
+from ..help import add_help_item
+from userbot import BOTLOG, BOTLOG_CHATID, bot, UPSTREAM_REPO_URL
 from userbot.events import register
 
 
@@ -141,9 +142,12 @@ async def raw(event):
             caption="`Here's the decoded message data !!`")
 
 
-CMD_HELP.update({
-    "raw":
-    ".raw\
+add_help_item(
+    "misc",
+    "Misc",
+    "Some misc commands.",
+    """
+.raw\
 \nUsage: Get detailed JSON-like formatted data about replied message.\
 \n\n.random <item1> <item2> ... <itemN>\
 \nUsage: Get a random item from the list of items.\
@@ -163,5 +167,6 @@ CMD_HELP.update({
 \nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to\
 hear Windows XP shutdown sound... but you don't.\
 \n\n.sleep <seconds>\
-\nUsage: Userbots get tired too. Let yours snooze for a few seconds."
-})
+\nUsage: Userbots get tired too. Let yours snooze for a few seconds.
+    """
+)

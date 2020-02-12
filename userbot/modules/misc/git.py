@@ -5,8 +5,9 @@
 #
 
 import aiohttp
+
+from ..help import add_help_item
 from userbot.events import register
-from userbot import CMD_HELP
 
 
 @register(pattern=r".git (.*)", outgoing=True)
@@ -54,4 +55,11 @@ async def github(event):
                 await event.edit(REPLY)
 
 
-CMD_HELP.update({"git": "**Like .whois but for GitHub usernames.**"})
+add_help_item(
+    "git",
+    "Misc",
+    "Like .whois but for GitHub usernames.",
+    """
+    .git
+    """
+)

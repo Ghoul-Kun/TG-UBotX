@@ -11,7 +11,8 @@ import os
 import requests
 from userbot.events import register
 from telethon.tl.types import MessageMediaPhoto
-from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
+from ..help import add_help_item
+from userbot import REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
 
 
 @register(outgoing=True, pattern="^\.rbg(?: |$)(.*)")
@@ -96,8 +97,12 @@ async def ReTrieveURL(input_url):
     return r
 
 
-CMD_HELP.update({
-    "rbg":
-    ".rbg <Link to Image> or reply to any image (Warning: does not work on stickers.)\
-\nUsage: Removes the background of images, using remove.bg API"
-})
+add_help_item(
+    "removebg",
+    "Misc",
+    "Remove the image background.",
+    """
+.rbg <Link to Image> or reply to any image (Warning: does not work on stickers.)\
+\nUsage: Removes the background of images, using remove.bg API
+    """
+)

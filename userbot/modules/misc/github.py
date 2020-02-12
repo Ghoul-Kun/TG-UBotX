@@ -10,7 +10,7 @@ from github import UnknownObjectException
 from github.NamedUser import NamedUser
 from github.Repository import Repository
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot import github
 from userbot.events import register
 from userbot.utils import parse_arguments
@@ -117,12 +117,22 @@ async def build_repo_message(repo, args):
     )
 
 
-CMD_HELP.update({"github":
-	"**Displays information related to a github repo. Similar to .user**\
-    \n\n.gh (repo)\
-    \n\nRepos can be in the format `https://github.com/user/repo` or just `user/repo`\
-    \n\nOptions:\
-    \n.general: Display general information related to the repo.\
-    \n.owner: Display information about the repo owner.\
-    \n.all: Display everything."
-})
+add_help_item(
+    ".gh",
+    "Utilities",
+    "Displays information related to a github repo. "
+    "Similar to `.user`.",
+    """
+    `.gh (repo)`
+    
+    Or, in response to a message containing a github repo
+    `.gh`
+    
+    Repos can be in the format `https://github.com/user/repo` or just `user/repo`.
+    
+    Options:
+    `.general`: Display general information related to the repo.
+    `.owner`: Display information about the repo owner.
+    `.all`: Display everything.
+    """
+)

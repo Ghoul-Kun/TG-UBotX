@@ -12,7 +12,8 @@ from pytz import country_names as c_n
 from pytz import country_timezones as c_tz
 from pytz import timezone as tz
 
-from userbot import CMD_HELP, COUNTRY, TZ_NUMBER
+from ..help import add_help_item
+from userbot import COUNTRY, TZ_NUMBER
 from userbot.events import register
 
 
@@ -169,17 +170,19 @@ async def date_func(dat):
         return
 
 
-CMD_HELP.update({
-    "time":
-    ".time <country name/code> <timezone number>"
-    "\nUsage: Get the time of a country. If a country has "
-    "multiple timezones, it will list all of them "
-    "and let you select one."
-})
-CMD_HELP.update({
-    "date":
-    ".date <country name/code> <timezone number>"
-    "\nUsage: Get the date of a country. If a country has "
-    "multiple timezones, it will list all of them "
-    "and let you select one."
-})
+add_help_item(
+    "time",
+    "Misc",
+    "Userbot module for getting the Date and time of any country or the userbot server.",
+    """
+    .date <country name/code> <timezone number>\
+    \nUsage: Get the date of a country. If a country has \
+    multiple timezones, it will list all of them \
+    and let you select one.\
+
+    .time <country name/code> <timezone number>\
+    \nUsage: Get the time of a country. If a country has \
+    multiple timezones, it will list all of them \
+    and let you select one.
+    """
+)

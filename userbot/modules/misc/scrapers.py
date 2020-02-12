@@ -35,8 +35,9 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
+from ..help import add_help_item
 from asyncio import sleep
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
+from userbot import BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
@@ -655,10 +656,12 @@ def deEmojify(inputString):
     return get_emoji_regexp().sub(u'', inputString)
 
 
-        
-CMD_HELP.update(
-    {"scrapers":
-	".imdb <movie-name>\
+add_help_item(
+    "scrapers",
+    "Misc",
+    "Userbot module containing various scrapers.",
+    """
+    .imdb <movie-name>\
     \nUsage: Shows movie info and other stuff.\
     .ripaudio <url> or ripvideo <url>\
     \nUsage: Download videos and songs from YouTube (and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).\
@@ -677,5 +680,6 @@ CMD_HELP.update(
     \n\n.carbon <text> [or reply]\
     \nUsage: Beautify your code using carbon.now.sh\nUse .crblang <text> to set language for your code.\
     \n\n.currency <amount> <from> <to>\
-    \nUsage: Converts various currencies for you."
-})
+    \nUsage: Converts various currencies for you.
+    """
+)

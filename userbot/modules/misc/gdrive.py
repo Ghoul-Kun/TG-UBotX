@@ -15,9 +15,10 @@ from googleapiclient.errors import ResumableUploadError
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.file import Storage
 from oauth2client import file, client, tools
+from ..help import add_help_item
 from userbot import (G_DRIVE_CLIENT_ID, G_DRIVE_CLIENT_SECRET,
                      G_DRIVE_AUTH_TOKEN_DATA, GDRIVE_FOLDER_ID, BOTLOG_CHATID,
-                     TEMP_DOWNLOAD_DIRECTORY, CMD_HELP, LOGS)
+                     TEMP_DOWNLOAD_DIRECTORY, LOGS)
 from userbot.events import register
 from mimetypes import guess_type
 import httplib2
@@ -440,9 +441,12 @@ async def gdrive_search(http, search_query):
     return msg
 
 
-CMD_HELP.update({
-    "gdrive":
-    ".gdrive <file_path / reply / URL|file_name>\
+add_help_item(
+    "gdrive",
+    "Misc",
+    "Send files to your gdrive using UBotX",
+    """
+    .gdrive <file_path / reply / URL|file_name>\
     \nUsage: Uploads the file in reply , URL or file path in server to your Google Drive.\
     \n\n.gsetf <GDrive Folder URL>\
     \nUsage: Sets the folder to upload new files to.\
@@ -453,5 +457,6 @@ CMD_HELP.update({
     \n\n.list <query>\
     \nUsage: Looks for files and folders in your Google Drive.\
     \n\n.ggd <path_to_folder_in_server>\
-    \nUsage: Uploads all the files in the directory to a folder in Google Drive."
-})
+    \nUsage: Uploads all the files in the directory to a folder in Google Drive
+    """
+)

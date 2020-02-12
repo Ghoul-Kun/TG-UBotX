@@ -8,7 +8,7 @@ import urllib.parse
 
 import requests
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot.events import register
 from userbot.utils import parse_arguments, extract_urls
 
@@ -73,11 +73,15 @@ async def resolve_url(url: str, base_domain: bool = True) -> str:
     return url
 
 
-CMD_HELP.update({
-    "followlink":
-    "**Follow a link or any number of links to their destination. Mainly for use with short URLs.**\
-    \n`.f(ollow) (link1) (link2) ... (linkN)`\
-    \n\nOr, in reply to a message containing links\
-    \n`.f(ollow)`"
-})
-
+add_help_item(
+    "followlink",
+    "Misc",
+    "Follow a link or any number of links to their "
+    "destination. Mainly for use with short URLs.",
+    """
+    `.f(ollow) (link1) (link2) ... (linkN)`
+    
+    Or, in reply to a message containing links
+    `.f(ollow)`
+    """
+)

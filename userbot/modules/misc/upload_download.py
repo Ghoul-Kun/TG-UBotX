@@ -21,7 +21,8 @@ from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from telethon.tl.types import DocumentAttributeVideo
 
-from userbot import LOGS, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from ..help import add_help_item
+from userbot import LOGS, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
@@ -403,10 +404,14 @@ async def uploadas(uas_event):
         await uas_event.edit("404: File Not Found")
 
 
-CMD_HELP.update({
-    "download":
-    ".download <link|filename> or reply to media\
-\nUsage: Downloads file to the server.\
-\n\n.upload <path in server>\
-\nUsage: Uploads a locally stored file to the chat."
-})
+add_help_item(
+    "download",
+    "Misc",
+    "Userbot module which contains everything related to downloading/uploading from/to the server.",
+    """
+    .download <link|filename> or reply to media\
+    \nUsage: Downloads file to the server.\
+    \n\n.upload <path in server>\
+    \nUsage: Uploads a locally stored file to the chat.
+    """
+)

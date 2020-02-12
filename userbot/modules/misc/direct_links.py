@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module containing various sites direct links generators"""
+""" Userbot module containing various sites direct links generators """
 
 from os import popen
 import re
@@ -14,7 +14,7 @@ import requests
 from bs4 import BeautifulSoup
 from humanize import naturalsize
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot.events import register
 
 
@@ -346,12 +346,16 @@ def useragent():
     return user_agent.text
 
 
-CMD_HELP.update({
-    "direct":
-    ".direct <url>\n"
+add_help_item(
+    "directlinks",
+    "Misc",
+    "Turn supported download links into direct links",
+    """
+    .direct <url>\n"
     "Usage: Reply to a link or paste a URL to\n"
     "generate a direct download link\n\n"
     "List of supported URLs:\n"
     "`Google Drive - MEGA.nz - Cloud Mail - Yandex.Disk - AFH - "
-    "ZippyShare - MediaFire - SourceForge - OSDN - GitHub`"
-})
+    "ZippyShare - MediaFire - SourceForge - OSDN - GitHub`
+    """
+)

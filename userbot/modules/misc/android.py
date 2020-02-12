@@ -9,7 +9,7 @@ import re
 from requests import get
 from bs4 import BeautifulSoup
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot.events import register
 
 GITHUB = 'https://github.com'
@@ -187,9 +187,12 @@ async def twrp(request):
     await request.edit(reply)
 
 
-CMD_HELP.update({
-    "android":
-    ".magisk\
+add_help_item(
+    "android",
+    "Misc",
+    "Useful commands for Android users",
+    """
+.magisk\
 \nGet latest Magisk releases\
 \n\n.device <codename>\
 \nUsage: Get info about android device codename or model.\
@@ -198,5 +201,6 @@ CMD_HELP.update({
 \n\n.specs <brand> <device>\
 \nUsage: Get device specifications info.\
 \n\n.twrp <codename>\
-\nUsage: Get latest twrp download for android device."
-})
+\nUsage: Get latest twrp download for android device.
+    """
+)

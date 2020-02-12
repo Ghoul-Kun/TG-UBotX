@@ -9,7 +9,7 @@ import re
 from telethon import events
 from telethon.errors import MessageNotModifiedError
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot import bot
 
 REDDIT_REGEX = r"(?:^|\s+)(\/?r\/\S+)"
@@ -32,8 +32,11 @@ async def subreddit(e):
             pass
 
 
-CMD_HELP.update({
-    "reddit":
-    "Replaces subreddit text with a link to the sub.\
-    \nExample: r/xboxone"
-})
+add_help_item(
+    "reddit",
+    "Misc",
+    "Replaces subreddit text with a link to the sub.",
+    """
+    `r/xboxone`
+    """
+)

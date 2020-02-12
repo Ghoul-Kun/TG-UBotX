@@ -16,7 +16,7 @@ from barcode.writer import ImageWriter
 
 from bs4 import BeautifulSoup
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot.events import register
 
 
@@ -136,14 +136,14 @@ async def make_qr(makeqr):
     await makeqr.delete()
 
 
-CMD_HELP.update({
-    'qrcode':
-    ".makeqr <content>\
-\nUsage: Make a QR Code from the given content.\
-\nExample: .makeqr www.google.com\
-\nNote: use .decode <reply to barcode/qrcode> to get decoded content.\
-\n\n.barcode <content>\
-\nUsage: Make a BarCode from the given content.\
-\nExample: .barcode www.google.com\
-\nNote: use .decode <reply to barcode/qrcode> to get decoded content."
-})
+add_help_item(
+    "qrcode",
+    "Misc",
+    "Make a QR code with the supplied content and gets the content of a QR code.",
+    """
+    `.makeqr (content)` or, in response to a message
+    
+    In response to a message
+    `.getqr`
+    """
+)
