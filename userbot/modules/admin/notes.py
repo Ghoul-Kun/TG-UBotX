@@ -118,32 +118,6 @@ async def incom_note(getnt):
         pass
 
 
-@register(outgoing=True, pattern="^\.rmbotnotes (.*)")
-async def kick_marie_notes(kick):
-    """ For .rmbotnotes command, allows you to kick all \
-        Marie(or her clones) notes from a chat. """
-    bot_type = kick.pattern_match.group(1).lower()
-    if bot_type not in ["marie", "rose"]:
-        await kick.edit("`That bot is not yet supported!`")
-        return
-    await kick.edit("```Will be kicking away all Notes!```")
-    await sleep(3)
-    resp = await kick.get_reply_message()
-    filters = resp.text.split("-")[1:]
-    for i in filters:
-        if bot_type == "marie":
-            await kick.reply("/clear %s" % (i.strip()))
-        if bot_type == "rose":
-            i = i.replace('`', '')
-            await kick.reply("/clear %s" % (i.strip()))
-        await sleep(0.3)
-    await kick.respond(
-        "```Successfully purged bots notes yaay!```\n Gimme cookies!")
-    if BOTLOG:
-        await kick.client.send_message(
-            BOTLOG_CHATID, "I cleaned all Notes at " + str(kick.chat_id))
-
-
 add_help_item(
     "notes",
     "Admin",
@@ -156,8 +130,6 @@ add_help_item(
 \n\n.notes\
 \nUsage: Gets all saved notes in a chat.\
 \n\n.clear <notename>\
-\nUsage: Deletes the specified note.\
-\n\n.rmbotnotes <marie/rose>\
-\nUsage: Removes all notes of admin bots (Currently supported: Marie, Rose and their clones.) in the chat.
+\nUsage: Deletes the specified note.
     """
 )
