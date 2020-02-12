@@ -18,10 +18,12 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "`Hello! This is an automated message.\n\n`"
-    "`I haven't approved you to PM yet.`"
-    "`Please wait for me to look in, I mostly approve PMs.\n\n`"
-    "`Until then, please don't spam my PM, you'll get blocked and reported!`")
+    "Hey there stranger. If you're seeing this message it "
+    "means I haven't approved you for PMs yet. If I know "
+    "you this doesn't pose a problem, just wait a bit for "
+    "me to check my messages and approve you. If I don't "
+    "know you please go back to whatever group you found me "
+    "in and remove yourself before I report you 😁")
 # =================================================================
 
 
@@ -69,10 +71,8 @@ async def permitpm(event):
                     COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
                 if COUNT_PM[event.chat_id] > 4:
-                    await event.respond(
-                        "`You were spamming my PM, which I didn't like.`\n"
-                        "`You have been BLOCKED and reported as SPAM, until further notice.`"
-                    )
+                    await event.respond("You're spamming my PM, "
+                                        "which I don't like. Reporting as spam.")
 
                     try:
                         del COUNT_PM[event.chat_id]
@@ -81,9 +81,10 @@ async def permitpm(event):
                         if BOTLOG:
                             await event.client.send_message(
                                 BOTLOG_CHATID,
-                                "Count PM is seemingly going retard, plis restart bot!",
+                                "Count PM is fucking up, "
+                                "please restart the bot!",
                             )
-                        LOGS.info("CountPM wen't rarted boi")
+                        LOGS.info("CountPM fucked up")
                         return
 
                     await event.client(BlockRequest(event.chat_id))
@@ -96,7 +97,7 @@ async def permitpm(event):
                             BOTLOG_CHATID,
                             "[" + name0 + "](tg://user?id=" +
                             str(event.chat_id) + ")" +
-                            " was just another retarded nibba",
+                            " was just another idiot",
                         )
 
 

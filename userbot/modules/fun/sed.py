@@ -11,22 +11,17 @@ import re
 from sre_constants import error as sre_err
 
 from ..help import add_help_item
-from asyncio import sleep
 from userbot.events import register
 
 DELIMITERS = ("/", ":", "|", "_")
 
 
-async def separate_sed(sed_string):
+def separate_sed(sed_string):
     """ Separate sed arguments. """
-
-    if len(sed_string) < 2:
-        return
-
-    if (len(sed_string) >= 2 and sed_string[2] in DELIMITERS
-            and sed_string.count(sed_string[2]) >= 2):
-        delim = sed_string[2]
-        start = counter = 3
+    if (len(sed_string) > 3 and sed_string[3] in DELIMITERS
+            and sed_string.count(sed_string[3]) >= 2):
+        delim = sed_string[3]
+        start = counter = 4
         while counter < len(sed_string):
             if sed_string[counter] == "\\":
                 counter += 1
@@ -63,10 +58,10 @@ async def separate_sed(sed_string):
     return None
 
 
-@register(outgoing=True, pattern="^/.s")
+@register(outgoing=True, pattern="^sed", ignore_unsafe=True)
 async def sed(command):
     """ For sed command, use sed on Telegram. """
-    sed_result = await separate_sed(command.text)
+    sed_result = separate_sed(command.text)
     textx = await command.get_reply_message()
     if sed_result:
         if textx:
@@ -102,15 +97,16 @@ async def sed(command):
             await command.edit("B O I! [Learn Regex](https://regexone.com)")
             return
         if text:
-            await command.edit(f"Did you mean? \n\n{text}")
+            await command.edit("Did you mean? \n\n`" + text + "`")
 
 
 add_help_item(
     "sed",
-    "Fun",
+    "Misc",
     "Replaces a word or words using sed.",
     """
-.s<delimiter><old word(s)><delimiter><new word(s)>\
-\nDelimiters: `/, :, |, _`
+    `sed<delimiter><old word(s)><delimiter><new word(s)>`
+    
+    Valid delimiters are `/`, `:`, `|`, `_`
     """
 )

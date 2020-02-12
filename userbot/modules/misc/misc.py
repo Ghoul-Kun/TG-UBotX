@@ -87,13 +87,15 @@ async def killdabot(event):
 
 @register(outgoing=True, pattern="^\.restart$")
 async def killdabot(event):
-    await event.edit("`BRB... *PornHub intro*`")
+    await event.edit("`Hold tight! I just need a second to be back up....`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n"
-                                        "Bot Restarted")
-    await bot.disconnect()
+                                                       "Bot Restarted")
+    await event.client.disconnect()
     # Spin a new instance of bot
     execl(sys.executable, sys.executable, *sys.argv)
+    # Shut the existing one down
+    exit()
 
 
 # Copyright (c) Gegham Zakaryan | 2019

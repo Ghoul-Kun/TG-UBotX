@@ -23,10 +23,11 @@ async def notes_active(svd):
     notes = get_notes(svd.chat_id)
     for note in notes:
         if message == "`There are no saved notes in this chat`":
-            message = "Notes saved in this chat:\n"
-            message += "`#{}`\n".format(note.keyword)
+            message = "**Notes saved in this chat:**\n"
+            message += " • `#{}`\n".format(note.keyword)
         else:
-            message += "`#{}`\n".format(note.keyword)
+            message += " • `#{}`\n".format(note.keyword)
+            message += "You can retrieve these notes by using `/get notename`, or `#notename`"
     await svd.edit(message)
 
 
@@ -79,7 +80,7 @@ async def add_note(fltr):
     elif fltr.reply_to_msg_id and not string:
         rep_msg = await fltr.get_reply_message()
         string = rep_msg.text
-    success = "`Note {} successfully. Use` #{} `to get it`"
+    success = "Note `{}` successfully. Use `#{}` to get it"
     if add_note(str(fltr.chat_id), keyword, string, msg_id) is False:
         return await fltr.edit(success.format('updated', keyword))
     else:
@@ -104,13 +105,11 @@ async def incom_note(getnt):
                 msg_o = await getnt.client.get_messages(entity=BOTLOG_CHATID,
                                                         ids=int(
                                                             note.f_mesg_id))
-                await getnt.delete()
                 await getnt.client.send_message(getnt.chat_id,
                                                 msg_o.mesage,
                                                 reply_to=message_id_to_reply,
                                                 file=msg_o.media)
             elif note and note.reply:
-                await getnt.delete()
                 await getnt.client.send_message(getnt.chat_id,
                                                 note.reply,
                                                 reply_to=message_id_to_reply)
@@ -148,7 +147,7 @@ async def kick_marie_notes(kick):
 add_help_item(
     "notes",
     "Admin",
-    "Make notes and save them to groups so everyone can use",
+    "Userbot module containing commands for keeping notes",
     """
 #<notename>\
 \nUsage: Gets the specified note.\
