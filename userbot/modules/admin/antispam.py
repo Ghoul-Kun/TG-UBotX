@@ -44,7 +44,7 @@ async def ANTI_SPAMBOT(welcm):
                 return
 
             elif welcm.user_joined:
-                users_list = hasattr(welcm.action_message, "users")
+                users_list = hasattr(welcm.action_message.action, "users")
                 if users_list:
                     users = welcm.action_message.action.users
                 else:
