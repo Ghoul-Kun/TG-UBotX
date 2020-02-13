@@ -44,7 +44,7 @@ async def gban_all(msg):
             banreason = "[userbot] fban"
     if not textx:
         await msg.edit(
-            "Reply Message missing! Might fail on many bots! Still attempting Gban!"):
+            "Reply Message missing! Might fail on many bots! Still attempting Gban!")
         async with bot.conversation(GBAN_GROUP) as conv:
             if textx:
                 c = await msg.forward_to(GBAN_GROUP)
