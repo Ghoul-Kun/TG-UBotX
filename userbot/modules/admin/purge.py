@@ -43,7 +43,7 @@ async def fastpurger(purg):
     if BOTLOG:
         await purg.client.send_message(
             BOTLOG_CHATID,
-            "Purge of " + str(count) + " messages done successfully.")
+            "#PURGE\nPurge of " + str(count) + " messages done successfully.")
     await sleep(2)
     await done.delete()
 
@@ -69,7 +69,7 @@ async def purgeme(delme):
     if BOTLOG:
         await delme.client.send_message(
             BOTLOG_CHATID,
-            "Purge of " + str(count) + " messages done successfully.")
+            "#PURGE\nPurge of " + str(count) + " messages done successfully.")
     await sleep(2)
     i = 1
     await smsg.delete()
@@ -89,7 +89,7 @@ async def delete_it(delme):
         except rpcbaseerrors.BadRequestError:
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Well, I can't delete a message")
+                    BOTLOG_CHATID, "#DEL\nWell, I can't delete a message")
 
 
 @register(outgoing=True, pattern="^\.edit")
@@ -108,7 +108,7 @@ async def editer(edit):
         i = i + 1
     if BOTLOG:
         await edit.client.send_message(BOTLOG_CHATID,
-                                       "Edit query was executed successfully")
+                                       "#EDIT\nEdit query was executed successfully")
 
 
 @register(outgoing=True, pattern="^\.sd")
@@ -123,7 +123,7 @@ async def selfdestruct(destroy):
     await smsg.delete()
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID,
-                                          "sd query done successfully")
+                                          "#SD\nsd query done successfully")
 
 
 add_help_item(

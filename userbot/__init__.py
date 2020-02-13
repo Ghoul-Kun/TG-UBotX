@@ -95,6 +95,11 @@ else:
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
+# GBan Group ID for gban module
+GBAN_GROUP = os.environ.get("GBAN_GROUP", None)
+if GBAN_GROUP:
+	GBAN_GROUP = int(GBAN_GROUP)
+
 # SQL Database URI
 DB_URI = os.environ.get("DATABASE_URL", None)
 

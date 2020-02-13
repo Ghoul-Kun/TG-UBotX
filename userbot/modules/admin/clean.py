@@ -3,6 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
+""" UserBot module to clean the current chat of deleted accounts """
 
 import asyncio
 from datetime import datetime
@@ -40,7 +41,7 @@ async def cleanup(e: NewMessage.Event) -> None:
     if not silent:
         await e.edit(str(response))
     if waiting_message:
-        await waiting_message.delete()
+        await waiting_message.delete(3)
 
 
 async def _cleanup_chat(event, count: bool = False,
