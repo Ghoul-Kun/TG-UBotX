@@ -14,14 +14,14 @@ from userbot import GBAN_GROUP
 from ..help import add_help_item
 
 
-@register(outgoing=True, pattern=r"^\.fban")
+@register(outgoing=True, pattern=r"^\.fban(?: |$)(.*)")
 async def gban_all(msg):
     textx = await msg.get_reply_message()
     if textx:
         try:
             banreason = "[userbot] "
             banreason += banreason.join(msg.text.split(" ")[1:])
-            if banreason == "[userbot]":
+            if banreason == "[userbot] ":
                 raise TypeError
         except TypeError:
             banreason = "[userbot] gban"
@@ -49,9 +49,8 @@ async def gban_all(msg):
             if textx:
                 c = await msg.forward_to(GBAN_GROUP)
                 await c.reply("/id")
-            await conv.send_message(f"/gban {banid} {banreason}")
+            await conv.send_message(f"/fban {banid} {banreason}")
             await bot.send_read_acknowledge(conv.chat_id)
-            count += 1
 
 
 @register(outgoing=True, pattern=r"^\.unfban(?: |$)(.*)")
