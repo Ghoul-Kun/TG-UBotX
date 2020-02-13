@@ -32,11 +32,11 @@ INVALID_MEDIA = "```The extension of the media entity is invalid.```"
 PP_CHANGED = "```Profile picture changed successfully.```"
 PP_TOO_SMOL = "```This image is too small, use a bigger image.```"
 PP_ERROR = "```Failure occured while processing image.```"
-
+ 
 BIO_SUCCESS = "```Successfully edited Bio.```"
-
-NAME_OK = "```Your name was succesfully changed.```"
-USERNAME_SUCCESS = "```Your username was succesfully changed.```"
+ 
+NAME_OK = "```Your name was successfully changed.```"
+USERNAME_SUCCESS = "```Your username was successfully changed.```"
 USERNAME_TAKEN = "```This username is already taken.```"
 # ===============================================================
 
@@ -182,7 +182,7 @@ async def remove_profilepic(delpfp):
 add_help_item(
     "profile",
     "Me",
-    "Customize your profile through UBotX",
+    "Userbot module for changing your Telegram profile details.",
     """
 .username <new_username>\
 \nUsage: Changes your Telegram username.\
