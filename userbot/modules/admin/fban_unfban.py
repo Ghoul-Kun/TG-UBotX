@@ -33,25 +33,15 @@ async def fedban_all(msg):
     failed = dict()
     count = 1
 
-    for GBAN_GROUP:
+    if GBAN_GROUP:
         async with bot.conversation(GBAN_GROUP) as conv:
             await conv.send_message(f"/fban {banid} {banreason}")
             resp = await conv.get_response()
             await bot.send_read_acknowledge(conv.chat_id)
-            if "New FedBan" not in resp.text:
-                failed[GBAN_GROUP] = str(conv.chat_id)
-            else:
-                count += 1
-                await msg.reply("**Fbanned in " + str(count) + " feds!**", delete_in=3)
+            await msg.reply("**Fbanned!**")
             # Sleep to avoid a floodwait.
             # Prevents floodwait if user is a fedadmin on too many feds
             await asyncio.sleep(0.2)
-
-    if failed:
-        failedstr = ', '.join([f'`i`' in failed.keys()])
-        await msg.reply(f"**Failed to fban in {failedstr}**")
-    else:
-        await msg.reply("**Fbanned in all feds!**")
 
     msg.delete()
 
