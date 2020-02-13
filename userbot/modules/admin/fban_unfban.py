@@ -1,3 +1,10 @@
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# you may not use this file except in compliance with the License.
+#
+# Ported from Watzon's tg_userbot
+
 import asyncio
 
 from telethon.tl.types import MessageEntityMentionName, MessageEntityMention
@@ -27,7 +34,7 @@ async def fedban_all(msg):
             ent = await bot.get_entity(text)
             if ent: banid = ent.id
 
-    if not banid:
+    if banid is None:
         return await msg.edit("**No user to ban**")
 
     failed = dict()
@@ -42,8 +49,6 @@ async def fedban_all(msg):
             # Sleep to avoid a floodwait.
             # Prevents floodwait if user is a fedadmin on too many feds
             await asyncio.sleep(0.2)
-
-    msg.delete()
 
 
 add_help_item(
