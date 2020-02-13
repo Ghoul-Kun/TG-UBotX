@@ -1,74 +1,59 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
 import asyncio
 
-from telethon.tl.types import MessageEntityMentionName
+from telethon.tl.types import MessageEntityMentionName, MessageEntityMention
 
 from userbot import bot
-from userbot.events import register
 from userbot import GBAN_GROUP
 from ..help import add_help_item
+from userbot.events import register
+from userbot.utils import parse_arguments, get_user_from_event
 
+@register(outgoing=True, pattern=r"^\.fban(\s+[\S\s]+|$)")
+async def fedban_all(msg):
 
-@register(outgoing=True, pattern=r"^\.fban(?: |$)(.*)")
-async def fban_all(msg):
-    textx = msg.reply_to_msg_id
-    if textx:
-        try:
-            banreason = "[userbot] "
-            banreason += banreason.join(msg.text.split(" ")[1:])
-            if banreason == "[userbot]":
-                raise TypeError
-        except TypeError:
-            banreason = "[userbot] fban"
+    reply_message = await msg.get_reply_message()
+
+    params = msg.pattern_match.group(1) or ""
+    args, text = parse_arguments(params, ['reason'])
+
+    if reply_message:
+        banid = reply_message.from_id
+        banreason = args.get('reason', '[spam]')
     else:
-        banid = msg.text.split(" ")[1]
-        if banid.isnumeric():
-            # if its a user id
-            banid = int(banid)
-        else:
-            # deal wid the usernames
-            if msg.message.entities is not None and isinstance(msg.message.entities[0],
-                                                               MessageEntityMentionName):
-                ban_id = msg.message.entities[0].user_id
-        try:
-            banreason = "[userbot] "
-            banreason += banreason.join(msg.text.split(" ")[2:])
-            if banreason == "[userbot] ":
-                raise TypeError
-        except TypeError:
-            banreason = "[userbot] fban"
-   # if not textx:
-   #   await msg.edit(
-   #       "Reply Message missing! Might fail on many bots! Still attempting Gban!")
+        banreason = args.get('reason', '[fban]')
+        if text.isnumeric():
+            banid = int(text)
+        elif msg.message.entities:
+            ent = await bot.get_entity(text)
+            if ent: banid = ent.id
+
+    if not banid:
+        return await msg.edit("**No user to ban**")
+
+    failed = dict()
+    count = 1
+
+    for GBAN_GROUP:
         async with bot.conversation(GBAN_GROUP) as conv:
-           if textx:
-               reply_msg = await msg.get_reply_message()
-               await reply_msg.forward_to(GBAN_GROUP)
-               await c.reply("/id")
             await conv.send_message(f"/fban {banid} {banreason}")
+            resp = await conv.get_response()
             await bot.send_read_acknowledge(conv.chat_id)
+            if "New FedBan" not in resp.text:
+                failed[GBAN_GROUP] = str(conv.chat_id)
+            else:
+                count += 1
+                await msg.reply("**Fbanned in " + str(count) + " feds!**", delete_in=3)
+            # Sleep to avoid a floodwait.
+            # Prevents floodwait if user is a fedadmin on too many feds
+            await asyncio.sleep(0.2)
 
+    if failed:
+        failedstr = ', '.join([f'`i`' in failed.keys()])
+        await msg.reply(f"**Failed to fban in {failedstr}**")
+    else:
+        await msg.reply("**Fbanned in all feds!**")
 
-@register(outgoing=True, pattern=r"^\.unfban(?: |$)(.*)")
-async def _(event):
-    if GBAN_GROUP is None:
-        await event.edit("ENV VAR is not set. This module will not work.")
-        return
-    if event.fwd_from:
-        return
-    reason = event.pattern_match.group(1)
-    if event.reply_to_msg_id:
-        r = await event.get_reply_message()
-        r_from_id = r.from_id
-        await bot.send_message(GBAN_GROUP,
-            "/unfban [user](tg://user?id={}) {}".format(r_from_id, reason)
-        )
-    await event.delete()
+    msg.delete()
 
 
 add_help_item(
