@@ -16,10 +16,10 @@ from ..help import add_help_item
 
 @register(outgoing=True, pattern=r"^\.fban(?: |$)(.*)")
 async def fban_all(msg):
-	textx = msg.reply_to_msg_id:
-		reply_msg = await msg.get_reply_message()
+    textx = msg.reply_to_msg_id:
+    reply_msg = await msg.get_reply_message()
     if textx:
-        try:
+    	try:
             banreason = "[userbot] "
             banreason += banreason.join(msg.text.split(" ")[1:])
             if banreason == "[userbot] ":
