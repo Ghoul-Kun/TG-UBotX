@@ -239,7 +239,7 @@ def sourceforge(url: str) -> str:
     for mirror in info[1:]:
         name = re.findall(r'\((.*)\)', mirror.text.strip())[0]
         dl_url = f'https://{mirror["id"]}.dl.sourceforge.net/project/{project}/{file_path}'
-        reply += f' • [{name}]({dl_url})\n '
+        reply += f'[{name}]({dl_url})\n'
     return reply
 
 
