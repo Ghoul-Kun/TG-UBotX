@@ -44,12 +44,12 @@ async def gban_all(msg):
             banreason = "[userbot] fban"
     if not textx:
         await msg.edit(
-            "Reply Message missing! Might fail on many bots! Still attempting Gban!"
-        )
+            "Reply Message missing! Might fail on many bots! Still attempting Gban!"):
+        async with bot.conversation(GBAN_GROUP) as conv:
             if textx:
-                c = await bot.send_message(GBAN_GROUP)
+                c = await msg.forward_to(GBAN_GROUP)
                 await c.reply("/id")
-            await conv.send_message(f"/fban {banid} {banreason}")
+            await conv.send_message(f"/gban {banid} {banreason}")
             await bot.send_read_acknowledge(conv.chat_id)
             count += 1
 
