@@ -47,7 +47,7 @@ async def fban_all(msg):
             "Reply Message missing! Might fail on many bots! Still attempting Gban!")
         async with bot.conversation(GBAN_GROUP) as conv:
             if textx:
-            	reply_msg = await msg.get_reply_message()
+                reply_msg = await msg.get_reply_message()
                 await reply_msg.forward_to(GBAN_GROUP)
                 await c.reply("/id")
             await conv.send_message(f"/fban {banid} {banreason}")
