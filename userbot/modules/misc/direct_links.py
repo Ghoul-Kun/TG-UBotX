@@ -221,6 +221,7 @@ def mediafire(url: str) -> str:
 
 
 def sourceforge(url: str) -> str:
+	""" SourceForge direct links generator """
     try:
         link = re.findall(r'\bhttps?://.*sourceforge\.net\S+', url)[0]
     except IndexError:
@@ -239,7 +240,7 @@ def sourceforge(url: str) -> str:
     for mirror in info[1:]:
         name = re.findall(r'\((.*)\)', mirror.text.strip())[0]
         dl_url = f'https://{mirror["id"]}.dl.sourceforge.net/project/{project}/{file_path}'
-        reply += f'[{name}]({dl_url})\n'
+        reply += f'[{name}]({dl_url}) '
     return reply
 
 
@@ -351,7 +352,7 @@ def useragent():
 add_help_item(
     "directlinks",
     "Misc",
-    "Turn supported download links into direct links",
+    "Userbot module containing various sites direct links generators",
     """
     .direct <url>\n"
     "Usage: Reply to a link or paste a URL to\n"
