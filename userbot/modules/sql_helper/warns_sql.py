@@ -3,6 +3,8 @@ try:
 except ImportError:
     raise AttributeError
 
+import threading
+
 from sqlalchemy import Integer, Column, String, UnicodeText, func, distinct, Boolean
 
 
