@@ -12,6 +12,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
 import userbot.modules.sql_helper.warns_sql as sql
 from ..help import add_help_item
+from userbot.events import register
 
 
 @register(outgoing=True, pattern=r"^\.warn (.*)")
