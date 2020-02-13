@@ -4,7 +4,7 @@
 
 ## Disclaimer
  
-First of all you should know this bot is a major work in progress. It is based on [Paperplane Extended]() and [Paperplane Extended], If you choose to use this bot now, be prepared to pull changes frequently as I continue to fix broken english, pull or change things that don't make sense, or add new things.
+First of all you should know this bot is a major work in progress. It is based on [Paperplane Extended](), If you choose to use this bot now, be prepared to pull changes frequently as I continue to fix broken english, pull or change things that don't make sense, or add new things.
 
 Currently work fine perfectly, but some features may give you error. Please report a bug to me if you facing any issues.
 

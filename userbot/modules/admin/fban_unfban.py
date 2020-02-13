@@ -3,52 +3,52 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-# Ported from Watzon's tg_userbot
 
+# This module originally created by @spechide https://github.com/SpEcHiDe/UniBorg/blob/master/stdplugins/GBan.py
+
+from telethon import events
 import asyncio
-
-from telethon.tl.types import MessageEntityMentionName, MessageEntityMention
-
+from userbot.events import register
 from userbot import bot
 from userbot import GBAN_GROUP
 from ..help import add_help_item
-from userbot.events import register
-from userbot.utils import parse_arguments, get_user_from_event
 
-@register(outgoing=True, pattern=r"^\.fban(\s+[\S\s]+|$)")
-async def fedban_all(msg):
 
-    reply_message = await msg.get_reply_message()
+@register(outgoing=True, pattern=r"^\.fban(?: |$)(.*)")
+async def _(event):
+    if GBAN_GROUP is None:
+        await event.edit("ENV VAR is not set. This module will not work.")
+        return
+    if event.fwd_from:
+        return
+    reason = event.pattern_match.group(1)
+    if event.reply_to_msg_id:
+        r = await event.get_reply_message()
+        if r.forward:
+            r_from_id = r.forward.from_id or r.from_id
+        else:
+            r_from_id = r.from_id
+        await bot.send_message(GBAN_GROUP,
+            "/fban [user](tg://user?id={}) {}".format(r_from_id, reason)
+        )
+    await event.delete()
 
-    params = msg.pattern_match.group(1) or ""
-    args, text = parse_arguments(params, ['reason'])
 
-    if reply_message:
-        banid = reply_message.from_id
-        banreason = args.get('reason', '[spam]')
-    else:
-        banreason = args.get('reason', '[fban]')
-        if text.isnumeric():
-            banid = int(text)
-        elif msg.message.entities:
-            ent = await bot.get_entity(text)
-            if ent: banid = ent.id
-
-    if banid is None:
-        return await msg.edit("**No user to ban**")
-
-    failed = dict()
-    count = 1
-
-    if GBAN_GROUP:
-        async with bot.conversation(GBAN_GROUP) as conv:
-            await conv.send_message(f"/fban {banid} {banreason}")
-            resp = await conv.get_response()
-            await bot.send_read_acknowledge(conv.chat_id)
-            await msg.reply("**Fbanned!**")
-            # Sleep to avoid a floodwait.
-            # Prevents floodwait if user is a fedadmin on too many feds
-            await asyncio.sleep(0.2)
+@register(outgoing=True, pattern=r"^\.unfban(?: |$)(.*)")
+async def _(event):
+    if GBAN_GROUP is None:
+        await event.edit("ENV VAR is not set. This module will not work.")
+        return
+    if event.fwd_from:
+        return
+    reason = event.pattern_match.group(1)
+    if event.reply_to_msg_id:
+        r = await event.get_reply_message()
+        r_from_id = r.from_id
+        await bot.send_message(GBAN_GROUP,
+            "/unfban [user](tg://user?id={}) {}".format(r_from_id, reason)
+        )
+    await event.delete()
 
 
 add_help_item(
@@ -56,7 +56,8 @@ add_help_item(
     "Admin",
     "Give FedBan through userbot",
     """
-.fban [ID/username] [reason]
-.unfban [ID/username] [reason]
+.fban [id/username] [reason] or in reply
+.unfban [id/username] [reason] or in reply
     """
 )
+ 
