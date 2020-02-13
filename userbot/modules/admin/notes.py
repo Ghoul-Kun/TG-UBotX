@@ -27,7 +27,6 @@ async def notes_active(svd):
             message += " • `#{}`\n".format(note.keyword)
         else:
             message += " • `#{}`\n".format(note.keyword)
-            message += "You can retrieve these notes by using `/get notename`, or `#notename`"
     await svd.edit(message)
 
 
