@@ -10,7 +10,7 @@ import html
 from telethon import events
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
-import sql_helpers.warns_sql as sql
+import userbot.modules.sql_helper.warns_sql as sql
 from ..help import add_help_item
 
 
