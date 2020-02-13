@@ -224,13 +224,13 @@ def sourceforge(url: str) -> str:
     try:
         link = re.findall(r'\bhttps?://.*sourceforge\.net\S+', url)[0]
     except IndexError:
-        reply = "<code>No SourceForge links found</code>\n"
+        reply = "`No SourceForge links found`\n"
         return reply
     file_path = re.findall(r'/files(.*)/download', link)
     if not file_path:
         file_path = re.findall(r'/files(.*)', link)
     file_path = file_path[0]
-    reply = f"Mirrors for <i>{file_path.split('/')[-1]}</i>\n"
+    reply = f"Mirrors for __{file_path.split('/')[-1]}__\n"
     project = re.findall(r'projects?/(.*?)/files', link)[0]
     mirrors = f'https://sourceforge.net/settings/mirror_choices?' \
         f'projectname={project}&filename={file_path}'
@@ -239,7 +239,7 @@ def sourceforge(url: str) -> str:
     for mirror in info[1:]:
         name = re.findall(r'\((.*)\)', mirror.text.strip())[0]
         dl_url = f'https://{mirror["id"]}.dl.sourceforge.net/project/{project}/{file_path}'
-        reply += f'<a href="{dl_url}">{name}</a> '
+        reply += f'[{name}]({dl_url}) '
     return reply
 
 
