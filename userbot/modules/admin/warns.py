@@ -3,16 +3,18 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-# Ported from SpEcHiDe UniBorg
+# Ported from SpEcHiDe UniBorg by github.com/HitaloKun/TG-UBotX
 
 import asyncio
 import html
+
 from telethon import events
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
-import userbot.modules.sql_helper.warns_sql as sql
+
 from ..help import add_help_item
 from userbot.events import register
+import userbot.modules.sql_helper.warns_sql as sql
 
 
 @register(outgoing=True, pattern=r"^\.warn (.*)")
@@ -27,14 +29,14 @@ async def _(event):
         sql.reset_warns(reply_message.from_id, event.chat_id)
         if soft_warn:
             logger.info("TODO: kick user")
-            reply = "{} warnings, <u><a href='tg://user?id={}'>user</a></u> has been kicked!".format(limit, reply_message.from_id)
+            reply = "<code>{}</code> warnings, <u><a href='tg://user?id={}'>user</a></u> has been kicked!".format(limit, reply_message.from_id)
         else:
             logger.info("TODO: ban user")
-            reply = "{} warnings, <u><a href='tg://user?id={}'>user</a></u> has been banned!".format(limit, reply_message.from_id)
+            reply = "<code>{}</code> warnings, <u><a href='tg://user?id={}'>user</a></u> has been banned!".format(limit, reply_message.from_id)
     else:
-        reply = "<u><a href='tg://user?id={}'>user</a></u> has {}/{} warnings... watch out!".format(reply_message.from_id, num_warns, limit)
+        reply = "<u><a href='tg://user?id={}'>User</a></u> has <code>{}/{}</code> warnings... watch out!".format(reply_message.from_id, num_warns, limit)
         if warn_reason:
-            reply += "\nReason for last warn:\n{}".format(html.escape(warn_reason))
+            reply += "\nReason for last warn:\n<code>{}</code>".format(html.escape(warn_reason))
     #
     await event.edit(reply, parse_mode="html")
 
@@ -50,13 +52,13 @@ async def _(event):
         limit, soft_warn = sql.get_warn_setting(event.chat_id)
         if reasons:
             text = "This user has {}/{} warnings, for the following reasons:".format(num_warns, limit)
-            text += "\r\n"
+            text += "\n\n"
             text += reasons
             await event.edit(text)
         else:
-            await event.edit("this user has {} / {} warning, but no reasons for any of them.".format(num_warns, limit))
+            await event.edit("This user has {} / {} warning, but no reasons for any of them.".format(num_warns, limit))
     else:
-        await event.edit("this user hasn't got any warnings!")
+        await event.edit("This user hasn't got any warnings!")
 
 
 @register(outgoing=True, pattern="^\.resetwarns$")
