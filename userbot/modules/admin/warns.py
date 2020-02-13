@@ -14,7 +14,7 @@ import sql_helpers.warns_sql as sql
 from ..help import add_help_item
 
 
-@register(outgoing=True, pattern=r"^\.warn (.*)"))
+@register(outgoing=True, pattern=r"^\.warn (.*)")
 async def _(event):
     if event.fwd_from:
         return
