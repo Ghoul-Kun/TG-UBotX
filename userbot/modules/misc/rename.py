@@ -16,6 +16,7 @@ from pySmartDL import SmartDL
 from telethon.tl.types import DocumentAttributeVideo
 from ..help import add_help_item
 from userbot.events import register
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
 
 
@@ -23,13 +24,13 @@ from userbot.modules.misc.upload_download import progress, humanbytes, time_form
 async def _(event):
     if event.fwd_from:
         return
-    if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
+    if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TMP_DOWNLOAD_DIRECTORY)
     start = datetime.now()
     input_str = event.pattern_match.group(1)
     url = input_str
     file_name = os.path.basename(url)
-    to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
+    to_download_directory = TEMP_DOWNLOAD_DIRECTORY
     if "|" in input_str:
         url, file_name = input_str.split("|")
     url = url.strip()
@@ -99,13 +100,13 @@ async def _(event):
         return
     await event.edit("Rename & Upload in process 🙄🙇‍♂️🙇‍♂️🙇‍♀️ It might take some time if file size is big")
     input_str = event.pattern_match.group(1)
-    if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
+    if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
         start = datetime.now()
         file_name = input_str
         reply_message = await event.get_reply_message()
-        to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
+        to_download_directory = TMP_DOWNLOAD_DIRECTORY
         downloaded_file_name = os.path.join(to_download_directory, file_name)
         c_time = time.time()
         downloaded_file_name = await borg.download_media(
@@ -151,14 +152,14 @@ async def _(event):
         return
     await event.edit("Rename & Upload as Streamable in process 🙄🙇‍♂️🙇‍♂️🙇‍♀️ It might take some time if file size is big")
     input_str = event.pattern_match.group(1)
-    if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
+    if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
         start = datetime.now()
         file_name = input_str
         reply_message = await event.get_reply_message()
         c_time = time.time()
-        to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
+        to_download_directory = TMP_DOWNLOAD_DIRECTORY
         downloaded_file_name = os.path.join(to_download_directory, file_name)
         downloaded_file_name = await borg.download_media(
             reply_message,
