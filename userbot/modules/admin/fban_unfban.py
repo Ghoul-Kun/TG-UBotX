@@ -15,8 +15,8 @@ from ..help import add_help_item
 
 
 @register(outgoing=True, pattern=r"^\.fban(?: |$)(.*)")
-async def gban_all(msg):
-    textx = await event.get_reply_message()
+async def fban_all(msg):
+    textx = await msg.get_reply_message()
     if textx:
         try:
             banreason = "[userbot] "
