@@ -16,7 +16,7 @@ from ..help import add_help_item
 
 @register(outgoing=True, pattern=r"^\.fban(?: |$)(.*)")
 async def gban_all(msg):
-    textx = await msg.get_reply_message()
+    textx = await event.get_reply_message()
     if textx:
         try:
             banreason = "[userbot] "
@@ -24,7 +24,7 @@ async def gban_all(msg):
             if banreason == "[userbot] ":
                 raise TypeError
         except TypeError:
-            banreason = "[userbot] gban"
+            banreason = "[userbot] fban"
     else:
         banid = msg.text.split(" ")[1]
         if banid.isnumeric():
@@ -38,7 +38,7 @@ async def gban_all(msg):
         try:
             banreason = "[userbot] "
             banreason += banreason.join(msg.text.split(" ")[2:])
-            if banreason == "[userbot]":
+            if banreason == "[userbot] ":
                 raise TypeError
         except TypeError:
             banreason = "[userbot] fban"
@@ -75,7 +75,7 @@ add_help_item(
     "Admin",
     "Give FedBan through userbot",
     """
-.fban [reason]
-.unfban [reason]
+.fban [ID/username] [reason]
+.unfban [ID/username] [reason]
     """
 )
