@@ -16,8 +16,7 @@ from ..help import add_help_item
 
 @register(outgoing=True, pattern=r"^\.fban(?: |$)(.*)")
 async def fban_all(msg):
-    textx = msg.reply_to_msg_id:
-    reply_msg = await msg.get_reply_message()
+    textx = msg.reply_to_msg_id
     if textx:
     	try:
             banreason = "[userbot] "
@@ -48,7 +47,8 @@ async def fban_all(msg):
             "Reply Message missing! Might fail on many bots! Still attempting Gban!")
         async with bot.conversation(GBAN_GROUP) as conv:
             if textx:
-                c = await reply_msg.forward_to(conv)
+            	reply_msg = await msg.get_reply_message()
+                await reply_msg.forward_to(GBAN_GROUP)
                 await c.reply("/id")
             await conv.send_message(f"/fban {banid} {banreason}")
             await bot.send_read_acknowledge(conv.chat_id)
