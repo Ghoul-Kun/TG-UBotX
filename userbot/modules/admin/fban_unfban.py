@@ -18,13 +18,13 @@ from ..help import add_help_item
 async def fban_all(msg):
     textx = msg.reply_to_msg_id
     if textx:
-    	try:
+        try:
             banreason = "[userbot] "
             banreason += banreason.join(msg.text.split(" ")[1:])
-            if banreason == "[userbot] ":
+            if banreason == "[userbot]":
                 raise TypeError
         except TypeError:
-            banreason = "[userbot] fban"
+            banreason = "[userbot] gban"
     else:
         banid = msg.text.split(" ")[1]
         if banid.isnumeric():
