@@ -24,7 +24,7 @@ async def fban_all(msg):
             if banreason == "[userbot]":
                 raise TypeError
         except TypeError:
-            banreason = "[userbot] gban"
+            banreason = "[userbot] fban"
     else:
         banid = msg.text.split(" ")[1]
         if banid.isnumeric():
@@ -42,14 +42,14 @@ async def fban_all(msg):
                 raise TypeError
         except TypeError:
             banreason = "[userbot] fban"
-    if not textx:
-        await msg.edit(
-            "Reply Message missing! Might fail on many bots! Still attempting Gban!")
+   # if not textx:
+   #   await msg.edit(
+   #       "Reply Message missing! Might fail on many bots! Still attempting Gban!")
         async with bot.conversation(GBAN_GROUP) as conv:
-            if textx:
-                reply_msg = await msg.get_reply_message()
-                await reply_msg.forward_to(GBAN_GROUP)
-                await c.reply("/id")
+           if textx:
+               reply_msg = await msg.get_reply_message()
+               await reply_msg.forward_to(GBAN_GROUP)
+               await c.reply("/id")
             await conv.send_message(f"/fban {banid} {banreason}")
             await bot.send_read_acknowledge(conv.chat_id)
 
