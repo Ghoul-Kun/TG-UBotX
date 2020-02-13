@@ -51,12 +51,12 @@ async def _(event):
         num_warns, reasons = result
         limit, soft_warn = sql.get_warn_setting(event.chat_id)
         if reasons:
-            text = "This user has {}/{} warnings, for the following reasons:".format(num_warns, limit)
-            text += "\n\n"
+            text = "This user has `{}/{}` warnings, for the following reasons:".format(num_warns, limit)
+            text += "\n"
             text += reasons
             await event.edit(text)
         else:
-            await event.edit("This user has {} / {} warning, but no reasons for any of them.".format(num_warns, limit))
+            await event.edit("This user has `{}/{}` warning, but no reasons for any of them.".format(num_warns, limit))
     else:
         await event.edit("This user hasn't got any warnings!")
 
