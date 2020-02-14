@@ -29,7 +29,7 @@ async def evaluate(e):
     elif reply:
         expression = reply.message
     else:
-        await e.edit(str(Bold("Give an expression to evaluate")), delete_in=3)
+        await e.edit(str(Bold("Give an expression to evaluate"))
         return
 
     head = Section(Bold("Query:"), Code(expression), indent=0)
@@ -73,7 +73,7 @@ async def evaluate(e):
     if BOTLOG:
         await e.client.send_message(
             BOTLOG_CHATID,
-            f"Eval query ```{expression}``` was executed successfully")
+            f"#EVAL\nEval query ```{expression}``` was executed successfully")
 
 
 # https://stackoverflow.com/a/57349931/974936

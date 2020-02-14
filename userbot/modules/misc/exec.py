@@ -78,7 +78,7 @@ execute. Use .help exec for an example.```")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "Exec query: \n```\n" + codepre + "\n```\n was executed successfully")
+            "#EXEC\nExec query: \n```\n" + codepre + "\n```\n was executed successfully")
 
 add_help_item(
     "exec",

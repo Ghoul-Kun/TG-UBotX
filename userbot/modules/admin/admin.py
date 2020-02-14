@@ -858,31 +858,43 @@ add_help_item(
     "Admin",
     "Some admin-related commands",
     """
-.promote <username/userid> : <custom rank (optional)> (or) reply to a message with .promote <rank (optional)>\
-\nUsage: Provides admin rights to the person in the chat.\
-\n\n.demote <username/userid> (or) reply to a message with .demote\
-\nUsage: Revokes the person's admin permissions in the chat.\
-\n\n.ban <username/userid> : <reason (optional)> (or) reply to a message with .ban <reason (optional)>\
-\nUsage: Bans the person off your chat.\
-\n\n.unban <username/userid> (or) reply to a message with .unban\
-\nUsage: Removes the ban from the person in the chat.\
-\n\n.mute <username/userid> : <reason (optional)> reply to a message with .mute <reason (optional)>\
-\nUsage: Mutes the person in the chat, works on admins too.\
-\n\n.unmute <username/userid> (or) reply to a message with .unmute\
-\nUsage: Removes the person from the muted list.\
-\n\n.gmute <username/userid> : <reason (optional)> (or) reply to a message with .gmute <reason (optional)>\
-\nUsage: Mutes the person in all groups you have in common with them.\
-\n\n.ungmute <username/userid> (or) reply to a message with .ungmute\
-\nUsage: Removes the person from the global mute list.\
-\n\n.delusers\
-\nUsage: Searches for deleted accounts in a group. Use .delusers clean to remove deleted accounts from the group.\
-\n\n.admins\
-\nUsage: Retrieves a list of admins in the chat.\
-\n\n.bots\
-\nUsage: Retrieves a list of bots in the chat.\
-\n\n.users or .users <search query>\
-\nUsage: Retrieves all (or queried) users in the chat.\
-\n\n.setgpic <reply to image>\
-\nUsage: Changes the group's display picture.
+    `.promote` <username/userid>: <custom rank (optional)> (or) reply to a message with .promote <rank (optional)>
+    **Usage:** Provides admin rights to the person in the chat.
+
+    `.demote` <username/userid> (or) reply to a message with .demote
+    **Usage:** Revokes the person's admin permissions in the chat.
+
+    `.ban` <username/userid>: <reason (optional)> (or) reply to a message with .ban <reason (optional)>
+    **Usage:** Bans the person off your chat.
+
+    `.unban` <username/userid> (or) reply to a message with .unban
+    **Usage:** Removes the ban from the person in the chat.
+
+    `.mute` <username/userid>: <reason (optional)> reply to a message with .mute <reason (optional)>
+    **Usage:** Mutes the person in the chat, works on admins too.
+
+    `.unmute` <username/userid> (or) reply to a message with .unmute
+    **Usage:** Removes the person from the muted list.
+
+    `.gmute` <username/userid>: <reason (optional)> (or) reply to a message with .gmute <reason (optional)>
+    **Usage:** Mutes the person in all groups you have in common with them.
+
+    `.ungmute` <username/userid> (or) reply to a message with .ungmute
+    **Usage:** Removes the person from the global mute list.
+
+    `.delusers`
+    **Usage:** Searches for deleted accounts in a group. Use .delusers clean to remove deleted accounts from the group.
+
+    `.admins`
+    **Usage:** Retrieves a list of admins in the chat.
+
+    `.bots`
+    **Usage:** Retrieves a list of bots in the chat.
+
+    `.users` or .users <search query>
+    **Usage:** Retrieves all (or queried) users in the chat.
+
+    `.setgpic` <reply to image>
+    **Usage:** Changes the group's display picture.
     """
 )

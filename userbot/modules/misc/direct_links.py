@@ -353,11 +353,12 @@ add_help_item(
     "Misc",
     "Userbot module containing various sites direct links generators",
     """
-    .direct <url>\n"
-    "Usage: Reply to a link or paste a URL to\n"
-    "generate a direct download link\n\n"
-    "List of supported URLs:\n"
-    "`Google Drive - MEGA.nz - Cloud Mail - Yandex.Disk - AFH - "
-    "ZippyShare - MediaFire - SourceForge - OSDN - GitHub`
+    `.direct` <url>
+    **Usage:** Reply to a link or paste a URL to 
+    generate a direct download link.
+    
+    **List of supported URLs:**
+    `Google Drive - MEGA.nz - Cloud Mail - Yandex.Disk - AFH - 
+    ZippyShare - MediaFire - SourceForge - OSDN - GitHub`
     """
 )
