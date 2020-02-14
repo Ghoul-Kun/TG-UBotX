@@ -29,7 +29,7 @@ async def evaluate(e):
     elif reply:
         expression = reply.message
     else:
-        await e.edit(str(Bold("Give an expression to evaluate"))
+        await e.edit(str(Bold("Give an expression to evaluate")))
         return
 
     head = Section(Bold("Query:"), Code(expression), indent=0)
