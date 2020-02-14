@@ -160,22 +160,22 @@ add_help_item(
     "Core",
     "Some useful system tools",
     """
-    .alive
-    Usage: Type .alive to see wether your bot is working or not.
+    `.alive`
+    **Usage:** Type .alive to see wether your bot is working or not.
 
-    .aliveu <text>
-    Usage: Changes the 'user' in alive to the text you want.
+    `.aliveu` <text>
+    **Usage:** Changes the 'user' in alive to the text you want.
 
-    .resetalive
-    Usage: Resets the user to default.
+    `.resetalive`
+    **Usage:** Resets the user to default.
 
-    .botver
-    Usage: Shows the userbot version.
+    `.botver`
+    **Usage:** Shows the userbot version.
 
-    .pip <module(s)>
-    Usage: Does a search of pip modules(s).
+    `.pip` <module(s)>
+    **Usage:** Does a search of pip modules(s).
 
-    .sysd
-    Usage: Shows system information using neofetch.
+    `.sysd`
+    **Usage:** Shows system information using neofetch.
     """
 )

@@ -7,17 +7,19 @@
 
 import io
 import math
+import random
 import urllib.request
 from os import remove
 from PIL import Image
-import random
-from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto
-from ..help import add_help_item
-from userbot import bot
-from userbot.events import register
+
 from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.types import InputStickerSetID
 from telethon.tl.types import DocumentAttributeSticker
+from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto
+
+from ..help import add_help_item
+from userbot import bot
+from userbot.events import register
 
 PACK_FULL = "Whoa! That's probably enough stickers for one pack, give it a break. \
 A pack can't have more than 120 stickers at the moment."
@@ -190,7 +192,7 @@ async def kang(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     await args.edit(
-                        "`Failed to add sticker, use` @Stickers `bot to add the sticker manually.`"
+                        "Failed to add sticker, use @Stickers bot to add the sticker manually."
                     )
                     return
                 await conv.send_message(emoji)
@@ -221,7 +223,7 @@ async def kang(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     await args.edit(
-                        "`Failed to add sticker, use` @Stickers `bot to add the sticker manually.`"
+                        "Failed to add sticker, use @Stickers bot to add the sticker manually."
                     )
                     return
                 await conv.send_message(emoji)
@@ -324,14 +326,19 @@ add_help_item(
     "Fun",
     "Steal stickers and animated stickers",
     """
-\nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
-\n\n.kang [emoji('s)]\
-\nUsage: Works just like .kang but uses the emoji('s) you picked.\
-\n\n.kang [number]\
-\nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji.\
-\n\n.kang [emoji('s)] [number]\
-\nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
-\n\n.stkrinfo\
-\nUsage: Gets info about the sticker pack.
+    `.kang`
+    **Usage:** Reply .kang to a sticker or an image to kang it to your userbot pack.
+
+    .kang [emoji('s)]
+    **Usage:** Works just like .kang but uses the emoji('s) you picked.
+
+    `.kang` [number]
+    **Usage:** Kang's the sticker/image to the specified pack but uses 🤔 as emoji.
+
+    `.kang` [emoji('s)] [number]
+    **Usage:** Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.
+
+   `.stkrinfo`
+    **Usage:** Gets info about the sticker pack.
     """
 )

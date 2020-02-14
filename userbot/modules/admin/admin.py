@@ -131,7 +131,7 @@ async def promote(promt):
     user, rank = await get_user_from_event(promt)
     if not rank:
         # Just in case.
-        rank = "admeme"
+        rank = "Admin"
     if user:
         pass
     else:
@@ -247,11 +247,11 @@ async def ban(bon):
     # is done gracefully
     # Shout out the ID, so that fedadmins can fban later
     if reason:
-        await bon.edit(f"{user.first_name} was banned !!\
+        await bon.edit(f"{user.first_name} was banned!\
         \nID: `{str(user.id)}`\
         \nReason: {reason}")
     else:
-        await bon.edit(f"{user.first_name} was banned !!\
+        await bon.edit(f"{user.first_name} was banned!\
         \nID: `{str(user.id)}`")
     # Announce to the logging group if we have banned the person
     # successfully!
@@ -345,9 +345,9 @@ async def spider(spdr):
 
             # Announce that the function is done
             if reason:
-                await spdr.edit(f"`Safely taped !!`\nReason: {reason}")
+                await spdr.edit(f"`Successfully muted!`\nReason: {reason}")
             else:
-                await spdr.edit("`Safely taped !!`")
+                await spdr.edit("`Successfully muted!`")
 
             # Announce to logging group
             if BOTLOG:
@@ -523,9 +523,9 @@ async def gspider(gspdr):
             '`Error! User probably already gmuted.\nRe-rolls the tape.`')
     else:
         if reason:
-            await gspdr.edit(f"`Globally taped!`Reason: {reason}")
+            await gspdr.edit(f"`Globally muted!`Reason: {reason}")
         else:
-            await gspdr.edit("`Globally taped!`")
+            await gspdr.edit("`Globally muted!`")
 
         if BOTLOG:
             await gspdr.client.send_message(

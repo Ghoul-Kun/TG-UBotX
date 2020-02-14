@@ -30,13 +30,13 @@ async def speedtst(spd):
     await spd.edit(
                    "**Speedtest Results:** \n\n"
                    "**Download** "
-                   f"{speed_convert(result['download'])} \n"
+                   f"`{speed_convert(result['download'])}` \n"
                    "**Upload** "
-                   f"{speed_convert(result['upload'])} \n"
+                   f"`{speed_convert(result['upload'])}` \n"
                    "**Ping** "
-                   f"{result['ping']} \n"
+                   f"`{result['ping']}` \n"
                    "**ISP** "
-                   f"{result['client']['isp']}"
+                   f"`{result['client']['isp']}`"
                    )
 
 
@@ -77,13 +77,13 @@ add_help_item(
     "Core",
     "Some useful web tools",
     """
-    .ping
-    Usage: Shows how long it takes to ping your bot.
+    `.ping`
+    **Usage:** Shows how long it takes to ping your bot.
 
-    .speedtest
-    Usage: Does a speedtest and shows the results.
+    `.speedtest`
+    **Usage:** Does a speedtest and shows the results.
 
-    .dc
-    Usage: Finds the nearest datacenter from your server.
+    `.dc`
+    **Usage:** Finds the nearest datacenter from your server.
     """
 )

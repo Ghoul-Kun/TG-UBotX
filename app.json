@@ -10,8 +10,8 @@
     "productivity"
   ],
   "repository": "https://github.com/HitaloKun/TG-UBotX",
-  "website": "https://telegra.ph/How-to-host-a-Telegram-Userbot-07-24",
-  "success_url": "https://t.me/AndroidRepo",
+  "website": "https://hitalokun.github.io/ubotx-docs/#/",
+  "success_url": "https://t.me/UBotX",
   "env": {
     "API_KEY": {
       "description": "Get this value from my.telegram.org.",
@@ -134,7 +134,7 @@
     {
       "plan": "heroku-postgresql",
       "options": {
-        "version": "9.5"
+        "version": "12"
       }
     }
   ],

@@ -101,8 +101,7 @@ add_help_item(
     "Fun",
     "UBotX is the best.",
     """
-.ubo\
-\nUsage: gives a nice UBOT as output.
+    `.ubo`
     """
 )
 
