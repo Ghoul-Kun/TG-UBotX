@@ -320,7 +320,7 @@ async def get_pack_info(event):
 
 
 add_help_item(
-    "kang",
+    "stickers",
     "Fun",
     "Steal stickers and animated stickers",
     """

@@ -18,7 +18,7 @@ from userbot.events import register
 @register(outgoing=True, pattern="^\.speedtest$")
 async def speedtst(spd):
     """ For .speed command, use SpeedTest to check server speeds. """
-    await spd.edit("`Running speed test . . .`")
+    await spd.edit("`Running speed test ...`")
     test = Speedtest()
 
     test.get_best_server()
@@ -27,18 +27,17 @@ async def speedtst(spd):
     test.results.share()
     result = test.results.dict()
 
-    await spd.edit("`"
-                   "Started at "
-                   f"{result['timestamp']} \n\n"
-                   "Download "
+    await spd.edit(
+                   "**Speedtest Results:** \n\n"
+                   "**Download** "
                    f"{speed_convert(result['download'])} \n"
-                   "Upload "
+                   "**Upload** "
                    f"{speed_convert(result['upload'])} \n"
-                   "Ping "
+                   "**Ping** "
                    f"{result['ping']} \n"
-                   "ISP "
+                   "**ISP** "
                    f"{result['client']['isp']}"
-                   "`")
+                   )
 
 
 def speed_convert(size):
@@ -58,9 +57,9 @@ def speed_convert(size):
 async def neardc(event):
     """ For .dc command, get the nearest datacenter information. """
     result = await event.client(functions.help.GetNearestDcRequest())
-    await event.edit(f"Country : `{result.country}`\n"
-                     f"Nearest Datacenter : `{result.nearest_dc}`\n"
-                     f"This Datacenter : `{result.this_dc}`")
+    await event.edit(f"**Country:** `{result.country}`\n"
+                     f"**Nearest Datacenter:** `{result.nearest_dc}`\n"
+                     f"**This Datacenter:** `{result.this_dc}`")
 
 
 @register(outgoing=True, pattern="^\.ping$")
@@ -70,7 +69,7 @@ async def pingme(pong):
     await pong.edit("`Pong!`")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await pong.edit("`Pong!\n%sms`" % (duration))
+    await pong.edit("🏓 **Pong!**\n`%sms`" % (duration))
 
 
 add_help_item(
@@ -78,11 +77,13 @@ add_help_item(
     "Core",
     "Some useful web tools",
     """
-    \n\n.ping\
-    \nUsage: Shows how long it takes to ping your bot.\
-    \n\n.speedtest\
-    \nUsage: Does a speedtest and shows the results.\
-    \n\n.dc\
-    \nUsage: Finds the nearest datacenter from your server.
+    .ping
+    Usage: Shows how long it takes to ping your bot.
+
+    .speedtest
+    Usage: Does a speedtest and shows the results.
+
+    .dc
+    Usage: Finds the nearest datacenter from your server.
     """
 )

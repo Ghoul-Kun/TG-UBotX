@@ -211,13 +211,16 @@ add_help_item(
     "Misc",
     "Download files and torrents using the aria module",
     """
-    .aurl [URL] (or) .amag [Magnet Link] (or) .ator [path to torrent file]\
-    \nUsage: Downloads the file into your userbot server storage.\
-    \n\n.apause (or) .aresume\
-    \nUsage: Pauses/resumes on-going downloads.\
-    \n\n.aclear\
-    \nUsage: Clears the download queue, deleting all on-going downloads.\
-    \n\n.ashow\
-    \nUsage: Shows progress of the on-going downloads.
+    `.aurl` [URL] (or) `.amag` [Magnet Link] (or) `.ator` [path to torrent file]
+    **Usage:** Downloads the file into your userbot server storage.
+    
+    `.apause` (or) `.aresume`
+    **Usage:** Pauses/resumes on-going downloads.
+    
+    `.aclear`
+    **Usage:** Clears the download queue, deleting all on-going downloads.
+    
+    `.ashow`
+    **Usage:** Shows progress of the on-going downloads.
     """
 )

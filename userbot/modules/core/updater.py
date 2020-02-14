@@ -188,11 +188,14 @@ async def upstream(ups):
 add_help_item(
     "updater",
     "Core",
-    "Commands to update the UBotX",
+    "Checks if an update is available for the bot. "
+    "If an update is available, allows the bot to "
+    "be updated.",
     """
-.update\
-\nUsage: Checks if the main userbot repository has any updates and shows a changelog if so.\
-\n\n.update now\
-\nUsage: Updates your userbot, if there are any updates in the main userbot repository.
+    To check for an update
+    `.update`
+    
+    To update the bot to the newest version
+    `.update now`
     """
 )

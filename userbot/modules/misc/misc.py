@@ -149,26 +149,35 @@ add_help_item(
     "Misc",
     "Some misc commands.",
     """
-.raw\
-\nUsage: Get detailed JSON-like formatted data about replied message.\
-\n\n.random <item1> <item2> ... <itemN>\
-\nUsage: Get a random item from the list of items.\
-\n\n.repeat <no.> <text>\
-\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\
-\n\n.restart\
-\nUsage: Restarts the bot !!\
-\n\n.readme\
-\nUsage: Provide links to setup the userbot and it's modules.\
-\n\n.creator\
-\nUsage: Know who created this awesome userbot !!\
-\n\n.community\
-\nUsage: Join the awesome Paperplane userbot community !!\
-\n\n.repo\
-\nUsage: If you are curious what makes the userbot work, this is what you need.\
-\n\n.shutdown\
-\nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to\
-hear Windows XP shutdown sound... but you don't.\
-\n\n.sleep <seconds>\
-\nUsage: Userbots get tired too. Let yours snooze for a few seconds.
+    `.raw`
+    **Usage:** Get detailed JSON-like formatted data about replied message.
+
+    `.random` <item1> <item2> ... <itemN>
+    **Usage:** Get a random item from the list of items.
+
+    `.repeat` <no.> <text>
+    **Usage:** Repeats the text for a number of times. Don't confuse this with spam tho.
+
+    `.restart`
+    **Usage:** Restarts the bot!
+
+    `.readme`
+    **Usage:** Provide links to setup the userbot and it's modules.
+
+    `.creator`
+    **Usage:** Know who created this awesome userbot!
+
+    `.community`
+    **Usage:** Join the awesome Paperplane userbot community!
+
+    `.repo`
+    **Usage:** If you are curious what makes the userbot work, this is what you need.
+
+    `.shutdown`
+    **Usage:** Sometimes you need to shut down your bot. Sometimes you just hope to
+    hear Windows XP shutdown sound... but you don't.
+
+    `.sleep` <seconds>
+    **Usage:** Userbots get tired too. Let yours snooze for a few seconds.
     """
 )

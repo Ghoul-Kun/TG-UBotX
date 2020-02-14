@@ -141,7 +141,7 @@ add_help_item(
     "Misc",
     "Userbot module for getting the weather of a city.",
     """
-    .weather <city> or .weather <city>, <country name/code>
-    Usage: Gets the weather of a city
+    `.weather` <city> or .weather <city>, <country name/code>
+    **Usage:** Gets the weather of a city
     """
 )

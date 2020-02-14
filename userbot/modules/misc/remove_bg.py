@@ -102,7 +102,7 @@ add_help_item(
     "Misc",
     "Remove the image background.",
     """
-.rbg <Link to Image> or reply to any image (Warning: does not work on stickers.)
-Usage: Removes the background of images, using remove.bg API
+    `.rbg` <Link to Image> or reply to any image (Warning: does not work on stickers.)
+    **Usage:** Removes the background of images, using remove.bg API
     """
 )

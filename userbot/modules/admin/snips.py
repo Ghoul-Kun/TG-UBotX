@@ -2,6 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
+#
 """ Userbot module containing commands for keeping global notes. """
 
 from ..help import add_help_item
@@ -89,10 +90,10 @@ async def on_snip_list(event):
     all_snips = get_snips()
     for a_snip in all_snips:
         if message == "`No snips available right now.`":
-            message = "Available snips:\n"
-            message += f"`${a_snip.snip}`\n"
+            message = "**Available snips:**\n"
+            message += f" • `${a_snip.snip}`\n"
         else:
-            message += f"`${a_snip.snip}`\n"
+            message += f" • `${a_snip.snip}`\n"
 
     await event.edit(message)
 
@@ -107,9 +108,9 @@ async def on_snip_delete(event):
         return
     name = event.pattern_match.group(1)
     if remove_snip(name) is True:
-        await event.edit(f"`Successfully deleted snip:` **{name}**")
+        await event.edit(f"**Successfully deleted snip:** `{name}`")
     else:
-        await event.edit(f"`Couldn't find snip:` **{name}**")
+        await event.edit(f"**Couldn't find snip:** `{name}`")
 
 
 add_help_item(
@@ -117,13 +118,16 @@ add_help_item(
     "Admin",
     "Similar to notes but global and only you can use",
     """
-.$<snip_name>\
-\nUsage: Gets the specified snip, anywhere.\
-\n\n.snip <name> <data> or reply to a message with .snip <name>\
-\nUsage: Saves the message as a snip (global note) with the name. (Works with pics, docs, and stickers too!)\
-\n\n.snips\
-\nUsage: Gets all saved snips.\
-\n\n.remsnip <snip_name>\
-\nUsage: Deletes the specified snip.\
+    `.$<snip_name>`
+    Usage: Gets the specified snip, anywhere.
+
+    `.snip` <name> <data> or reply to a message with .snip <name>
+    **Usage:** Saves the message as a snip (global note) with the name. (Works with pics, docs, and stickers too!)
+
+    `.snips`
+    **Usage: Gets all saved snips.
+
+    `.remsnip` <snip_name>
+    **Usage:** Deletes the specified snip.
     """
 )

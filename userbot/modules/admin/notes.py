@@ -5,10 +5,11 @@
 #
 """ Userbot module containing commands for keeping notes. """
 
+from asyncio import sleep
+
 from ..help import add_help_item
 from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
-from asyncio import sleep
 
 
 @register(outgoing=True, pattern="^\.notes$")
@@ -40,10 +41,10 @@ async def remove_notes(clr):
         return
     notename = clr.pattern_match.group(1)
     if rm_note(clr.chat_id, notename) is False:
-        return await clr.edit("`Couldn't find note:` **{}**".format(notename))
+        return await clr.edit("**Couldn't find note:** `{}`".format(notename))
     else:
         return await clr.edit(
-            "`Successfully deleted note:` **{}**".format(notename))
+            "**Successfully deleted note:** `{}`".format(notename))
 
 
 @register(outgoing=True, pattern=r"^\.save (\w*)")
@@ -122,13 +123,16 @@ add_help_item(
     "Admin",
     "Userbot module containing commands for keeping notes",
     """
-#<notename>\
-\nUsage: Gets the specified note.\
-\n\n.save <notename> <notedata> or reply to a message with .save <notename>\
-\nUsage: Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)\
-\n\n.notes\
-\nUsage: Gets all saved notes in a chat.\
-\n\n.clear <notename>\
-\nUsage: Deletes the specified note.
+    `#<notename>`
+    *"Usage:** Gets the specified note.
+
+    `.save` <notename> <notedata> or reply to a message with .save <notename>\
+    **Usage:** Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)\
+
+    `.notes`
+    **Usage:** Gets all saved notes in a chat.
+
+    `.clear` <notename>
+    **Usage:** Deletes the specified note.
     """
 )

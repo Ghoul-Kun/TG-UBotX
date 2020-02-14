@@ -75,13 +75,13 @@ add_help_item(
     "Admin",
     "Userbot module containing commands for warn users",
     """
-.warn
-Usage: Wane a user.
+    `.warn`
+    **Usage:** Warn a user.
 
-.warns
-Usage: See all warns for a user.
+    `.warns`
+    **Usage:** See all warns for a user.
 
-.resetwarns
-Usage: Reset all warns of a user.
+    `.resetwarns`
+    **Usage:** Reset all warns of a user.
     """
 )

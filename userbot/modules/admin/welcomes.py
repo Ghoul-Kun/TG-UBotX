@@ -3,11 +3,13 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
+""" UserBot module to welcome the new members """
+
+from telethon.events import ChatAction
 
 from ..help import add_help_item
 from userbot.events import register
 from userbot import bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
-from telethon.events import ChatAction
 
 
 @bot.on(ChatAction)
@@ -98,7 +100,7 @@ async def save_welcome(event):
             await event.client.send_message(
                 BOTLOG_CHATID, f"#WELCOME_NOTE\
             \nCHAT ID: {event.chat_id}\
-            \nThe following message is saved as the new welcome note for the chat, please do NOT delete it !!"
+            \nThe following message is saved as the new welcome note for the chat, please do NOT delete it!!"
             )
             msg_o = await event.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -154,21 +156,24 @@ async def del_welcome(event):
     if rm_welcome_setting(event.chat_id) is True:
         await event.edit("`Welcome note deleted for this chat.`")
     else:
-        await event.edit("`Do I have a welcome note here ?`")
+        await event.edit("`Do I have a welcome note here?`")
 
 
 add_help_item(
     "welcomes",
     "Admin",
-    "Welcome the new members..",
+    "Welcome the new members.",
     """
-`.setwelcome <welcome message> or reply to a message with .setwelcome\
-\nUsage: Saves the message as a welcome note in the chat.\
-\n\nAvailable variables for formatting welcome messages :\
-\n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
-\n\n.checkwelcome\
-\nUsage: Check whether you have a welcome note in the chat.\
-\n\n.rmwelcome\
-\nUsage: Deletes the welcome note for the current chat.
+`.setwelcome` <welcome message> or reply to a message with .setwelcome
+**Usage:** Saves the message as a welcome note in the chat.
+
+**Available variables for formatting welcome messages:**
+`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`
+
+`.checkwelcome`
+**Usage:** Check whether you have a welcome note in the chat.
+
+`.rmwelcome`
+**Usage:** Deletes the welcome note for the current chat.
     """
 )

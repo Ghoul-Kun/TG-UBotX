@@ -4,15 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 
-from random import randint
-from asyncio import sleep
-from os import execl
-import sys
-import os
-import io
-import sys
-import json
-from userbot import BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register
 from ..help import add_help_item
 

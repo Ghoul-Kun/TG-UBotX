@@ -21,10 +21,10 @@ async def fry(message):
 
     photo = BytesIO()
     if message.media:
-        await message.edit("Frying...")
+        await message.edit("`Frying ...`")
         await message.download_media(photo)
     elif reply_message.media:
-        await message.edit("Frying...")
+        await message.edit("`Frying ...`")
         await reply_message.download_media(photo)
     else:
         await message.edit("Can't deepfry nothing")
@@ -47,6 +47,6 @@ add_help_item(
     "Fun",
     "Deeprys the selected photo.",
     """
-.deepfry In response to a photo
+    `.deepfry` In response to a photo
     """
 )

@@ -3,8 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-
-# This module originally created by @spechide https://github.com/SpEcHiDe/UniBorg/blob/master/stdplugins/GBan.py
+# Ported from SpEcHiDe UniBorg
 
 from telethon import events
 import asyncio
@@ -17,7 +16,7 @@ from ..help import add_help_item
 @register(outgoing=True, pattern=r"^\.fban(?: |$)(.*)")
 async def _(event):
     if GBAN_GROUP is None:
-        await event.edit("ENV VAR is not set. This module will not work.")
+        await event.edit("GBAN_GROUP is not set. This module will not work.")
         return
     if event.fwd_from:
         return
@@ -37,7 +36,7 @@ async def _(event):
 @register(outgoing=True, pattern=r"^\.unfban(?: |$)(.*)")
 async def _(event):
     if GBAN_GROUP is None:
-        await event.edit("ENV VAR is not set. This module will not work.")
+        await event.edit("GBAN_GROUP is not set. This module will not work.")
         return
     if event.fwd_from:
         return
@@ -52,12 +51,12 @@ async def _(event):
 
 
 add_help_item(
-    "fban",
+    "fedban",
     "Admin",
-    "Give FedBan through userbot",
+    "Give FedBan through userbot.",
     """
-.fban [id/username] [reason] or in reply
-.unfban [id/username] [reason] or in reply
+    `.fban` [id/username] [reason] or in reply
+    `.unfban` [id/username] [reason] or in reply
     """
 )
  

@@ -1106,68 +1106,68 @@ add_help_item(
     "Fun",
     "Thanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these.",
     """
-.cowsay\
-\nUsage: cow which says things.\
-\n\n:/\
-\nUsage: Check yourself ;)\
-\n\n-_-\
-\nUsage: Ok...\
-\n\n;_;\
-\nUsage: Like `-_-` but crying.\
-\n\n.cp\
-\nUsage: Copypasta the famous meme\
-\n\n.vapor\
-\nUsage: Vaporize everything!\
-\n\n.str\
-\nUsage: Stretch it.\
-\n\n.10iq\
-\nUsage: You retard !!\
-\n\n.zal\
-\nUsage: Invoke the feeling of chaos.\
-\n\nOof\
-\nUsage: Ooooof\
-\n\n.fp\
-\nUsage: Facepalm :P\
-\n\n.moon\
-\nUsage: kensar moon animation.\
-\n\n.clock\
-\nUsage: kensar clock animation.\
-\n\n.hi\
-\nUsage: Greet everyone!\
-\n\n.coinflip <heads/tails>\
-\nUsage: Flip a coin !!\
-\n\n.owo\
-\nUsage: UwU\
-\n\n.react\
-\nUsage: Make your userbot react to everything.\
-\n\n.slap\
-\nUsage: reply to slap them with random objects !!\
-\n\n.cry\
-\nUsage: y u du dis, i cri.\
-\n\n.shg\
-\nUsage: Shrug at it !!\
-\n\n.run\
-\nUsage: Let Me Run, run, RUNNN!\
-\n\n.chase\
-\nUsage: You better start running\
-\n\n.metoo\
-\nUsage: Haha yes\
-\n\n.mock\
-\nUsage: Do it and find the real fun.\
-\n\n.clap\
-\nUsage: Praise people!\
-\n\n.f <emoji/character>\
-\nUsage: Pay Respects.\
-\n\n.bt\
-\nUsage: Believe me, you will find this useful.\
-\n\n.type\
-\nUsage: Just a small command to make your keyboard become a typewriter!\
-\n\n.lfy <query>\
-\nUsage: Let me Google that for you real quick !!\
-\n\n.decide [Alternates: (.yes, .no, .maybe)]\
-\nUsage: Make a quick decision.\
-\n\n.scam <action> <time>\
+`.cowsay`\
+\n**Usage:** cow which says things.\
+\n\n`:/`\
+\n**Usage:** Check yourself ;)\
+\n\n`-_-`\
+\n**Usage:** Ok...\
+\n\n`;_;`\
+\n**Usage:** Like `-_-` but crying.\
+\n\n`.cp`\
+\n**Usage:** Copypasta the famous meme\
+\n\n`.vapor`\
+\n**Usage:** Vaporize everything!\
+\n\n`.str`\
+\n**Usage:** Stretch it.\
+\n\n`.10iq`\
+\n**Usage:** You retard !!\
+\n\n`.zal`\
+\n**Usage:** Invoke the feeling of chaos.\
+\n\n`Oof`\
+\n**Usage:** Ooooof\
+\n\n`.fp`\
+\n**Usage:** Facepalm :P\
+\n\n;.moon`\
+\n**Usage:** kensar moon animation.\
+\n\n`.clock`\
+\n**Usage:** kensar clock animation.\
+\n\n`.hi`\
+\n**Usage:** Greet everyone!\
+\n\n`.coinflip` <heads/tails>\
+\n**Usage:** Flip a coin !!\
+\n\n`.owo`\
+\n**Usage:** UwU\
+\n\n`.react`\
+\n**Usage:** Make your userbot react to everything.\
+\n\n`.slap`\
+\n**Usage:** reply to slap them with random objects !!\
+\n\n`.cry`\
+\n**Usage:** y u du dis, i cri.\
+\n\n`.shg`\
+\n**Usage:** Shrug at it !!\
+\n\n`.run`\
+\n**Usage:** Let Me Run, run, RUNNN!\
+\n\n`.chase`\
+\n**Usage:** You better start running\
+\n\n`.metoo`\
+\n**Usage:** Haha yes\
+\n\n`.mock`\
+\n**Usage:** Do it and find the real fun.\
+\n\n`.clap`\
+\n**Usage:** Praise people!\
+\n\n`.f` <emoji/character>\
+\n**Usage:** Pay Respects.\
+\n\n`.bt`\
+\n**Usage:** Believe me, you will find this useful.\
+\n\n`.type`\
+\n**Usage:** Just a small command to make your keyboard become a typewriter!\
+\n\n`.lfy` <query>\
+\n**Usage:** Let me Google that for you real quick !!\
+\n\n`.decide` [Alternates: (.yes, .no, .maybe)]\
+\n**Usage:** Make a quick decision.\
+\n\n`.scam` <action> <time>\
 \n[Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]\
-\nUsage: Create fake chat actions, for fun. (Default action: typing).
+\n**Usage:** Create fake chat actions, for fun. (Default action: typing).
     """
 )

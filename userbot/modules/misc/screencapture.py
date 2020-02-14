@@ -73,7 +73,7 @@ add_help_item(
     "Misc",
     "Takes a screenshot of a website and sends the screenshot.",
     """
-    .ss <url>
+    `.ss` <url>
     Example of a valid URL: `https://www.google.com`
     """
 )

@@ -127,11 +127,12 @@ async def get_dogbin_content(dog_url):
 add_help_item(
     "dogbin",
     "Misc",
-    "Userbot module containing commands for interacting with dogbin(https://del.dog)",
+    "Userbot module containing commands for interacting with [dogbin](https://del.dog)",
     """
-    .paste <text/reply>\
-    \nUsage: Create a paste or a shortened url using dogbin (https://del.dog/)\
-    \n\n.getpaste\
-    \nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)
+    `.paste` <text/reply>
+    **Usage:** Create a paste or a shortened url using dogbin (https://del.dog/)
+
+    `.getpaste`
+    **Usage:** Gets the content of a paste or shortened url from dogbin (https://del.dog/)
     """
 )

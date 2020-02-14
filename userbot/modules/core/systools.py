@@ -125,10 +125,10 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     await alive.edit(
-                     "**UBotX Status:** On-line\n\n"
+                     "**UBotX is alive!**\n\n"
                      f"**Telethon version:** `{version.__version__}` \n"
                      f"**Python version:** `{python_version()}` \n"
-                     f"**@UBotX version:** `{VERSION}` \n"
+                     f"**@UBotX version:** `{VERSION}` \n\n"
                      f"**Modules loaded:** `{len(ALL_MODULES)}` \n"
                      f"**User:** `{DEFAULTUSER}`"
                      )
@@ -160,17 +160,22 @@ add_help_item(
     "Core",
     "Some useful system tools",
     """
-    \n\n.alive\
-    \nUsage: Type .alive to see wether your bot is working or not.\
-    \n\n.aliveu <text>\
-    \nUsage: Changes the 'user' in alive to the text you want.\
-    \n\n.resetalive\
-    \nUsage: Resets the user to default.\
-    \n\n.botver\
-    \nUsage: Shows the userbot version.\
-    \n\n.pip <module(s)>\
-    \nUsage: Does a search of pip modules(s).\
-    \n\n.sysd\
-    \nUsage: Shows system information using neofetch.
+    .alive
+    Usage: Type .alive to see wether your bot is working or not.
+
+    .aliveu <text>
+    Usage: Changes the 'user' in alive to the text you want.
+
+    .resetalive
+    Usage: Resets the user to default.
+
+    .botver
+    Usage: Shows the userbot version.
+
+    .pip <module(s)>
+    Usage: Does a search of pip modules(s).
+
+    .sysd
+    Usage: Shows system information using neofetch.
     """
 )

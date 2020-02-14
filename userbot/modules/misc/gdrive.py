@@ -446,17 +446,22 @@ add_help_item(
     "Misc",
     "Send files to your gdrive using UBotX",
     """
-    .gdrive <file_path / reply / URL|file_name>\
-    \nUsage: Uploads the file in reply , URL or file path in server to your Google Drive.\
-    \n\n.gsetf <GDrive Folder URL>\
-    \nUsage: Sets the folder to upload new files to.\
-    \n\n.gsetclear\
-    \nUsage: Reverts to default upload destination.\
-    \n\n.gfolder\
-    \nUsage: Shows your current upload destination/folder.\
-    \n\n.list <query>\
-    \nUsage: Looks for files and folders in your Google Drive.\
-    \n\n.ggd <path_to_folder_in_server>\
-    \nUsage: Uploads all the files in the directory to a folder in Google Drive
+    `.gdrive` <file_path / reply / URL|file_name>
+    **Usage:** Uploads the file in reply, URL or file path in server to your Google Drive.
+    
+    `.gsetf` <GDrive Folder URL>
+    **Usage:** Sets the folder to upload new files to.
+    
+    `.gsetclear`
+    **Usage:** Reverts to default upload destination.
+    
+    `.gfolder`
+    **Usage:** Shows your current upload destination/folder.
+    
+    `.list` <query>
+    **Usage:** Looks for files and folders in your Google Drive.
+    
+    `.ggd` <path_to_folder_in_server>
+    **Usage:** Uploads all the files in the directory to a folder in Google Drive
     """
 )
