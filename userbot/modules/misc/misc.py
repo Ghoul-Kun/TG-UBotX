@@ -36,10 +36,11 @@ async def creator(e):
 @register(outgoing=True, pattern="^.readme$")
 async def reedme(e):
     await e.edit(
-        "Here's something for you to read:\n"
+        "**Here's something for you to read:**\n"
         "\n[TG-UBotX's README.md file](https://github.com/HitaloKun/TG-UBotX/blob/master/README.md)"
-        "\n[Setup Guide - Basic](https://github.com/HitaloKun/TG-UBotX/wiki/How-to-host-TG-UBotX)"
-        "\n[Setup Guide - Google Drive](https://github.com/HitaloKun/TG-UBotX/wiki/How-To-Setup-GDrive)")
+        "\n[TG-UBotX - Wiki](https://hitalokun.github.io/ubotx-docs/#/)"
+        "\n[Setup Guide - GDive](https://telegra.ph/How-To-Setup-GDrive-11-02)"
+        "\n[News Channel](https://t.me/UBotX)")
 
 
 @register(outgoing=True, pattern="^\.random")
