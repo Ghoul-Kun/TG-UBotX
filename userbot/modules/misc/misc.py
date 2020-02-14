@@ -37,7 +37,6 @@ async def creator(e):
 async def reedme(e):
     await e.edit(
         "**Here's something for you to read:**\n"
-        "\n[TG-UBotX's README.md file](https://github.com/HitaloKun/TG-UBotX/blob/master/README.md)"
         "\n[TG-UBotX - Wiki](https://hitalokun.github.io/ubotx-docs/#/)"
         "\n[Setup Guide - GDive](https://telegra.ph/How-To-Setup-GDrive-11-02)"
         "\n[News Channel](https://t.me/UBotX)")
@@ -118,7 +117,7 @@ async def repeat(rep):
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
-        f"Click [here]({UPSTREAM_REPO_URL}) to open my userbot's repository.")
+        f"Click [here](https://github.com/HitaloKun/TG-UBotX) to open my userbot's repository.")
 
 
 @register(outgoing=True, pattern="^\.raw$")

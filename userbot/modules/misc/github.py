@@ -130,7 +130,7 @@ add_help_item(
     
     Repos can be in the format `https://github.com/user/repo` or just `user/repo`.
     
-    Options:
+    **Options:**
     `.general`: Display general information related to the repo.
     `.owner`: Display information about the repo owner.
     `.all`: Display everything.

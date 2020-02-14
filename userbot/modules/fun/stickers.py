@@ -329,7 +329,7 @@ add_help_item(
     `.kang`
     **Usage:** Reply .kang to a sticker or an image to kang it to your userbot pack.
 
-    .kang [emoji('s)]
+    `.kang` [emoji('s)]
     **Usage:** Works just like .kang but uses the emoji('s) you picked.
 
     `.kang` [number]

@@ -292,7 +292,7 @@ add_help_item(
     **Usage:** Disapproves the mentioned/replied person to PM.
 
     `.block`
-    **Usage:"" Blocks the person.
+    **Usage:** Blocks the person.
 
     `.unblock`
     **Usage:** Unblocks the person so they can PM you.
