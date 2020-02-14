@@ -47,7 +47,7 @@ async def paste(pstl):
             message = message.message
 
     # Dogbin
-    await pstl.edit("`Pasting text . . .`")
+    await pstl.edit("`Pasting text ...`")
     resp = post(DOGBIN_URL + "documents", data=message.encode('utf-8'))
 
     if resp.status_code == 200:
@@ -57,12 +57,12 @@ async def paste(pstl):
 
         if response['isUrl']:
             reply_text = ("`Pasted successfully!`\n\n"
-                          f"`Shortened URL:` {dogbin_final_url}\n\n"
-                          "`Original(non-shortened) URLs`\n"
-                          f"`Dogbin URL`: {DOGBIN_URL}v/{key}\n")
+                          f"**Shortened URL:** {dogbin_final_url}\n\n"
+                          "**Original(non-shortened) URLs**\n"
+                          f"**Dogbin URL:** {DOGBIN_URL}v/{key}\n")
         else:
             reply_text = ("`Pasted successfully!`\n\n"
-                          f"`Dogbin URL`: {dogbin_final_url}")
+                          f"**Dogbin URL:** {dogbin_final_url}")
     else:
         reply_text = ("`Failed to reach Dogbin`")
 
@@ -70,7 +70,7 @@ async def paste(pstl):
     if BOTLOG:
         await pstl.client.send_message(
             BOTLOG_CHATID,
-            f"Paste query was executed successfully",
+            f"#DOGBIN\nPaste query was executed successfully",
         )
 
 
@@ -79,7 +79,7 @@ async def get_dogbin_content(dog_url):
     """ For .getpaste command, fetches the content of a dogbin URL. """
     textx = await dog_url.get_reply_message()
     message = dog_url.pattern_match.group(1)
-    await dog_url.edit("`Getting dogbin content...`")
+    await dog_url.edit("`Getting dogbin content ...`")
 
     if textx:
         message = str(textx.message)

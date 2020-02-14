@@ -178,7 +178,7 @@ async def gsearch(q_event):
     if BOTLOG:
         await q_event.client.send_message(
             BOTLOG_CHATID,
-            "Google Search query `" + match + "` was executed successfully",
+            "#GOOGLE\nGoogle Search query `" + match + "` was executed successfully",
         )
 
 
@@ -211,7 +211,7 @@ async def wiki(wiki_q):
     await wiki_q.edit("**Search:**\n`" + match + "`\n\n**Result:**\n" + result)
     if BOTLOG:
         await wiki_q.client.send_message(
-            BOTLOG_CHATID, f"Wiki query `{match}` was executed successfully")
+            BOTLOG_CHATID, f"#WIKI\nWiki query `{match}` was executed successfully")
 
 
 @register(outgoing=True, pattern="^\.ud (.*)")
@@ -249,7 +249,7 @@ async def urban_dict(ud_e):
                         urban_def.example + "__")
         if BOTLOG:
             await ud_e.client.send_message(
-                BOTLOG_CHATID, "UrbanDictionary query for `" + query +
+                BOTLOG_CHATID, "#UD\nUrbanDictionary query for `" + query +
                 "` executed successfully.")
     else:
         await ud_e.edit("No result found for **" + query + "**")
@@ -296,7 +296,7 @@ async def text_to_speech(query):
         os.remove("k.mp3")
         if BOTLOG:
             await query.client.send_message(
-                BOTLOG_CHATID, "Text to Speech executed successfully !")
+                BOTLOG_CHATID, "#TTS\nText to Speech executed successfully !")
         await query.delete()
 
 
@@ -412,7 +412,7 @@ async def translateme(trans):
     if BOTLOG:
         await trans.client.send_message(
             BOTLOG_CHATID,
-            f"Translated some {source_lan.title()} stuff to {transl_lan.title()} just now.",
+            f"#TRT\nTranslated some {source_lan.title()} stuff to {transl_lan.title()} just now.",
         )
 
 

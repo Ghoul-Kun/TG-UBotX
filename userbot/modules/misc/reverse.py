@@ -41,7 +41,7 @@ async def okgoogle(img):
         return
 
     if photo:
-        await img.edit("`Processing...`")
+        await img.edit("`Processing ...`")
         try:
             image = Image.open(photo)
         except OSError:
@@ -147,9 +147,8 @@ async def scam(results, lim):
 add_help_item(
     "reverse",
     "Misc",
-    "Revers-search on Google Images",
+    "Reply to a pic/sticker to revers-search it on Google Images!",
     """
-.reverse\
-\nUsage: Reply to a pic/sticker to revers-search it on Google Images!!
+    .reverse
     """
 )

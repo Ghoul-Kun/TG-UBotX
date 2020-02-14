@@ -71,10 +71,9 @@ async def capture(url):
 add_help_item(
     "screencapture",
     "Misc",
-    "Capture a website's screenshot and send the photo.",
+    "Takes a screenshot of a website and sends the screenshot.",
     """
-    .ss <url>\
-    \nUsage: Takes a screenshot of a website and sends the screenshot.\
-    \nExample of a valid URL : `https://www.google.com`
+    .ss <url>
+    Example of a valid URL: `https://www.google.com`
     """
 )
