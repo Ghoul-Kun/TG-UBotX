@@ -11,8 +11,7 @@ from asyncio import sleep
 from telethon.events import StopPropagation
 
 from ..help import add_help_item
-from userbot import (AFKREASON, COUNT_MSG, ISAFK, BOTLOG,
-                     BOTLOG_CHATID, USERS, PM_AUTO_BAN)
+from userbot import AFKREASON, COUNT_MSG, ISAFK, BOTLOG, BOTLOG_CHATID, USERS, PM_AUTO_BAN
 from userbot.events import register
 
 try:
