@@ -29,7 +29,7 @@ for module_name in ALL_MODULES:
 
 LOGS.info("You are running TG-UBotX")
 
-LOGS.info("Congratulations, your userbot is now running!"
+LOGS.info("Congratulations, your userbot is now running! "
           "Test it by typing .alive in any chat.")
 
 if len(argv) not in (1, 3, 4):
