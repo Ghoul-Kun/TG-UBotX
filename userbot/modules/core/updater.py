@@ -7,16 +7,16 @@
 This module updates the userbot based on Upstream revision
 """
 
-from os import remove, execle, path, makedirs, getenv, environ
-from shutil import rmtree
 import asyncio
 import sys
+
+from os import remove, execle, path, environ
 
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 from ..help import add_help_item
-from userbot import bot, HEROKU_APIKEY, HEROKU_APPNAME, UPSTREAM_REPO_URL
+from userbot import HEROKU_APIKEY, HEROKU_APPNAME, UPSTREAM_REPO_URL
 from userbot.events import register
 
 requirements_path = path.join(
@@ -46,7 +46,6 @@ async def update_requirements():
 
 @register(outgoing=True, pattern="^\.update(?: |$)(.*)")
 async def upstream(ups):
-    "For .update command, check if the bot is up to date, update if specified"
     await ups.edit("`Checking for updates, please wait....`")
     conf = ups.pattern_match.group(1)
     off_repo = UPSTREAM_REPO_URL
@@ -176,7 +175,6 @@ async def upstream(ups):
             ups_rem.pull(ac_br)
         except GitCommandError:
             repo.git.reset("--hard", "FETCH_HEAD")
-        reqs_upgrade = await update_requirements()
         await ups.edit('`Successfully Updated!\n'
                        'Bot is restarting... Wait for a second!`')
         # Spin a new instance of bot
@@ -194,7 +192,7 @@ add_help_item(
     """
     To check for an update
     `.update`
-    
+
     To update the bot to the newest version
     `.update now`
     """

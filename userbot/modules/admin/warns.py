@@ -5,12 +5,7 @@
 #
 # Ported from SpEcHiDe UniBorg by github.com/HitaloKun/TG-UBotX
 
-import asyncio
 import html
-
-from telethon import events
-from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.types import ChatBannedRights
 
 from ..help import add_help_item
 from userbot.events import register
