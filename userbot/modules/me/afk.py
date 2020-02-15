@@ -10,7 +10,7 @@ from random import choice, randint
 from telethon.events import StopPropagation
 
 from ..help import add_help_item
-from userbot import (AFKREASON, ISAFK, BOTLOG,
+from userbot import (AFKREASON, BOTLOG,
                      BOTLOG_CHATID, USERS, PM_AUTO_BAN)
 from userbot.events import register
 
@@ -51,7 +51,6 @@ AFKSTR = [
 
 @register(incoming=True, disable_errors=True)
 async def mention_afk(mention):
-    """ this function takes care of notifying the people who mention you that you are AFK."""
     global COUNT_MSG
     global USERS
     global ISAFK
@@ -89,7 +88,6 @@ async def mention_afk(mention):
 
 @register(incoming=True, disable_errors=True)
 async def afk_on_pm(sender):
-    """ function which informs people that you are AFK in PM! """
     global ISAFK
     global AFFKREASON
     ISAFK_SQL = False
@@ -136,7 +134,6 @@ async def afk_on_pm(sender):
 
 @register(outgoing=True, pattern="^\.afk(?: |$)(.*)", disable_errors=True)
 async def set_afk(afk_e):
-    """ For .afk command, allows you to inform people that you are afk when they message you """
     message = afk_e.text
     string = afk_e.pattern_match.group(1)
     global ISAFK
@@ -164,7 +161,6 @@ async def set_afk(afk_e):
 
 @register(outgoing=True)
 async def type_afk_is_not_true(notafk):
-    """ this sets your status as not afk automatically when you write something while being afk """
     global COUNT_MSG
     global USERS
     global ISAFK

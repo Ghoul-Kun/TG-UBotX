@@ -17,8 +17,6 @@ SCANNING_MESSAGE = "**Scanning for potential spammers.** {}"
 
 @register(outgoing=True, pattern=r"^\.s(?:pam)?b(?:lock)? scan$")
 async def spamscan(e):
-    """ Scan every user in the current chat and match
-    them against the spam algorithm. """
     users = []
     potentials = {}
     scanned = 0

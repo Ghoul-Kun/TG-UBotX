@@ -9,8 +9,8 @@
 
 from telethon.events import NewMessage
 
-# from userbot import spamwatch
 from ..help import add_help_item
+from userbot import spamwatch
 from userbot.events import register
 from userbot.utils import parse_arguments, get_user_from_event
 from userbot.utils.tgdoc import *
@@ -79,12 +79,12 @@ async def fetch_info(replied_user, **kwargs):
                          KeyValueItem('mutual_contact', Code(user.mutual_contact)),
                          KeyValueItem('common groups', Code(replied_user.common_chats_count)))
 
-    # if spamwatch:
-    #     banobj = spamwatch.get_ban(user.id)
-    #     if banobj:
-    #         general.items.append(KeyValueItem('gbanned', f'True / {banobj.reason}'))
-    #     else:
-    #         general.items.append(KeyValueItem('gbanned', 'False'))
+    if spamwatch:
+        banobj = spamwatch.get_ban(user.id)
+        if banobj:
+            general.items.append(KeyValueItem('gbanned', f'True / {banobj.reason}'))
+        else:
+            general.items.append(KeyValueItem('gbanned', 'False'))
 
     bot = SubSection(Bold('bot'),
                      KeyValueItem('bot', Code(user.bot)),
