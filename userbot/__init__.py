@@ -14,6 +14,7 @@ from distutils.util import strtobool as sb
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from github import Github
+from pymongo import MongoClient
 from spamwatch import Client as SpamWatch
 from dotenv import load_dotenv
 from requests import get
@@ -205,6 +206,19 @@ async def check_botlog_chatid():
                 "Your account doesn't have rights to send messages to BOTLOG_CHATID "
                 "group. Check if you typed the Chat ID correctly.")
             quit(1)
+
+
+# Init Mongo
+MONGOCLIENT = MongoClient(MONGO_DB_URI, 27017, serverSelectionTimeoutMS=1)
+MONGO = MONGOCLIENT.userbot
+
+
+def is_mongo_alive():
+    try:
+        MONGOCLIENT.server_info()
+    except BaseException:
+        return False
+    return True
 
 
 with bot:
