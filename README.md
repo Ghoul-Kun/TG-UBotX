@@ -14,7 +14,7 @@ I aim to bring back the legacy of Paperplane Extended, literally be an extended 
 
 ## Installation Guide
 
-See our wikis to get [Installation Guide](https://github.com/HitaloKun/TG-UBotX/wiki).
+See our wikis to get [Installation Guide](http://hitalokun.github.io/ubotx-docs/).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/HitaloKun/TG-UBotX)
 
