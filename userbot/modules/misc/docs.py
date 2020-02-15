@@ -31,7 +31,7 @@ async def doc_search(e):
             response = f"[Documentation for {lib} on Read the Docs]({readthedocs_url})"
             await e.edit(response)
     else:
-        await e.edit(f"No docs found for `{lib}`...", delete_in=3)
+        await e.edit(f"No docs found for `{lib}`...")
 
 add_help_item(
     "docs",
