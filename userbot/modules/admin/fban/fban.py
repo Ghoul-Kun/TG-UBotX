@@ -31,7 +31,7 @@ async def fedban_all(msg):
             if ent: banid = ent.id
 
     if not banid:
-        return await msg.edit("**No user to ban**", delete_in=3)
+        return await msg.edit("**No user to ban**")
 
     failed = dict()
     count = 1
@@ -46,15 +46,15 @@ async def fedban_all(msg):
                 failed[bangroup] = str(conv.chat_id)
             else:
                 count += 1
-                await msg.reply("**Fbanned in " + str(count) + " feds!**", delete_in=3)
+                await msg.reply("**Fbanned in " + str(count) + " feds!**")
             # Sleep to avoid a floodwait.
             # Prevents floodwait if user is a fedadmin on too many feds
             await asyncio.sleep(0.2)
 
     if failed:
         failedstr = ', '.join([f'`i`' in failed.keys()])
-        await msg.reply(f"**Failed to fban in {failedstr}**", delete_in=3)
+        await msg.reply(f"**Failed to fban in {failedstr}**")
     else:
-        await msg.reply("**Fbanned in all feds!**", delete_in=3)
+        await msg.reply("**Fbanned in all feds!**")
 
     msg.delete()
