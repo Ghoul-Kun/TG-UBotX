@@ -3,14 +3,15 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module which contains afk-related command """
+""" Userbot module which contains afk-related commands """
 
 from random import choice, randint
+from asyncio import sleep
 
 from telethon.events import StopPropagation
 
 from ..help import add_help_item
-from userbot import (AFKREASON, BOTLOG, ISAFK, COUNT_MSG
+from userbot import (AFKREASON, COUNT_MSG, ISAFK, BOTLOG,
                      BOTLOG_CHATID, USERS, PM_AUTO_BAN)
 from userbot.events import register
 
@@ -51,6 +52,7 @@ AFKSTR = [
 
 @register(incoming=True, disable_errors=True)
 async def mention_afk(mention):
+    """ This function takes care of notifying the people who mention you that you are AFK."""
     global COUNT_MSG
     global USERS
     global ISAFK
@@ -88,6 +90,7 @@ async def mention_afk(mention):
 
 @register(incoming=True, disable_errors=True)
 async def afk_on_pm(sender):
+    """ Function which informs people that you are AFK in PM """
     global ISAFK
     global AFFKREASON
     ISAFK_SQL = False
@@ -134,6 +137,7 @@ async def afk_on_pm(sender):
 
 @register(outgoing=True, pattern="^\.afk(?: |$)(.*)", disable_errors=True)
 async def set_afk(afk_e):
+    """ For .afk command, allows you to inform people that you are afk when they message you """
     message = afk_e.text
     string = afk_e.pattern_match.group(1)
     global ISAFK
@@ -161,6 +165,7 @@ async def set_afk(afk_e):
 
 @register(outgoing=True)
 async def type_afk_is_not_true(notafk):
+    """ This sets your status as not afk automatically when you write something while being afk """
     global COUNT_MSG
     global USERS
     global ISAFK
