@@ -107,7 +107,7 @@ DB_URI = os.environ.get("DATABASE_URL", None)
 REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
 
 # For Telegraph module
-TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", None)
+TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "UBotX")
 
 # Chrome Driver and Headless Google Chrome Binaries
 CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
