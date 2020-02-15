@@ -31,7 +31,7 @@ async def spamscan_score(e):
 
     replied_user = await get_user_from_event(e, **args)
     if not replied_user:
-        await e.edit("**Failed to get information for user**", delete_in=3)
+        await e.edit("**Failed to get information for user**")
         return
 
     await e.edit(f"**Calculating spam score for** {make_mention(replied_user.user)}")
