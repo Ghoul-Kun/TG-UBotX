@@ -52,7 +52,7 @@ async def fedban_all(msg):
             await asyncio.sleep(0.2)
 
     if failed:
-        failedstr = ', '.join([f'`i`' in failed.keys()])
+        failedstr = ', '.join([str(f'i') in failed.keys()])
         await msg.reply(f"**Failed to fban in {failedstr}**")
     else:
         await msg.reply("**Fbanned in all feds!**")
