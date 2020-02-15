@@ -49,10 +49,9 @@ async def lastname(steal):
 
 add_help_item(
     "sangmata",
-    "Fun",
-    "@fakemailbot and @SangMataInfo_bot module",
+    "Misc",
+    "See your or friend names history",
     """
     `.sg`
-    **Usage:** Steal your or friend name.
     """
 )

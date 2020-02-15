@@ -58,13 +58,15 @@ async def telegraphs(grop):
 add_help_item(
     "create",
     "Me",
-    "Creating New Group & Channel",
+    "Creating new group & channel",
     """
-\n\n.create g\
-\nUsage: Create a Private Group.\
-\n\n.create b\
-\nUsage: Create a Group with Bot.\
-\n\n.create c\
-\nUsage: Create a Channel.
+    `.create g`
+    **Usage:** Create a private Group.
+
+    `.create b`
+    *"Usage:** Create a group with Bot.
+
+    `.create c`
+    **Usage:** Create a channel.
     """
 )
