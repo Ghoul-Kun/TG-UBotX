@@ -18,7 +18,7 @@ async def fedban_all(msg):
 
     params = msg.pattern_match.group(1) or ""
     args, text = parse_arguments(params, ['reason'])
-
+    banid = None
     if reply_message:
         banid = reply_message.from_id
         banreason = args.get('reason', '[spam]')
