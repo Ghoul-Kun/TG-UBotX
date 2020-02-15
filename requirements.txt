@@ -23,6 +23,7 @@ humanize
 lxml
 oauth2client
 Pillow>=5.3.0
+pyfiglet
 psycopg2
 psycopg2-binary
 pybase64>=0.4.0
@@ -42,4 +43,4 @@ telethon>=1.10.10
 telethon-session-sqlalchemy>=0.2.6
 tgcrypto
 wikipedia>=1.4.0
-spamwatch>=0.2.0
+spamwatch
