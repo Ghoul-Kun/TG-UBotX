@@ -13,22 +13,41 @@ async def fedban_all(msg):
     if not is_mongo_alive():
         await msg.edit("`Database connections failing!`")
         return
-
-    reply_message = await msg.get_reply_message()
-
-    params = msg.pattern_match.group(1) or ""
-    args, text = parse_arguments(params, ['reason'])
-    banid = None
-    if reply_message:
-        banid = reply_message.from_id
-        banreason = args.get('reason', '[spam]')
+    textx = await msg.get_reply_message()
+    if textx:
+        try:
+            banreason = "[userbot] "
+            banreason += banreason.join(msg.text.split(" ")[1:])
+            if banreason == "[userbot]":
+                raise TypeError
+        except TypeError:
+            banreason = "[userbot] fban"
     else:
-        banreason = args.get('reason', '[fban]')
-        if text.isnumeric():
-            banid = int(text)
-        elif msg.message.entities:
-            ent = await bot.get_entity(text)
-            if ent: banid = ent.id
+        banid = msg.text.split(" ")[1]
+        if banid.isnumeric():
+            # if its a user id
+            banid = int(banid)
+        else:
+            # deal wid the usernames
+            if msg.message.entities is not None:
+                probable_user_mention_entity = msg.message.entities[0]
+ 
+            if isinstance(probable_user_mention_entity,
+                          MessageEntityMentionName):
+                ban_id = probable_user_mention_entity.user_id
+        try:
+            banreason = "[userbot] "
+            banreason += banreason.join(msg.text.split(" ")[2:])
+            if banreason == "[userbot]":
+                raise TypeError
+        except TypeError:
+            banreason = "[userbot] fban"
+    count = 1
+    fbanlist = []
+    x = (await get_fban())
+    for i in x:
+        fbanlist.append(i["chatid"])
+    for bangroup in fbanlist:
 
     if not banid:
         return await msg.edit("**No user to ban**")
@@ -46,15 +65,15 @@ async def fedban_all(msg):
                 failed[bangroup] = str(conv.chat_id)
             else:
                 count += 1
-                await msg.reply("**Fbanned in " + str(count) + " feds!**")
+                await msg.edit("`Fbanned on " + str(count) + " feds!`")
             # Sleep to avoid a floodwait.
             # Prevents floodwait if user is a fedadmin on too many feds
             await asyncio.sleep(0.2)
-
     if failed:
-        failedstr = ', '.join([str(f'i') in failed.keys()])
-        await msg.reply(f"**Failed to fban in {failedstr}**")
+        failedstr = ""
+        for i in failed.keys():
+            failedstr += failed[i]
+            failedstr += " "
+        await msg.reply(f"`Failed to fban in {failedstr}`")
     else:
-        await msg.reply("**Fbanned in all feds!**")
-
-    msg.delete()
+        await msg.reply("`Fbanned in all feds!`")
