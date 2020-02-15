@@ -47,8 +47,8 @@
       "required": false
     },
     "TELEGRAPH_SHORT_NAME": {
-      "description": "Fill the value up to you.",
-      "value": "Userbot",
+      "description": "Required for telegraph module.",
+      "value": "UBotX",
       "required": true
     },
     "CHROME_DRIVER": {
