@@ -46,6 +46,11 @@
       "value": "1",
       "required": false
     },
+    "TELEGRAPH_SHORT_NAME": {
+      "description": "Fill the value up to you.",
+      "value": "Userbot",
+      "required": true
+    },
     "CHROME_DRIVER": {
       "description": "ChromeDriver location for selenium based modules.",
       "value": "/app/.chromedriver/bin/chromedriver",
