@@ -5,20 +5,17 @@
 #
 # Adapted module from https://github.com/nunopenim/tguserbot
 
-from asyncio import sleep
 from datetime import datetime
 from os import path, remove
 from pySmartDL import SmartDL
-from requests import get
 from urllib.error import HTTPError, URLError
 
 from telethon.errors import ChatAdminRequiredError, ChatSendMediaForbiddenError
 from telethon.errors.rpcerrorlist import MessageTooLongError
-from telethon.events import ChatAction
-from telethon.tl.types import ChannelParticipantsAdmins, Message, User
+from telethon.tl.types import User
 
 from ..help import add_help_item
-from userbot import BOTLOG, BOTLOG_CHATID, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import BOTLOG_CHATID, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
