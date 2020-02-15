@@ -19,11 +19,10 @@ from telethon.tl.types import ChannelParticipantsAdmins, Message, User
 
 from ..help import add_help_item
 from userbot import BOTLOG, BOTLOG_CHATID, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.events import errors_handler, register
+from userbot.events import register
 
 
 @register(outgoing=True, pattern="^.cascheck ?(.*)")
-@errors_handler
 async def cascheck(cas): #checks if a user, or all users in a group are cas banned
     if not cas.text[0].isalpha() and cas.text[0] in ("."):
         if cas.reply_to_msg_id:
@@ -123,7 +122,6 @@ def isCSVoutdated() -> bool: #checks if csv is a day or more old
         return False
 
 @register(outgoing=True, pattern="^.casupdate$")
-@errors_handler
 async def casupdate(event): #updates cas csv
     if not event.text[0].isalpha() and event.text[0] in ("."):
         await casupdater(event, showinfo=True)
