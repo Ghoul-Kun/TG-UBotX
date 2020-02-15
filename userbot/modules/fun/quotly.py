@@ -45,7 +45,7 @@ async def _(event):
              await event.edit("`Can you kindly disable your forward privacy settings for good?`")
           else: 
              await event.delete()   
-             await bot.forward_messages(event.chat_id, response.message)
+             await bot.send_file(event.chat_id, response.message)
 
 
 add_help_item(

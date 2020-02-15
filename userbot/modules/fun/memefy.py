@@ -41,11 +41,11 @@ async def mim(event):
     if event.fwd_from:
         return 
     if not event.reply_to_msg_id:
-       await event.edit("`Syntax: reply to an image with .mms` 'text on top' ; 'text on bottom' ")
+       await event.edit("**Syntax:** reply to an image with `.mmf 'text on top' ; 'text on bottom'` ")
        return
     reply_message = await event.get_reply_message() 
     if not reply_message.media:
-       await event.edit("```reply to a image/sticker/gif```")
+       await event.edit("`reply to a image/sticker/gif`")
        return
     chat = "@MemeAutobot"
     sender = reply_message.sender
@@ -53,10 +53,10 @@ async def mim(event):
     file = await bot.download_file(reply_message.media)
     uploaded_gif = None
     if reply_message.sender.bot:
-       await event.edit("```Reply to actual users message.```")
+       await event.edit("`Reply to actual users message.`")
        return
     else:
-     await event.edit("```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```")
+     await event.edit("`Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ `")
      await asyncio.sleep(5)
     
     async with bot.conversation("@MemeAutobot") as bot_conv:
@@ -68,12 +68,12 @@ async def mim(event):
             await bot.send_file(chat, reply_message.media)
             response = await bot_conv.get_response()
           except YouBlockedUserError: 
-              await event.reply("```Please unblock @MemeAutobot and try again```")
+              await event.reply("Please unblock @MemeAutobot and try again")
               return
           if response.text.startswith("Forward"):
-              await event.edit("```can you kindly disable your forward privacy settings for good, Nibba?```")
+              await event.edit("`can you kindly disable your forward privacy settings for good, Nibba?`")
           if "Okay..." in response.text:
-            await event.edit("```🛑 🤨 NANI?! This is not an image! This will take sum tym to convert to image... UwU 🧐 🛑```")
+            await event.edit("`🛑 🤨 NANI?! This is not an image! This will take sum tym to convert to image... UwU 🧐 🛑`")
             input_str = event.pattern_match.group(1)
             if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
                 os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -93,7 +93,6 @@ async def mim(event):
                         force_document=False,
                         supports_streaming=False,
                         allow_cache=False,
-                        thumb=thumb,
                         )
                     os.remove(downloaded_file_name)
                 else:
@@ -139,7 +138,7 @@ async def silently_send_message(conv, text):
 
 
 add_help_item(
-    "memify",
+    "memefy",
     "Fun",
     "Turn images into memes",
     """

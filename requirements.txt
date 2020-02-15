@@ -23,7 +23,6 @@ humanize
 lxml
 oauth2client
 Pillow>=5.3.0
-pyfiglet
 psycopg2
 psycopg2-binary
 pybase64>=0.4.0
