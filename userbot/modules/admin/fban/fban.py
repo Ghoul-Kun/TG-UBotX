@@ -49,9 +49,9 @@ async def fedban_all(msg):
         fbanlist.append(i["chatid"])
     for bangroup in fbanlist:
 
-    if not banid:
-        return await msg.edit("**No user to ban**")
-
+    	if not banid:
+    		return await msg.edit("**No user to ban**") 
+    	
     failed = dict()
     count = 1
     fbanlist = [i['chat_id'] for i in await get_fban()]
