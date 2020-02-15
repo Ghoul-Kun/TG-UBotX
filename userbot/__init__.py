@@ -103,6 +103,9 @@ if GBAN_GROUP:
 # SQL Database URI
 DB_URI = os.environ.get("DATABASE_URL", None)
 
+# API KEY used in kutt.py module
+KUTT_IT_API_KEY = os.environ.get("KUTT_IT_API_KEY", None)
+
 # remove.bg API key
 REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
 
