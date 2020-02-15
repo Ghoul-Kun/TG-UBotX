@@ -5,32 +5,17 @@
 #
 # Ported from UniBorg to UBotX by MVaL
 
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon import events
-from io import BytesIO
-from PIL import Image
-import asyncio
-import time
-from datetime import datetime
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
-from pySmartDL import SmartDL
-from telethon.tl.types import DocumentAttributeVideo
-from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
-from userbot import (TEMP_DOWNLOAD_DIRECTORY, bot)
-from userbot.events import register
-from ..help import add_help_item
-import datetime
-from collections import defaultdict
-import math
 import os
 import requests
-import zipfile
-from telethon.errors.rpcerrorlist import StickersetInvalidError
-from telethon.errors import MessageNotModifiedError
-from telethon.tl.functions.account import UpdateNotifySettingsRequest
-from telethon.tl.functions.messages import GetStickerSetRequest
-from telethon.tl.types import (DocumentAttributeFilename, DocumentAttributeSticker,
+import asyncio
+
+from ..help import add_help_item
+from userbot.modules.misc.upload_download import humanbytes
+from userbot import (TEMP_DOWNLOAD_DIRECTORY, bot)
+from userbot.events import register
+
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.types import (DocumentAttributeSticker,
                                InputMediaUploadedDocument, InputPeerNotifySettings,
                                InputStickerSetID, InputStickerSetShortName,
                                MessageMediaPhoto)
