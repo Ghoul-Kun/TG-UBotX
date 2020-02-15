@@ -23,7 +23,8 @@ async def fedban_all(msg):
         banid = reply_message.from_id
         banreason = args.get('reason', '[spam]')
     else:
-        banreason = args.get('reason', '[fban]')
+        banreason = args.get('reason', '[fban] ')
+        banreason += banreason.join(msg.text.split(" ")[1:])
         if text.isnumeric():
             banid = int(text)
         elif msg.message.entities:
@@ -60,4 +61,13 @@ async def fedban_all(msg):
     else:
         await msg.reply("`Fbanned in all feds!`")
 
-    msg.delete()
+
+add_help_item(
+    "fedban",
+    "Misc",
+    "Userbot module containing various sites direct links generators",
+    """
+    `.fban`
+    **Usage:** Reply to a user to fban them in all the groups provided by you!
+    """
+)
