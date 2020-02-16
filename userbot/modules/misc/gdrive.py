@@ -1,12 +1,10 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-
 import asyncio
 import math
 import os
 import time
+import httplib2
+import subprocess
+
 from pySmartDL import SmartDL
 from telethon import events
 from googleapiclient.discovery import build
@@ -15,14 +13,13 @@ from googleapiclient.errors import ResumableUploadError
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.file import Storage
 from oauth2client import file, client, tools
+
 from ..help import add_help_item
 from userbot import (G_DRIVE_CLIENT_ID, G_DRIVE_CLIENT_SECRET,
                      G_DRIVE_AUTH_TOKEN_DATA, GDRIVE_FOLDER_ID, BOTLOG_CHATID,
                      TEMP_DOWNLOAD_DIRECTORY, LOGS)
 from userbot.events import register
 from mimetypes import guess_type
-import httplib2
-import subprocess
 from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
 
 # Path to token json file, it should be in same directory as script

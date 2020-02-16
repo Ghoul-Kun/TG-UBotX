@@ -1,17 +1,14 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 # The entire source code is OSSRPL except 'screencapture' which is MPL
 # License: MPL and OSSRPL
 
 import io
 import traceback
+
 from re import match
 from selenium import webdriver
 from asyncio import sleep
 from selenium.webdriver.chrome.options import Options
+
 from userbot.events import register
 from ..help import add_help_item
 from userbot import GOOGLE_CHROME_BIN, CHROME_DRIVER
