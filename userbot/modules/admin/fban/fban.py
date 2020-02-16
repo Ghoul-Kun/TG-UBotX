@@ -2,7 +2,7 @@ import asyncio
 
 from telethon.tl.types import MessageEntityMentionName, MessageEntityMention
 
-from ..help import add_help_item
+from ...help import add_help_item
 from userbot import is_mongo_alive, bot
 from userbot.events import register
 from userbot.modules.admin.fban.fban_db import get_fban
