@@ -80,7 +80,7 @@ async def fedban_all(msg):
     else:
         await msg.reply("`Fbanned in all feds!`")
     await sleep(2)
-    await done.delete()
+    await msg.reply.delete()
 
 
 add_help_item(
