@@ -21,6 +21,8 @@ from requests import get
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
+from userbot.client import UserBot
+
 load_dotenv("config.env")
 
 # Bot Logs setup:
@@ -170,7 +172,7 @@ for binary, path in binaries.items():
 # 'bot' variable
 if STRING_SESSION:
     # pylint: disable=invalid-name
-    bot = TelegramClient(StringSession(STRING_SESSION),
+    bot = UserBot(StringSession(STRING_SESSION),
                          API_KEY,
                          API_HASH,
                          connection_retries=None,
@@ -178,7 +180,7 @@ if STRING_SESSION:
                          lang_code='en')
 else:
     # pylint: disable=invalid-name
-    bot = TelegramClient("userbot",
+    bot = UserBot("userbot",
                          API_KEY,
                          API_HASH,
                          connection_retries=None,
