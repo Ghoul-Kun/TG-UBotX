@@ -76,11 +76,3 @@ async def spam_watch_(event):
            (f"CHAT: {event.chat.title}(`{event.chat_id}`)" if event.chat_id != event.from_id else "")
         )
 
-
-async def get_user_from_event(event):
-    user_obj = [await event.client.get_input_peer(event.from_id)]
-    if isinstance(event, MessageService):
-        if isinstance(event.action, MessageActionChatAddUser):
-            user_obj.extend([await event.client.get_input_peer(x) for x in event.action.users])
-    return user_obj
-
