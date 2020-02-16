@@ -7,6 +7,7 @@ from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins, Message
 
 from ..help import add_help_item
+from userbot import spamwatch
 from userbot import BOTLOG, BOTLOG_CHATID, ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, bot
 
 
@@ -89,17 +90,19 @@ async def ANTI_SPAMBOT(welcm):
                         data = None
                         pass
 
+                    spamwatch_ban = spamwatch.get_ban(user.id)
+
                     if data and data['ok']:
                         reason = f"[Banned by Combot Anti Spam](https://combot.org/cas/query?u={check_user.id})"
+                        spambot = True
+                    elif spamwatch_ban:
+                        reason = "spamwatch: ({spamwatch_ban.reason.lower()})"
                         spambot = True
                     elif "t.cn/" in message.text:
                         reason = "Match on `t.cn` URLs"
                         spambot = True
                     elif "t.me/joinchat" in message.text:
                         reason = "Potential Promotion Message"
-                        spambot = True
-                    elif message.fwd_from:
-                        reason = "Forwarded Message"
                         spambot = True
                     elif "?start=" in message.text:
                         reason = "Telegram bot `start` link"
