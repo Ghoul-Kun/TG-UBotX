@@ -52,9 +52,6 @@ async def fedban_all(msg):
 
     for bangroup in fbanlist:
         async with bot.conversation(bangroup) as conv:
-        	if reply_message:
-                c = await msg.forward_to(bangroup)
-                await c.reply("/id")
             await conv.send_message(f"/fban {banid} {banreason}")
             resp = await conv.get_response()
             await bot.send_read_acknowledge(conv.chat_id)
