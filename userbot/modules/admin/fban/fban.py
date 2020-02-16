@@ -90,5 +90,11 @@ add_help_item(
     """
     `.fban`
     **Usage:** Reply to a user to fban them in all the groups provided by you!
+    
+    `.addfban`
+    **Usage:** add groups to fban list.
+    
+    `.removefban`
+    **Usage:** removes groups from the fban list.
     """
 )
