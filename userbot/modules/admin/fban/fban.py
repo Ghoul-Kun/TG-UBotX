@@ -30,11 +30,11 @@ async def fedban_all(msg):
         elif msg.message.entities:
             ent = await bot.get_entity(text)
             if ent: banid = ent.id
-            
+
     if "[spam]" in banreason:
-    	spamwatch = True
-	else:
-		spamwatch = False
+        spamwatch = True
+    else:
+        spamwatch = False
  
 	# Send to proof to Spamwatch in case it was spam
 	# Spamwatch is a reputed fed fighting against spam on telegram
