@@ -40,8 +40,6 @@ async def cleanup(e: NewMessage.Event) -> None:
     response = await _cleanup_chat(e, count=count_only, progress_message=e.message)
     if not silent:
         await e.edit(str(response))
-    if waiting_message:
-        await waiting_message.delete()
 
 
 async def _cleanup_chat(event, count: bool = False,

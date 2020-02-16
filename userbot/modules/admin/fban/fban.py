@@ -5,7 +5,6 @@
 #
 
 import asyncio
-from asyncio import sleep
 
 from telethon.tl.types import MessageEntityMentionName, MessageEntityMention
 
@@ -51,7 +50,7 @@ async def fedban_all(msg):
     		await reply_message.forward_to(-1001312712379)
 
     if not banid:
-        return await msg.edit("**No user to fban**")
+        return await msg.edit("**No user to fban**", delete_in=3)
 
     failed = dict()
     count = 1
@@ -66,7 +65,7 @@ async def fedban_all(msg):
                 failed[bangroup] = str(conv.chat_id)
             else:
                 count += 1
-                await msg.reply("**Fbanned in " + str(count) + " feds!**")
+                await msg.reply("**Fbanned in " + str(count) + " feds!**", delete_in=3)
             # Sleep to avoid a floodwait.
             # Prevents floodwait if user is a fedadmin on too many feds
             await asyncio.sleep(0.2)
@@ -76,11 +75,9 @@ async def fedban_all(msg):
         for i in failed.keys():
             failedstr += failed[i]
             failedstr += " "
-        await msg.reply(f"`Failed to fban in {failedstr}`")
+        await msg.reply(f"`Failed to fban in {failedstr}`", delete_in=3)
     else:
-        await msg.reply("`Fbanned in all feds!`")
-    await sleep(2)
-    await msg.delete()
+        await msg.reply("`Fbanned in all feds!`", delete_in=3)
 
 
 add_help_item(
