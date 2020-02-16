@@ -35,14 +35,14 @@ async def fedban_all(msg):
         spamwatch = True
     else:
         spamwatch = False
+
+    # Send to proof to Spamwatch in case it was spam
+    # Spamwatch is a reputed fed fighting against spam on telegram
  
-	# Send to proof to Spamwatch in case it was spam
-	# Spamwatch is a reputed fed fighting against spam on telegram
- 
-	if bangroup == -1001164934084:
-		if spamwatch:
-			if reply_message:
-				await reply_message.forward_to(-1001164934084)
+    if bangroup == -1001164934084:
+            if spamwatch:
+                if textx:
+                    await textx.forward_to(-1001164934084)
 
     if not banid:
         return await msg.edit("**No user to fban**")
