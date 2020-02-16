@@ -128,7 +128,8 @@ async def amireallyalive(alive):
                      "**UBotX is alive!**\n\n"
                      f"**Telethon version:** `{version.__version__}` \n"
                      f"**Python version:** `{python_version()}` \n"
-                     f"**@UBotX version:** `{VERSION}` \n\n"
+                     f"**UBotX version:** `{VERSION}` \n"
+                     f"**Source:** [HERE](https://github.com/HitaloKun/TG-UBotX) \n\n"
                      f"**Modules loaded:** `{len(ALL_MODULES)}` \n"
                      f"**User:** `{DEFAULTUSER}`"
                      )
