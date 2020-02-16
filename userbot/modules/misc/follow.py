@@ -7,7 +7,7 @@ from userbot.events import register
 from userbot.utils import parse_arguments, extract_urls
 
 
-@register(outgoing=True, pattern=r"^\.follow)?(\s+[\S\s]+|$)")
+@register(outgoing=True, pattern=r"^\.follow(?: |$)([\s\S]*)")
 async def follow_url(event):
     reply_message = await event.get_reply_message()
     message_text = event.pattern_match.group(1) or ""
@@ -66,10 +66,9 @@ async def resolve_url(url: str, base_domain: bool = True) -> str:
         url = _base_domain
     return url
 
-
 add_help_item(
-    "followlink",
-    "Misc",
+    ".follow",
+    "Utilities",
     "Follow a link or any number of links to their "
     "destination. Mainly for use with short URLs.",
     """
