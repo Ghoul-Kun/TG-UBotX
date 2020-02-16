@@ -24,6 +24,7 @@ from telethon.tl.types import (ChannelParticipantsAdmins,
                                MessageService, MessageActionChatAddUser)
 from telethon.tl.functions.contacts import DeleteContactsRequest
 
+from telethon.events import ChatAction, NewMessage
 from userbot import BOTLOG, BOTLOG_CHATID, bot
 from userbot import spamwatch
 
