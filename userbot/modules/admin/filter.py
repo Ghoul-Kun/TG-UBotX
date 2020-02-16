@@ -1,4 +1,4 @@
-L""" Userbot module for filter commands """
+""" Userbot module for filter commands """
 
 from asyncio import sleep
 from re import fullmatch, IGNORECASE, escape
