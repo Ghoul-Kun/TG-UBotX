@@ -27,10 +27,10 @@ async def creator(e):
     await e.edit("Here's my God: [Hitalo](https://t.me/HitaloSama)")
 
 
-@register(outgoing=True, pattern="^.readme$")
+@register(outgoing=True, pattern="^.wiki$")
 async def reedme(e):
     await e.edit(
-        "**Here's something for you to read:**\n"
+        "**Our wiki and other useful links::**\n"
         "\n[TG-UBotX - Wiki](https://hitalokun.github.io/ubotx-docs/#/)"
         "\n[Setup Guide - GDive](https://telegra.ph/How-To-Setup-GDrive-11-02)"
         "\n[News Channel](https://t.me/UBotX)")
@@ -155,8 +155,8 @@ add_help_item(
     `.restart`
     **Usage:** Restarts the bot!
 
-    `.readme`
-    **Usage:** Provide links to setup the userbot and it's modules.
+    `.wiki`
+    **Usage:** Provides the UBotX wiki
 
     `.creator`
     **Usage:** Know who created this awesome userbot!
