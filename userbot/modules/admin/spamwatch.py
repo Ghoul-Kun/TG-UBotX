@@ -5,6 +5,7 @@ import asyncio
 
 from asyncio import sleep
 from os import remove
+from telethon.events import ChatAction
 from telethon import events
 from telethon.errors import (BadRequestError, ChatAdminRequiredError,
                              ImageProcessFailedError, PhotoCropSizeSmallError,
