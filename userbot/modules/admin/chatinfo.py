@@ -24,7 +24,7 @@ async def chat_info(e):
     args['chat'] = chat
 
     if isinstance(e.chat, User):
-        from .user import fetch_info as fetch_user_info
+        from .userinfo import fetch_info as fetch_user_info
         replied_user = await e.client(GetFullUserRequest(e.chat.id))
         response = await fetch_user_info(replied_user, **args)
     else:

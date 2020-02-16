@@ -24,16 +24,28 @@ async def fedban_all(msg):
         banid = reply_message.from_id
         banreason = args.get('reason', '[spam]')
     else:
-        banreason = args.get('reason', '[fban] ')
-        banreason += banreason.join(msg.text.split(" ")[1:])
+        banreason = args.get('reason', '[fban]')
         if text.isnumeric():
             banid = int(text)
         elif msg.message.entities:
             ent = await bot.get_entity(text)
             if ent: banid = ent.id
+            
+    if "[spam]" in banreason:
+    	spamwatch = True
+	else:
+		spamwatch = False
+ 
+	# Send to proof to Spamwatch in case it was spam
+	# Spamwatch is a reputed fed fighting against spam on telegram
+ 
+	if bangroup == -1001164934084:
+		if spamwatch:
+			if reply_message:
+				await reply_message.forward_to(-1001164934084)
 
     if not banid:
-        return await msg.edit("**No user to ban**")
+        return await msg.edit("**No user to fban**")
 
     failed = dict()
     count = 1
@@ -65,7 +77,7 @@ async def fedban_all(msg):
 
 add_help_item(
     "fedban",
-    "Misc",
+    "Admin",
     "Userbot module containing various sites direct links generators",
     """
     `.fban`
