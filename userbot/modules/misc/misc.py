@@ -1,25 +1,16 @@
-""" Userbot module for other small commands. """
-
-from random import randint
-from asyncio import sleep
-from os import execl
 import sys
 import os
 import io
 import sys
 import json
+
+from random import randint
+from asyncio import sleep
+from os import execl
+
 from ..help import add_help_item
 from userbot import BOTLOG, BOTLOG_CHATID, bot, UPSTREAM_REPO_URL
 from userbot.events import register
-
-
-@register(outgoing=True, pattern="^.community$")
-async def bot_community(community):
-    """ For .community command, just returns OG Paperplane's group link. """
-    await community.edit(
-        "Join RaphielGang's awesome userbot community: @userbot_support"
-        "\nDo note that TG-UBotX is an unoficial fork of their "
-        "Paperplane project and it may get limited or no support for bugs.")
 
 
 @register(outgoing=True, pattern="^.creator$")
@@ -27,7 +18,14 @@ async def creator(e):
     await e.edit("Here's my God: [Hitalo](https://t.me/HitaloSama)")
 
 
-@register(outgoing=True, pattern="^.wiki$")
+@register(outgoing=True, pattern="^\.repo$")
+async def repo_is_here(wannasee):
+    """ For .repo command, just returns the repo URL. """
+    await wannasee.edit(
+        f"Click [here](https://github.com/HitaloKun/TG-UBotX) to open my userbot's repository.")
+
+
+@register(outgoing=True, pattern="^.uwiki$")
 async def reedme(e):
     await e.edit(
         "**Our wiki and other useful links::**\n"
@@ -107,13 +105,6 @@ async def repeat(rep):
     await rep.edit(replyText)
 
 
-@register(outgoing=True, pattern="^\.repo$")
-async def repo_is_here(wannasee):
-    """ For .repo command, just returns the repo URL. """
-    await wannasee.edit(
-        f"Click [here](https://github.com/HitaloKun/TG-UBotX) to open my userbot's repository.")
-
-
 @register(outgoing=True, pattern="^\.raw$")
 async def raw(event):
     the_real_message = None
@@ -155,7 +146,7 @@ add_help_item(
     `.restart`
     **Usage:** Restarts the bot!
 
-    `.wiki`
+    `.uwiki`
     **Usage:** Provides the UBotX wiki
 
     `.creator`

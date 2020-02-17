@@ -31,6 +31,7 @@ async def create_gist(e):
 
     await e.edit(f"Gist created. You can find it here {gist.html_url}.")
 
+
 add_help_item(
     "gist",
     "Misc",
