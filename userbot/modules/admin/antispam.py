@@ -93,11 +93,11 @@ async def ANTI_SPAMBOT(welcm):
                     user = await welcm.client.get_entity(user_id)
                     spamwatch_ban = spamwatch.get_ban(user.id)
 
-                    if data and data['ok']:
-                        reason = f"[Banned by Combot Anti Spam](https://combot.org/cas/query?u={check_user.id})"
-                        spambot = True
-                    elif spamwatch_ban:
+                    if spamwatch_ban:
                         reason = "spamwatch: ({spamwatch_ban.reason.lower()})"
+                        spambot = True
+                    elif data and data['ok']:
+                        reason = f"[CAS Banned](https://combot.org/cas/query?u={check_user.id})"
                         spambot = True
                     elif "t.cn/" in message.text:
                         reason = "Match on `t.cn` URLs"
@@ -143,7 +143,7 @@ async def ANTI_SPAMBOT(welcm):
                     try:
 
                         await welcm.reply(
-                            "`Potential Spambot Detected !!`\n"
+                            "`Potential Spambot Detected!`\n"
                             f"`REASON:` {reason}\n"
                             "Kicking away for now, will log the ID for further purposes.\n"
                             f"`USER:` [{check_user.first_name}](tg://user?id={check_user.id})"
@@ -167,7 +167,7 @@ async def ANTI_SPAMBOT(welcm):
                 if BOTLOG:
                     if kicked or reported:
                         await welcm.client.send_message(
-                            BOTLOG_CHATID, "#ANTI_SPAMBOT REPORT\n"
+                            BOTLOG_CHATID, "#ANTISPAM REPORT\n"
                             f"USER: [{user.first_name}](tg://user?id={check_user.id})\n"
                             f"USER ID: `{check_user.id}`\n"
                             f"CHAT: {welcm.chat.title}\n"
