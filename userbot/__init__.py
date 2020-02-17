@@ -235,4 +235,4 @@ LASTMSG = {}
 CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
-VERSION = "6.0.2"
+VERSION = "6.0.3"

@@ -90,7 +90,7 @@ async def ANTI_SPAMBOT(welcm):
                         data = None
                         pass
 
-                    user = await get_user_from_event(welcm)
+                    user = await welcm.client.get_entity(user_id)
                     spamwatch_ban = spamwatch.get_ban(user.id)
 
                     if data and data['ok']:
