@@ -66,9 +66,10 @@ async def resolve_url(url: str, base_domain: bool = True) -> str:
         url = _base_domain
     return url
 
+
 add_help_item(
-    ".follow",
-    "Utilities",
+    "follow",
+    "Misc",
     "Follow a link or any number of links to their "
     "destination. Mainly for use with short URLs.",
     """

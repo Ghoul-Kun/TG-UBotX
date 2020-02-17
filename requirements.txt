@@ -33,7 +33,6 @@ python-dotenv
 PyGithub>=1.45
 youtube-dl>=2020.1.24
 pytz
-qrcode
 requests>=2.18.4
 search-engine-parser>=0.4.2
 speedtest-cli>=2.0.2

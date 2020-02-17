@@ -187,19 +187,19 @@ add_help_item(
     "Misc",
     "Useful commands for Android users",
     """
-.magisk
-Get latest Magisk releases
+    `.magisk`
+    **Usage:** Get latest Magisk releases
 
-.device <codename>
-Usage: Get info about android device codename or model.
+    `.device <codename>`
+    **Usage:** Get info about android device codename or model.
 
-.codename <brand> <device>
-Usage: Search for android device codename.
+    `.codename <brand> <device>`
+    **Usage:** Search for android device codename.
 
-.specs <brand> <device>
-Usage: Get device specifications info.
+    `.specs <brand> <device>`
+    **Usage:** Get device specifications info.
 
-.twrp <codename>
-Usage: Get latest twrp download for android device.
+    `.twrp <codename>`
+    **Usage:** Get latest twrp download for android device.
     """
 )
