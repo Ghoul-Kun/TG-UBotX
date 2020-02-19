@@ -66,10 +66,11 @@ async def bot_ver(event):
                          "` \n"
                          "`Revision: "
                          f"{revout}"
-                         "`")
+                         "` \n")
+                         "`Tagged Version: {VERSION}`"
     else:
         await event.edit(
-            "Shame that you don't have git, You're running 5.0 - 'Extended' anyway"
+            "Shame that you don't have git, You're running UBotX `{VERSION}` anyway"
         )
 
 

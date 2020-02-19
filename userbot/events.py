@@ -72,9 +72,9 @@ def register(**args):
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                     text = "#ERROR\n"
-                    text += "**USERBOT ERROR REPORT**\n"
-                    text += "Nothing is logged except the fact of error and date\n"
-
+                    text += "**Sorry, I encountered a error!**\n"
+                    text += "I won't log anything except the fact of error and date\n"
+ 
                     ftext = "========== DISCLAIMER =========="
                     ftext += "\nThis file uploaded ONLY here,"
                     ftext += "\nwe logged only fact of error and date,"

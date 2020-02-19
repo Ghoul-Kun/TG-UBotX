@@ -9,9 +9,9 @@ from userbot import LOGS, bot
 from userbot.modules import ALL_MODULES
 
 
-INVALID_PH = '\nERROR: The Phone No. entered is INVALID' \
-             '\n Tip: Use Country Code along with number.' \
-             '\n or check your phone number and try again!'
+INVALID_PH = '\nERROR: The phone no. entered is incorrect' \
+             '\n  Tip: Use country code (eg +44) along with num.' \
+             '\n       Recheck your phone number'
 
 try:
     bot.start()
@@ -24,8 +24,7 @@ for module_name in ALL_MODULES:
 
 LOGS.info("You are running TG-UBotX")
 
-LOGS.info("Congratulations, your userbot is now running! "
-          "Test it by typing .alive in any chat.")
+LOGS.info("UBotX is alive! Test it by typing .alive on any chat.")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
