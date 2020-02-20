@@ -19,7 +19,6 @@ async def magisk(request):
     releases = '**Latest Magisk Releases:**\n'
     for type, branch in {"Stable":["master/stable","master"], "Beta":["master/beta","master"], "Canary (release)":["canary/release","canary"], "Canary (debug)":["canary/debug","canary"]}.items():
         data = get(url + branch[0] + '.json').json()
-        data = get(release_url).json()
         releases += f'*{type}*: \n' \
                     f'• [Changelog](https://github.com/topjohnwu/magisk_files/blob/{branch[1]}/notes.md)\n' \
                     f'• Zip - [{data["magisk"]["version"]}-{data["magisk"]["versionCode"]}]({data["magisk"]["link"]}) \n' \
