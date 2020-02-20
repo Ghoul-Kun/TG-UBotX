@@ -37,8 +37,8 @@ I aim to bring back the legacy of Paperplane Extended, literally be an extended 
 
 ## Credits
 
- - [Paperlane Extended](https://github.com/AvinashReddy3108/PaperplaneExtended)
- - [Paperplane](https://github.com/RaphielGang/Telegram-UserBot)
- - [tg_userbot](https://github.com/watzon/tg_userbot)
+* [Paperlane Extended](https://github.com/AvinashReddy3108/PaperplaneExtended)
+* [Paperplane](https://github.com/RaphielGang/Telegram-UserBot)
+* [tg_userbot](https://github.com/watzon/tg_userbot)
 
 And many other <a href="https://github.com/HitaloKun/TG-UBotX/graphs/contributors">people</a> who assisted me throughout this project.
