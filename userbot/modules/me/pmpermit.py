@@ -13,12 +13,10 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "Hey there stranger. If you're seeing this message it "
-    "means I haven't approved you for PMs yet. If I know "
-    "you this doesn't pose a problem, just wait a bit for "
-    "me to check my messages and approve you. If I don't "
-    "know you please go back to whatever group you found me "
-    "in and remove yourself before I report you 😁")
+    "`Hello! This is an automated message.\n\n`"
+    "`I haven't approved you to PM yet.`"
+    "`Please wait for me to look in, I mostly approve PMs.\n\n`"
+    "`Until then, please don't spam my PM, you'll get blocked and reported!`")
 # =================================================================
 
 

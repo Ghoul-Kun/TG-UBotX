@@ -20,6 +20,8 @@
 
 UBotX is a modular Telegram UserBot running on Python3 with an sqlalchemy database.
 
+You can learn more about the project through our [Telegram channel](https://t.me/UBotX)
+
 ## Disclaimer
 
 First of all you should know this bot is a major work in progress. It is a fork of [Paperplane Extended](https://github.com/AvinashReddy3108/PaperplaneExtended), If you choose to use this bot now, be prepared to pull changes frequently as I continue to fix broken english, pull or change things that don't make sense, or add new things.

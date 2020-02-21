@@ -1,17 +1,19 @@
 # Copyright (C) 2020 Adek Maulana.
 # All rights reserved.
 
-from humanize import naturalsize
 from subprocess import PIPE, Popen
 
 import re
 import json
-import wget
 import os
+import time
 
+from pySmartDL import SmartDL
 from os.path import exists
+from urllib.error import HTTPError
 
 from ..help import add_help_item
+from userbot import LOGS
 from userbot.events import register
 
 
@@ -40,7 +42,7 @@ async def mega_downloader(megadl):
     elif textx:
         link = textx.text
     else:
-        await megadl.edit("**Usage:** `.mega <mega url>`")
+        await megadl.edit("`Usage: .mega <mega url>`")
         return
     if not link:
         await megadl.edit("`No MEGA.nz link found!`")
@@ -61,35 +63,84 @@ async def mega_download(url, megadl):
         await megadl.edit("`Error: Can't extract the link`\n")
         return
     file_name = data['file_name']
-    file_size = naturalsize(int(data['file_size']))
     file_url = data['url']
     file_hex = data['hex']
     file_raw_hex = data['raw_hex']
     if exists(file_name):
         os.remove(file_name)
     if not exists(file_name):
-        await megadl.edit('**Downloading...**\n\n'
-                          f'File: `{file_name}`\n'
-                          f'Size: `{file_size}`\n'
-                          '`...`')
-        wget.download(file_url, out=file_name)
-        if exists(file_name):
-            await megadl.edit('Encrypting file...')
-            encrypt_file(file_name, file_hex, file_raw_hex)
-            await megadl.edit(f"`{file_name}`\n\n"
-                              "Successfully downloaded...")
+        temp_file_name = file_name + ".temp"
+        downloaded_file_name = "./" + "" + temp_file_name
+        downloader = SmartDL(file_url, downloaded_file_name, progress_bar=False)
+        try:
+            downloader.start(blocking=False)
+        except HTTPError as e:
+            await megadl.edit("`" + str(e) + "`")
+            LOGS.info(str(e))
+            return
+        while not downloader.isFinished():
+            status = downloader.get_status().capitalize()
+            total_length = downloader.filesize if downloader.filesize else None
+            downloaded = downloader.get_dl_size()
+            percentage = int(downloader.get_progress() * 100)
+            progress = downloader.get_progress_bar()
+            speed = downloader.get_speed(human=True)
+            estimated_total_time = downloader.get_eta(human=True)
+            try:
+                current_message = (
+                    f"**{status}**..."
+                    f"\nFile Name: `{file_name}`\n"
+                    f"\n{progress} `{percentage}%`"
+                    f"\n{humanbytes(downloaded)} of {humanbytes(total_length)}"
+                    f" @ {speed}"
+                    f"\nETA: {estimated_total_time}"
+                )
+                await megadl.edit(current_message)
+                time.sleep(0.2)
+                if status == 'Combining':
+                    if int(total_length) > 10000000000:
+                        time.sleep(11)
+                    elif int(total_length) < 10000000000:
+                        time.sleep(5)
+            except Exception as e:
+                LOGS.info(str(e))
+        if downloader.isSuccessful():
+            download_time = downloader.get_dl_time(human=True)
+            if exists(temp_file_name):
+                await megadl.edit("Decrypting file...")
+                decrypt_file(file_name, temp_file_name, file_hex, file_raw_hex)
+                await megadl.edit(f"`{file_name}`\n\n"
+                                  "Successfully downloaded\n"
+                                  f"Download took: {download_time}")
         else:
             await megadl.edit("Failed to download...")
+            for e in downloader.get_errors():
+                LOGS.info(str(e))
     return
 
 
-def encrypt_file(file_name, file_hex, file_raw_hex):
-    os.rename(file_name, r"old_{}".format(file_name))
-    cmd = ("cat 'old_{}' | openssl enc -d -aes-128-ctr -K {} -iv {} > '{}'"
-           .format(file_name, file_hex, file_raw_hex, file_name))
+def decrypt_file(file_name, temp_file_name, file_hex, file_raw_hex):
+    cmd = ("cat '{}' | openssl enc -d -aes-128-ctr -K {} -iv {} > '{}'"
+           .format(temp_file_name, file_hex, file_raw_hex, file_name))
     subprocess_run(cmd)
-    os.remove(r"old_{}".format(file_name))
+    os.remove(r"{}".format(temp_file_name))
     return
+
+
+def humanbytes(size):
+    """Input size in bytes,
+    outputs in a human readable format"""
+    # https://stackoverflow.com/a/49361727/4723940
+    if not size:
+        return ""
+    # 2 ** 10 = 1024
+    power = 2**10
+    raised_to_pow = 0
+    dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
+    while size > power:
+        size /= power
+        raised_to_pow += 1
+    return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
 
 
 add_help_item(
