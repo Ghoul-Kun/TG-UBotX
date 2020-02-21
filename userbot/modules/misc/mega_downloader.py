@@ -11,7 +11,7 @@ import os
 
 from os.path import exists
 
-from userbot import CMD_HELP
+from ..help import add_help_item
 from userbot.events import register
 
 

@@ -1,11 +1,12 @@
 """ Userbot module containing various sites direct links generators """
 
-from os import popen
 import re
 import urllib.parse
 import json
-from random import choice
 import requests
+
+from os import popen
+from random import choice
 from bs4 import BeautifulSoup
 from humanize import naturalsize
 
