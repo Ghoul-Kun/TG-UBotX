@@ -100,6 +100,8 @@ add_help_item(
     `.mega <mega url>`
     **Usage:** Reply to a mega link or paste your mega link to
     download the file into your userbot server
-    Only support for *FILE*.
+    Only support for **FILE**.
+    
+    **Note:** UBotX may become unusable when is downloading a MEGA file. 
     """
 )
