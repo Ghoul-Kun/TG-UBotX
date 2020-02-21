@@ -128,8 +128,6 @@ def decrypt_file(file_name, temp_file_name, file_hex, file_raw_hex):
 
 
 def humanbytes(size):
-    """Input size in bytes,
-    outputs in a human readable format"""
     # https://stackoverflow.com/a/49361727/4723940
     if not size:
         return ""
@@ -151,7 +149,5 @@ add_help_item(
     `.mega <mega url>`
     **Usage:** Reply to a mega link or paste your mega link to download the file into your userbot server
     Only support for **FILE**.
-    
-    **Note:** UBotX may become unusable when is downloading a MEGA file. 
     """
 )
