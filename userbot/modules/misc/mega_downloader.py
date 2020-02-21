@@ -40,7 +40,7 @@ async def mega_downloader(megadl):
     elif textx:
         link = textx.text
     else:
-        await megadl.edit("`Usage: .mega <mega url>`")
+        await megadl.edit("**Usage:** `.mega <mega url>`")
         return
     if not link:
         await megadl.edit("`No MEGA.nz link found!`")
@@ -68,10 +68,10 @@ async def mega_download(url, megadl):
     if exists(file_name):
         os.remove(file_name)
     if not exists(file_name):
-        await megadl.edit('Downloading...\n\n'
+        await megadl.edit('**Downloading...**\n\n'
                           f'File: `{file_name}`\n'
-                          f'Size: {file_size}\n'
-                          '...')
+                          f'Size: `{file_size}`\n'
+                          '`...`')
         wget.download(file_url, out=file_name)
         if exists(file_name):
             await megadl.edit('Encrypting file...')
@@ -98,8 +98,7 @@ add_help_item(
     "UserBot module to download files from MEGA.nz",
     """
     `.mega <mega url>`
-    **Usage:** Reply to a mega link or paste your mega link to
-    download the file into your userbot server
+    **Usage:** Reply to a mega link or paste your mega link to download the file into your userbot server
     Only support for **FILE**.
     
     **Note:** UBotX may become unusable when is downloading a MEGA file. 
