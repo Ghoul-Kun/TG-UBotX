@@ -43,3 +43,4 @@ tgcrypto
 wikipedia>=1.4.0
 spamwatch
 pymongo[srv]
+wget
