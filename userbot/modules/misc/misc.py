@@ -1,15 +1,12 @@
 import sys
-import os
 import io
-import sys
-import json
 
 from random import randint
 from asyncio import sleep
 from os import execl
 
 from ..help import add_help_item
-from userbot import BOTLOG, BOTLOG_CHATID, bot, UPSTREAM_REPO_URL
+from userbot import BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register
 
 

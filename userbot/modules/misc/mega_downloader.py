@@ -30,8 +30,8 @@ def subprocess_run(cmd):
                   f'stderr: {talk[1]}')
         return reply
     return talk
- 
- 
+
+
 @register(outgoing=True, pattern=r"^.mega(?: |$)(.*)")
 async def mega_downloader(megadl):
     await megadl.edit("`Processing...`")
@@ -47,8 +47,8 @@ async def mega_downloader(megadl):
     if not link:
         await megadl.edit("`No MEGA.nz link found!`")
     await mega_download(link, megadl)
- 
- 
+
+
 async def mega_download(url, megadl):
     try:
         link = re.findall(r'\bhttps?://.*mega.*\.nz\S+', url)[0]
@@ -118,20 +118,17 @@ async def mega_download(url, megadl):
             for e in downloader.get_errors():
                 LOGS.info(str(e))
     return
- 
- 
+
+
 def decrypt_file(file_name, temp_file_name, file_hex, file_raw_hex):
     cmd = ("cat '{}' | openssl enc -d -aes-128-ctr -K {} -iv {} > '{}'"
            .format(temp_file_name, file_hex, file_raw_hex, file_name))
     subprocess_run(cmd)
     os.remove(r"{}".format(temp_file_name))
     return
- 
- 
+
+
 def humanbytes(size):
-    """Input size in bytes,
-    outputs in a human readable format"""
-    # https://stackoverflow.com/a/49361727/4723940
     if not size:
         return ""
     # 2 ** 10 = 1024

@@ -1,6 +1,3 @@
-import inspect
-
-from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types.messages import ChatFull
 from telethon.tl.types import Channel, User, ChatInviteExported
