@@ -50,7 +50,7 @@ TTS_LANG = "en"
 TRT_LANG = "en"
 
 
-@register(outgoing=True, pattern="^.img (.*)")
+@register(outgoing=True, pattern="^\.img (.*)")
 async def img_sampler(event):
     """ For .img command, search and return images matching the query. """
     await event.edit("Processing...")

@@ -20,7 +20,7 @@ from telethon.tl.types import (DocumentAttributeSticker,
                                MessageMediaPhoto)
 
 
-@register(outgoing=True, pattern="^.mmf(?: |$)(.*)")
+@register(outgoing=True, pattern="^\.mmf(?: |$)(.*)")
 async def mim(event):
     if event.fwd_from:
         return 

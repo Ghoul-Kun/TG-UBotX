@@ -19,7 +19,7 @@ from userbot import BOTLOG_CHATID, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.cascheck ?(.*)")
+@register(outgoing=True, pattern="^\.cascheck ?(.*)")
 async def cascheck(cas): #checks if a user, or all users in a group are cas banned
     if not cas.text[0].isalpha() and cas.text[0] in ("."):
         if cas.reply_to_msg_id:
@@ -119,7 +119,7 @@ def isCSVoutdated() -> bool: #checks if csv is a day or more old
         return False
 
 
-@register(outgoing=True, pattern="^.casupdate$")
+@register(outgoing=True, pattern="^\.casupdate$")
 async def casupdate(event): #updates cas csv
     if not event.text[0].isalpha() and event.text[0] in ("."):
         await casupdater(event, showinfo=True)

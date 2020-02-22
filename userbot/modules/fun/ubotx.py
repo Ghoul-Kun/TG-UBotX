@@ -8,7 +8,7 @@ from userbot.events import register
 from ..help import add_help_item
 
 
-@register(outgoing=True, pattern="^.ubo$")
+@register(outgoing=True, pattern="^\.ubo$")
 async def shalom(e):
     await e.edit(
         "\n💰💰💰💰💰💰💰💰💰"

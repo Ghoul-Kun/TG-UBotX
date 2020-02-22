@@ -15,7 +15,7 @@ from ..help import add_help_item
 from userbot.events import register
 
 
-@register(outgoing=True, pattern='^.fl(?: |$)(.*)')
+@register(outgoing=True, pattern='^\.fl(?: |$)(.*)')
 async def typewriter(typew):
 	message = typew.pattern_match.group(1)
 	await typew.edit("`start loading...`")
