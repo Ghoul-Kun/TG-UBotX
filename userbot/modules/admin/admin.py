@@ -1,7 +1,3 @@
-"""
-Userbot module to help you manage a group
-"""
-
 from asyncio import sleep
 from os import remove
 
@@ -852,7 +848,7 @@ async def get_user_from_id(user, event):
 add_help_item(
     "admin",
     "Admin",
-    "Some admin-related commands",
+    "UserBot module to help you manage a group.",
     """
     `.promote` <username/userid>: <custom rank (optional)> (or) reply to a message with .promote <rank (optional)>
     **Usage:** Provides admin rights to the person in the chat.
