@@ -1,6 +1,12 @@
-import re
-from io import BytesIO
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+#
 
+import re
+
+from io import BytesIO
 from PIL import Image
 from photohash import average_hash
 
