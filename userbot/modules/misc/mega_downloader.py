@@ -122,10 +122,10 @@ async def mega_download(url, megadl):
     return
 
 
-async def decrypt_file(file_name, temp_file_name, hex_key, hex_raw_key, megadl):
+async def decrypt_file(file_name, temp_file_name, file_hex, file_raw_hex, megadl):
     await megadl.edit("Decrypting file...")
     cmd = ("cat '{}' | openssl enc -d -aes-128-ctr -K {} -iv {} > '{}'"
-           .format(temp_file_name, file_hex, file.raw.hex, file_name))
+           .format(temp_file_name, file_hex, file_raw_hex, file_name))
     await subprocess_run(cmd, megadl)
     os.remove(temp_file_name)
     return
