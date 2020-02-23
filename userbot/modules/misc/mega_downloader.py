@@ -15,7 +15,7 @@ from urllib.error import HTTPError
 from ..help import add_help_item
 from userbot import LOGS
 from userbot.events import register
-from userbot-modules.misc.upload_download import humanbytes
+from userbot.modules.misc.upload_download import humanbytes
 
 
 async def subprocess_run(cmd, megadl):
