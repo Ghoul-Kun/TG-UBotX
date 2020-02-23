@@ -25,7 +25,6 @@ from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from requests import get
 from search_engine_parser import GoogleSearch
-from google_images_download import google_images_download
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googletrans import LANGUAGES, Translator
@@ -44,6 +43,7 @@ from asyncio import sleep
 from userbot import BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.events import register
 from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
+from userbot.utils.google_images_download import googleimagesdownload
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
@@ -152,6 +152,37 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
+
+
+@register(outgoing=True, pattern="^\.img (.*)")
+async def img_sampler(event):
+    """ For .img command, search and return images matching the query. """
+    await event.edit("Processing...")
+    query = event.pattern_match.group(1)
+    lim = findall(r"lim=\d+", query)
+    try:
+        lim = lim[0]
+        lim = lim.replace("lim=", "")
+        query = query.replace("lim=" + lim[0], "")
+    except IndexError:
+        lim = 3
+    response = googleimagesdownload()
+ 
+    # creating list of arguments
+    arguments = {
+        "keywords": query,
+        "limit": lim,
+        "format": "jpg",
+        "no_directory": "no_directory"
+    }
+ 
+    # passing the arguments to the function
+    paths = response.download(arguments)
+    lst = paths[0][query]
+    await event.client.send_file(
+        await event.client.get_input_entity(event.chat_id), lst)
+    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
+    await event.delete()
 
 
 @register(outgoing=True, pattern="^\.currency (.*)")
