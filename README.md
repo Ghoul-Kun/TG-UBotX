@@ -28,12 +28,12 @@ First of all you should know this bot is a major work in progress. It is a fork 
 
 ## How do I use it?
 
-For configuring UBotX, you can checkout our [Wiki](https://hitalokun.github.io/ubotx-docs/). 
+For configuring UBotX, you can checkout our [Wiki](https://tg-ubotx.github.io/). 
 Please, make sure you have followed the Wiki and all the steps required.
 
 ## Heroku Deploy
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/HitaloKun/TG-UBotX)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TG-UBotX/TG-UBotX)
 
 ## Credits
 
