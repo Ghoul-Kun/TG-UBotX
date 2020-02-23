@@ -699,16 +699,18 @@ add_help_item(
     **Usage:** Shows movie info and other stuff.
 
     `.ripaudio` <url> or ripvideo <url>
-    **Usage:** Download videos and songs from YouTube (and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).\
+    **Usage:** Download videos and songs from YouTube (and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).
 
     `.yt` <text>
     **Usage:** Does a YouTube search.
 
     .trt <text> [or reply]
-    **Usage:** Translates text to the language which is set.\nUse .lang trt <language code> to set language for trt. (Default is English)\
+    **Usage:** Translates text to the language which is set.
+    Use `.lang trt <language code>` to set language for trt. (Default is English)
 
     `.tts` <text> [or reply]
-    **Usage:** Translates text to speech for the language which is set.\nUse .lang tts <language code> to set language for tts. (Default is English.)\
+    **Usage:** Translates text to speech for the language which is set.
+    Use `.lang tts <language code>` to set language for tts. (Default is English.)
 
     `.ud` <query>
     **Usage:** Does a search on Urban Dictionary.
@@ -720,7 +722,8 @@ add_help_item(
     **Usage:** Does a search on Wikipedia.
 
     `.carbon` <text> [or reply]
-    **Usage:** Beautify your code using carbon.now.sh\nUse .crblang <text> to set language for your code.\
+    **Usage:** Beautify your code using carbon.now.sh
+    Use .crblang <text> to set language for your code.
 
     `.currency` <amount> <from> <to>
     **Usage:** Converts various currencies for you.
