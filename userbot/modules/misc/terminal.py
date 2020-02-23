@@ -74,7 +74,7 @@ async def terminal_runner(term):
 
 add_help_item(
     "terminal",
-    "Utilities",
+    "Misc",
     "Execute a terminal command on the machine this "
     "bot is running on.",
     """

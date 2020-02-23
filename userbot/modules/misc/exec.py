@@ -81,9 +81,10 @@ execute. Use .help exec for an example.```")
             BOTLOG_CHATID,
             "Exec query: \n```\n" + codepre + "\n```\n was executed successfully")
 
+
 add_help_item(
     "exec",
-    "Utilities",
+    "Misc",
     "Execute a dynamically created Python program.",
     """
     `.exec (program)`
