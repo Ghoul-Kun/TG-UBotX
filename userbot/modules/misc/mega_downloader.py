@@ -32,7 +32,7 @@ async def subprocess_run(cmd, megadl):
     return talk
 
 
-@register(outgoing=True, pattern=r"^.mega(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.mega(?: |$)(.*)")
 async def mega_downloader(megadl):
     await megadl.edit("`Processing...`")
     textx = await megadl.get_reply_message()
