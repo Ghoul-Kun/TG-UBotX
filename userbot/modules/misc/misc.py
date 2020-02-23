@@ -25,14 +25,14 @@ async def creator(e):
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
-        f"Click [here](https://github.com/HitaloKun/TG-UBotX) to open my userbot's repository.")
+        f"Click [here](https://github.com/TG-UBotX/TG-UBotX) to open my userbot's repository.")
 
 
 @register(outgoing=True, pattern="^.uwiki$")
 async def reedme(e):
     await e.edit(
         "**Our wiki and other useful links::**\n"
-        "\n[TG-UBotX - Wiki](https://hitalokun.github.io/ubotx-docs/#/)"
+        "\n[TG-UBotX - Wiki](https://tg-ubotx.github.io/#/)"
         "\n[Setup Guide - GDive](https://telegra.ph/How-To-Setup-GDrive-11-02)"
         "\n[News Channel](https://t.me/UBotX)")
 
