@@ -79,11 +79,11 @@ execute. Use .help exec for an example.```")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#EXEC\nExec query: \n```\n" + codepre + "\n```\n was executed successfully")
+            "Exec query: \n```\n" + codepre + "\n```\n was executed successfully")
 
 add_help_item(
     "exec",
-    "Misc",
+    "Utilities",
     "Execute a dynamically created Python program.",
     """
     `.exec (program)`

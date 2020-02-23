@@ -3,6 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
+
 import asyncio
 
 from getpass import getuser
@@ -67,13 +68,13 @@ async def terminal_runner(term):
     if BOTLOG:
         await term.client.send_message(
             BOTLOG_CHATID,
-            "#TERM\nTerminal Command " + command + " was executed sucessfully",
+            "Terminal Command " + command + " was executed sucessfully",
         )
 
 
 add_help_item(
     "terminal",
-    "Misc",
+    "Utilities",
     "Execute a terminal command on the machine this "
     "bot is running on.",
     """
