@@ -1,12 +1,13 @@
 # Copyright (C) 2020 Adek Maulana.
 # All rights reserved.
 
+from subprocess import PIPE, Popen
+
 import re
 import json
 import os
 import time
 
-from subprocess import PIPE, Popen
 from pySmartDL import SmartDL
 from os.path import exists
 from urllib.error import HTTPError
@@ -32,7 +33,7 @@ def subprocess_run(cmd):
     return talk
 
 
-@register(outgoing=True, pattern=r"^\.mega(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^.mega(?: |$)(.*)")
 async def mega_downloader(megadl):
     await megadl.edit("`Processing...`")
     textx = await megadl.get_reply_message()
@@ -56,77 +57,75 @@ async def mega_download(url, megadl):
         await megadl.edit("`No MEGA.nz link found`\n")
         return
     cmd = f'bin/megadown -q -m {link}'
-    result = await subprocess_run(cmd, megadl)
+    result = subprocess_run(cmd)
     try:
         data = json.loads(result[0])
     except json.JSONDecodeError:
         await megadl.edit("`Error: Can't extract the link`\n")
         return
-    except TypeError as e:  # in case file exists log to heroku then return
-        LOGS.info(str(e))
-        return
     file_name = data["file_name"]
     file_url = data["url"]
     hex_key = data["hex_key"]
     hex_raw_key = data["hex_raw_key"]
-    temp_file_name = file_name + ".temp"
-    downloaded_file_name = "./" + "" + temp_file_name
-    downloader = SmartDL(
-        file_url, downloaded_file_name, progress_bar=False)
-    display_message = None
-    try:
-        downloader.start(blocking=False)
-    except HTTPError as e:
-        await megadl.edit("`" + str(e) + "`")
-        LOGS.info(str(e))
-        return
-    while not downloader.isFinished():
-        status = downloader.get_status().capitalize()
-        total_length = downloader.filesize if downloader.filesize else None
-        downloaded = downloader.get_dl_size()
-        percentage = int(downloader.get_progress() * 100)
-        progress = downloader.get_progress_bar()
-        speed = downloader.get_speed(human=True)
-        estimated_total_time = downloader.get_eta(human=True)
+    if exists(file_name):
+        os.remove(file_name)
+    if not exists(file_name):
+        temp_file_name = file_name + ".temp"
+        downloaded_file_name = "./" + "" + temp_file_name
+        downloader = SmartDL(file_url, downloaded_file_name, progress_bar=False)
+        display_message = None
         try:
-            current_message = (
-                f"**{status}**..."
-                f"\nFile Name: `{file_name}`\n"
-                f"\n{progress} `{percentage}%`"
-                f"\n{humanbytes(downloaded)} of {humanbytes(total_length)}"
-                f" @ {speed}"
-                f"\nETA: {estimated_total_time}"
-            )
-            if status == "Downloading":
-                await megadl.edit(current_message)
-                time.sleep(0.2)
-            elif status == "Combining":
-                if display_message != current_message:
+            downloader.start(blocking=False)
+        except HTTPError as e:
+            await megadl.edit("`" + str(e) + "`")
+            LOGS.info(str(e))
+            return
+        while not downloader.isFinished():
+            status = downloader.get_status().capitalize()
+            total_length = downloader.filesize if downloader.filesize else None
+            downloaded = downloader.get_dl_size()
+            percentage = int(downloader.get_progress() * 100)
+            progress = downloader.get_progress_bar()
+            speed = downloader.get_speed(human=True)
+            estimated_total_time = downloader.get_eta(human=True)
+            try:
+                current_message = (
+                    f"**{status}**..."
+                    f"\nFile Name: `{file_name}`\n"
+                    f"\n{progress} `{percentage}%`"
+                    f"\n{humanbytes(downloaded)} of {humanbytes(total_length)}"
+                    f" @ {speed}"
+                    f"\nETA: {estimated_total_time}"
+                )
+                if status == "Downloading":
                     await megadl.edit(current_message)
-                    display_message = current_message
-        except Exception as e:
-            LOGS.info(str(e))
-    if downloader.isSuccessful():
-        download_time = downloader.get_dl_time(human=True)
-        if exists(temp_file_name):
-            await decrypt_file(
-                file_name, temp_file_name, hex_key, hex_raw_key, megadl)
-            await megadl.edit(f"`{file_name}`\n\n"
-                              "Successfully downloaded\n"
-                              f"Download took: {download_time}")
-    else:
-        await megadl.edit("Failed to download...")
-        for e in downloader.get_errors():
-            LOGS.info(str(e))
+                    time.sleep(0.2)
+                elif status == "Combining":
+                    if display_message != current_message:
+                        await megadl.edit(current_message)
+                        display_message = current_message
+            except Exception as e:
+                LOGS.info(str(e))
+        if downloader.isSuccessful():
+            download_time = downloader.get_dl_time(human=True)
+            if exists(temp_file_name):
+                await megadl.edit("Decrypting file...")
+                decrypt_file(file_name, temp_file_name, hex_key, hex_raw_key)
+                await megadl.edit(f"`{file_name}`\n\n"
+                                  "Successfully downloaded\n"
+                                  f"Download took: {download_time}")
+        else:
+            await megadl.edit("Failed to download...")
+            for e in downloader.get_errors():
+                LOGS.info(str(e))
     return
 
 
-async def decrypt_file(file_name, temp_file_name, hex_key, hex_raw_key, megadl):
-    await megadl.edit("Decrypting file...")
+def decrypt_file(file_name, temp_file_name, hex_key, hex_raw_key):
     cmd = ("cat '{}' | openssl enc -d -aes-128-ctr -K {} -iv {} > '{}'"
            .format(temp_file_name, hex_key, hex_raw_key, file_name))
-    await subprocess_run(cmd, megadl)
-    os.remove(temp_file_name)
+    subprocess_run(cmd)
+    os.remove("{}".format(temp_file_name))
     return
 
 
