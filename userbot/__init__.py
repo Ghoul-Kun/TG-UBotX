@@ -159,7 +159,7 @@ binaries = {
     "bin/megadown",
     "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py":
     "bin/cmrudl",
-    "https://raw.githubusercontent.com/adekmaulana/python-scripts/master/shell/megadirect":
+    "https://raw.githubusercontent.com/HitaloKun/python-scripts/master/megadirect":
     "bin/megadirect"
 }
  
