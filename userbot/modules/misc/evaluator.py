@@ -73,7 +73,7 @@ async def evaluate(query):
 
 add_help_item(
     "evaluator",
-    "Utilities",
+    "Misc",
     "Evaluates a small Python expression using `eval()`.",
     """
     `.eval (expression)`
