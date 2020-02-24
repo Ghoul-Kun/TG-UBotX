@@ -11,7 +11,7 @@ async def think(event):
     animation_interval = 0.03
     animation_ttl = range(0, 288)
     input_str = event.pattern_match.group(1)
-    await event.edit(input_str)
+    await event.edit("🤔")
     animation_chars = [
             "THINKING",
             "THI&K#N₹",
@@ -52,10 +52,12 @@ async def think(event):
         ]
 
     counter = 0
-    for i in animation_ttl and counter < 100000: 
-        await asyncio.sleep(animation_interval)
-        await event.edit(i)
-        counter+=1
+    for i in animation_ttl: 
+            await asyncio....
+            await event.edit(i)
+            counter+=1
+            if counter > 100000:
+                return
 
 
 add_help_item(
