@@ -1,8 +1,5 @@
 import asyncio
 
-from telethon import events
-from userbot.utils import admin_cmd
-
 from ..help import add_help_item
 from userbot.events import register
 
@@ -56,10 +53,10 @@ async def think(event):
         ]
 
         for i in animation_ttl:
-        	
+
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i % 72])
-            
+
 
 add_help_item(
     "think",
