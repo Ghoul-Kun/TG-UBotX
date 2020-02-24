@@ -4,11 +4,16 @@
 # you may not use this file except in compliance with the License.
 #
 # This module originally created by @spechide https://github.com/SpEcHiDe/UniBorg/blob/master/stdplugins/create_private_group.py
+# Port to paperplane by @afdulfauzan and adapted to UBotX by @HitaloKun
 
 from telethon.tl import functions, types
-
-from ..help import add_help_item
+from telethon.tl.functions.channels import EditAdminRequest
+from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
+                               ChatAdminRights, ChatBannedRights,
+                               MessageEntityMentionName, MessageMediaPhoto,
+                               ChannelParticipantsBots)
 from userbot.events import register
+from ..help import add_help_item
 
 
 @register(outgoing=True, pattern="^\.create (b|g|c)(?: |$)(.*)")
@@ -22,20 +27,33 @@ async def telegraphs(grop):
         if type_of_group == "b":
             try:
                 result = await grop.client(functions.messages.CreateChatRequest(  # pylint:disable=E0602
-                    users=["@MissRose_BOT"],
+                    users=["@userbotindobot"],
                     # Not enough users (to create a chat, for example)
                     # Telegram, no longer allows creating a chat with ourselves
                     title=group_name
                 ))
                 created_chat_id = result.chats[0].id
-                await grop.client(functions.messages.DeleteChatUserRequest(
-                    chat_id=created_chat_id,
-                    user_id="@MissRose_BOT"
-                ))
+                admin = chat.admin_rights
+                creator = chat.creator
+                rights = ChatAdminRights(
+                                add_admins=True,
+                                invite_users=True,
+                                change_info=True,
+                                ban_users=True,
+                                delete_messages=True,
+                                pin_messages=True)
+                user_id = "@MissRose_BOT"
+                rank = "Bot"
+                await grop.client(EditAdminRequest(
+                                        created_chat_id,
+                                        user_id, 
+                                        rights,
+                                        rank 
+                                        ))
                 result = await grop.client(functions.messages.ExportChatInviteRequest(
                     peer=created_chat_id,
                 ))
-                await grop.edit("Your `{}` Group Created Successfully. Join [{}]({})".format(group_name, group_name, result.link))
+                await grop.edit("Your {} Group Created Successfully. Click [{}]({}) to join".format(group_name, group_name, result.link))
             except Exception as e:  # pylint:disable=C0103,W0703
                 await grop.edit(str(e))
         elif type_of_group == "g" or type_of_group == "c":
@@ -45,11 +63,11 @@ async def telegraphs(grop):
                     about="Welcome to this Channel",
                     megagroup=False if type_of_group == "c" else True
                 ))
-                created_chat_id = r.chats[0].id
+                created_chat_id = result.chats[0].id
                 result = await grop.client(functions.messages.ExportChatInviteRequest(
                     peer=created_chat_id,
                 ))
-                await grop.edit("Your `{}` Group/Channel Created Successfully. Join [{}]({})".format(group_name, group_name, result.link))
+                await grop.edit("Your {} Group/Channel Created Successfully. Click [{}]({}) to join".format(group_name, group_name, result.link))
             except Exception as e:  # pylint:disable=C0103,W0703
                 await grop.edit(str(e))
 

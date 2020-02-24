@@ -31,9 +31,8 @@ async def github(event):
             created_at = result.get("created_at", "Not Found")
 
             REPLY = f"**GitHub Info for** `{event.pattern_match.group(1)}`\
-            \n**Username:** `{name}`\
+            \n\n**Username:** [{name}]({url})\
             \n**Bio:** `{bio}`\
-            \n**URL:** {url}\
             \n**Company:** `{company}`\
             \n**Created at:** `{created_at}`"
 
@@ -48,7 +47,7 @@ async def github(event):
 
                 result = await request.json()
 
-                REPLY += "\n**Repos:**\n"
+                REPLY += "\n\n**Repos:**\n"
 
                 for nr in range(len(result)):
                     REPLY += f"[{result[nr].get('name', None)}]({result[nr].get('html_url', None)})\n"
