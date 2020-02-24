@@ -51,10 +51,11 @@ async def think(event):
             "THINKING... 🤔"
         ]
 
-    for i in animation_ttl:
-        	
+    counter = 0
+    for i in animation_ttl and counter < 100000: 
         await asyncio.sleep(animation_interval)
         await event.edit(i)
+        counter+=1
 
 
 add_help_item(
