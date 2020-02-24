@@ -53,7 +53,7 @@ async def think(event):
 
     counter = 0
     for i in animation_ttl: 
-            await asyncio....
+            await asyncio.sleep(animation_interval)
             await event.edit(i)
             counter+=1
             if counter > 100000:
