@@ -161,20 +161,26 @@ add_help_item(
     "Admin",
     "Some group-related commands",
     """
-    .chatid\
-    \nUsage: Fetches the current chat's ID\
-    \n\n.userid\
-    \nUsage: Fetches the ID of the user in reply, if its a forwarded message, finds the ID for the source.\
-    \n\n.log\
-    \nUsage: Forwards the message you've replied to in your bot logs group.\
-    \n\n.kickme\
-    \nUsage: Leave from a targeted group.\
-    \n\n.unmutechat\
-    \nUsage: Unmutes a muted chat.\
-    \n\n.mutechat\
-    \nUsage: Allows you to mute any chat.\
-    \n\n.regexninja on/off\
-    \nUsage: Globally enable/disables the regex ninja module.\
-    \nRegex Ninja module helps to delete the regex bot's triggering messages
+    `.chatid`
+    **Usage:** Fetches the current chat's ID
+
+    `.userid`
+    **Usage:** Fetches the ID of the user in reply, if its a forwarded message, finds the ID for the source.
+
+    `.log`
+    **Usage:** Forwards the message you've replied to in your bot logs group.
+
+    `.kickme`
+    **Usage:** Leave from a targeted group.
+
+    `.unmutechat`
+    **Usage:** Unmutes a muted chat.
+
+    `.mutechat`
+    **Usage:** Allows you to mute any chat.
+
+    `.regexninja on/off`
+    **Usage:** Globally enable/disables the regex ninja module.
+    Regex Ninja module helps to delete the regex bot's triggering messages
     """
 )

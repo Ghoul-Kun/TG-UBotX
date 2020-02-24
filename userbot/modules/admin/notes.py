@@ -124,7 +124,7 @@ add_help_item(
     "Userbot module containing commands for keeping notes",
     """
     `#<notename>`
-    *"Usage:** Gets the specified note.
+    **Usage:** Gets the specified note.
 
     `.save` <notename> <notedata> or reply to a message with .save <notename>\
     **Usage:** Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)\

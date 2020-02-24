@@ -1,4 +1,4 @@
-# UBotX UserBot Project
+# UBotX - Telegram UserBot
 
 ```
 #include <std/disclaimer.h>
