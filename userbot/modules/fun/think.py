@@ -54,7 +54,7 @@ async def think(event):
     for i in animation_ttl:
         	
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 36])
+        await event.edit(i)
 
 
 add_help_item(
