@@ -8,7 +8,7 @@ from userbot.events import register
 async def think(event):
     if event.fwd_from:
         return
-    animation_interval = 0.01
+    animation_interval = 0.03
     animation_ttl = range(0, 288)
     input_str = event.pattern_match.group(1)
     await event.edit(input_str)
@@ -54,7 +54,7 @@ async def think(event):
     for i in animation_ttl:
         	
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 35])
+        await event.edit(animation_chars[i % 36])
 
 
 add_help_item(
