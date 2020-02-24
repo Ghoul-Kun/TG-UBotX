@@ -27,7 +27,7 @@ async def telegraphs(grop):
         if type_of_group == "b":
             try:
                 result = await grop.client(functions.messages.CreateChatRequest(  # pylint:disable=E0602
-                    users=["@userbotindobot"],
+                    users=["@MissRose_BOT"],
                     # Not enough users (to create a chat, for example)
                     # Telegram, no longer allows creating a chat with ourselves
                     title=group_name
@@ -50,9 +50,10 @@ async def telegraphs(grop):
                                         rights,
                                         rank 
                                         ))
+                ))
                 result = await grop.client(functions.messages.ExportChatInviteRequest(
                     peer=created_chat_id,
-                ))
+
                 await grop.edit("Your {} Group Created Successfully. Click [{}]({}) to join".format(group_name, group_name, result.link))
             except Exception as e:  # pylint:disable=C0103,W0703
                 await grop.edit(str(e))
