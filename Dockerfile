@@ -1,56 +1,54 @@
 # We're using Alpine Edge
-FROM alpine:edge
+FROM archlinux:latest
 
-# We have to uncomment Community repo for some packages
-RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
+#
+# Updating Arch
+#
+RUN pacman -Syu --noconfirm
 
-# install ca-certificates so that HTTPS works consistently
-# other runtime dependencies for Python are installed later
-RUN apk add --no-cache ca-certificates
-
+#
 # Installing Packages
-RUN apk add --no-cache --update \
-    bash \
-    build-base \
-    bzip2-dev \
-    curl \
+#
+RUN pacman -Syu --noconfirm \
     coreutils \
+    bash \
+    base-devel \
+    bzip2 \
+    curl \
     figlet \
     gcc \
-    g++ \
+    clang \
     git \
+    sudo \
     aria2 \
     util-linux \
     libevent \
-    libjpeg-turbo-dev \
-    chromium \
-    chromium-chromedriver \
-    jpeg-dev \
-    libc-dev \
-    libffi-dev \
-    libpq \
-    libwebp-dev \
-    libxml2-dev \
-    libxslt-dev \
+    libffi \
+    libwebp \
+    libxml2 \
+    libxslt \
+    linux \
     linux-headers \
-    musl-dev \
+    musl \
     neofetch \
-    openssl-dev \
     postgresql \
     postgresql-client \
-    postgresql-dev \
+    postgresql-libs \
     openssl \
     pv \
     jq \
     wget \
-    python3-dev \
-    readline-dev \
+    python \
+    readline \
+    sqlite \
     ffmpeg \
-    figlet \
-    sqlite-dev \
+    sqlite \
     sudo \
-    zlib-dev \
-    python-dev
+    chromium \
+    chromium-chromedriver \
+    zlib \
+    jpeg-archive \
+    zip
 
 
 RUN python3 -m ensurepip \
