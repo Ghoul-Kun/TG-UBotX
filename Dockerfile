@@ -1,4 +1,4 @@
-# We're using Alpine Edge
+# We're using Arch Linux
 FROM archlinux:latest
 
 #
@@ -64,7 +64,7 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone 'https://github.com/HitaloKun/TG-UBotX.git' /root/userbot
+RUN git clone 'https://github.com/TG-UBotX/TG-UBotX.git' /root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
 
