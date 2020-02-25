@@ -159,8 +159,6 @@ binaries = {
     "bin/megadown",
     "https://raw.githubusercontent.com/TG-UBotX/cmrudl.py/master/cmrudl.py":
     "bin/cmrudl",
-    "https://raw.githubusercontent.com/TG-UBotX/megadirect/master/megadirect":
-    "bin/megadirect"
 }
  
 for binary, path in binaries.items():
