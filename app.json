@@ -12,6 +12,7 @@
   "repository": "https://github.com/HitaloKun/TG-UBotX",
   "website": "https://hitalokun.github.io/ubotx-docs/#/",
   "success_url": "https://t.me/UBotX",
+  "stack": "container",
   "env": {
     "API_KEY": {
       "description": "Get this value from my.telegram.org.",
