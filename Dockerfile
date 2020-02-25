@@ -45,7 +45,6 @@ RUN pacman -Syu --noconfirm \
     sqlite \
     sudo \
     chromium \
-    chromium-chromedriver \
     zlib \
     jpeg-archive \
     zip
