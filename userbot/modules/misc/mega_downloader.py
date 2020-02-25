@@ -15,7 +15,7 @@ from urllib.error import HTTPError
 from ..help import add_help_item
 from userbot import LOGS
 from userbot.events import register
-from userbot.modules.misc.upload_download import humanbytes
+from userbot.modules.upload_download import humanbytes
 
 
 async def subprocess_run(cmd, megadl):
@@ -29,47 +29,42 @@ async def subprocess_run(cmd, megadl):
             f'exit code: {exitCode}\n'
             f'stdout: {talk[0]}\n'
             f'stderr: {talk[1]}```')
-        return
+        return exitCode
     return talk
 
 
 @register(outgoing=True, pattern=r"^\.mega(?: |$)(.*)")
 async def mega_downloader(megadl):
     await megadl.edit("`Processing...`")
-    textx = await megadl.get_reply_message()
+    msg_link = await megadl.get_reply_message()
     link = megadl.pattern_match.group(1)
     if link:
         pass
-    elif textx:
-        link = textx.text
+    elif msg_link:
+        link = msg_link.text
     else:
-        await megadl.edit("`Usage: .mega <mega url>`")
+        await megadl.edit("**Usage:** `.mega <mega url>`")
         return
-    if not link:
-        await megadl.edit("`No MEGA.nz link found!`")
-    await mega_download(link, megadl)
-
-
-async def mega_download(url, megadl):
     try:
-        link = re.findall(r'\bhttps?://.*mega.*\.nz\S+', url)[0]
+        link = re.findall(r'\bhttps?://.*mega.*\.nz\S+', link)[0]
     except IndexError:
         await megadl.edit("`No MEGA.nz link found`\n")
         return
-    cmd = f'bin/megadirect {link}'
+    cmd = f'bin/megadown -q -m {link}'
     result = await subprocess_run(cmd, megadl)
     try:
         data = json.loads(result[0])
     except json.JSONDecodeError:
         await megadl.edit("`Error: Can't extract the link`\n")
         return
-    except TypeError as e:  # in case file exists log to heroku then return
-        LOGS.info(str(e))
+    except TypeError:
         return
-    file_name = data['file_name']
-    file_url = data['url']
-    file_hex = data['hex']
-    file_raw_hex = data['raw_hex']
+    except IndexError:
+        return
+    file_name = data["file_name"]
+    file_url = data["url"]
+    hex_key = data["hex_key"]
+    hex_raw_key = data["hex_raw_key"]
     temp_file_name = file_name + ".temp"
     downloaded_file_name = "./" + "" + temp_file_name
     downloader = SmartDL(
@@ -79,7 +74,6 @@ async def mega_download(url, megadl):
         downloader.start(blocking=False)
     except HTTPError as e:
         await megadl.edit("`" + str(e) + "`")
-        LOGS.info(str(e))
         return
     while not downloader.isFinished():
         status = downloader.get_status().capitalize()
@@ -105,27 +99,28 @@ async def mega_download(url, megadl):
                 if display_message != current_message:
                     await megadl.edit(current_message)
                     display_message = current_message
-        except Exception as e:
-            LOGS.info(str(e))
+        except Exception:
+            pass
     if downloader.isSuccessful():
         download_time = downloader.get_dl_time(human=True)
         if exists(temp_file_name):
             await decrypt_file(
-                file_name, temp_file_name, file_hex, file_raw_hex, megadl)
+                file_name, temp_file_name, hex_key, hex_raw_key, megadl)
             await megadl.edit(f"`{file_name}`\n\n"
                               "Successfully downloaded\n"
                               f"Download took: {download_time}")
     else:
-        await megadl.edit("Failed to download...")
+        await megadl.edit("Failed to download, check heroku Log for details")
         for e in downloader.get_errors():
             LOGS.info(str(e))
     return
 
 
-async def decrypt_file(file_name, temp_file_name, file_hex, file_raw_hex, megadl):
+async def decrypt_file(file_name, temp_file_name,
+                       hex_key, hex_raw_key, megadl):
     await megadl.edit("Decrypting file...")
     cmd = ("cat '{}' | openssl enc -d -aes-128-ctr -K {} -iv {} > '{}'"
-           .format(temp_file_name, file_hex, file_raw_hex, file_name))
+           .format(temp_file_name, hex_key, hex_raw_key, file_name))
     await subprocess_run(cmd, megadl)
     os.remove(temp_file_name)
     return
