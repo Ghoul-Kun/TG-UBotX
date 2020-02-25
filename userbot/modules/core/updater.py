@@ -150,7 +150,7 @@ async def upstream(ups):
             repo.__del__()
             return
         await ups.edit('**[HEROKU UPDATER]**\
-                        \n`Userbot dyno build in progress, please wait for it to complete.`\n\n**Changelog:** @UBotX'
+                        \n`Userbot dyno build in progress, please wait for it to complete.`'
                        )
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")

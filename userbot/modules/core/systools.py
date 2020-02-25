@@ -71,6 +71,7 @@ async def bot_ver(event):
                          "` \n"
                          "`Revision: "
                          f"{revout}"
+                         f"Tagged Version: {VERSION}"
                          "` \n")
     else:
         await event.edit(
