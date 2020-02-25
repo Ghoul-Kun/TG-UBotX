@@ -49,6 +49,10 @@ RUN pacman -Syu --noconfirm \
     jpeg-archive \
     zip
 
+#
+# Create sym-link for chromium
+#
+RUN ln -s /usr/bin/chromium /usr/bin/chromium-browser
 
 RUN python3 -m ensurepip \
     && pip3 install --upgrade pip setuptools \
