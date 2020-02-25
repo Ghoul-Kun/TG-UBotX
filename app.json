@@ -1,5 +1,5 @@
 {
-  "name": "Telegram User Bot",
+  "name": "Telegram UserBotX",
   "description": "[TG-UBotX] A modular Telegram userbot running on Python 3.6+ with an sqlalchemy database.",
   "logo": "https://i.imgur.com/ATSG4w3.png",
   "keywords": [
@@ -10,7 +10,7 @@
     "productivity"
   ],
   "repository": "https://github.com/HitaloKun/TG-UBotX",
-  "website": "https://hitalokun.github.io/ubotx-docs/#/",
+  "website": "https://tg-ubotx.github.io/",
   "success_url": "https://t.me/UBotX",
   "stack": "container",
   "env": {
@@ -49,12 +49,12 @@
     },
     "CHROME_DRIVER": {
       "description": "ChromeDriver location for selenium based modules.",
-      "value": "/app/.chromedriver/bin/chromedriver",
+      "value": "/usr/bin/chromedriver",
       "required": false
     },
     "GOOGLE_CHROME_BIN": {
       "description": "Google Chrome (or) Chromium binary location for selenium based modules.",
-      "value": "/app/.apt/usr/bin/google-chrome",
+      "value": "/usr/bin/chromium-browser",
       "required": false
     },
     "OPEN_WEATHER_MAP_APPID": {

@@ -23,9 +23,8 @@ RUN apk add --no-cache --update \
     util-linux \
     libevent \
     libjpeg-turbo-dev \
-    chromium \
-    chromium-chromedriver \
     jpeg-dev \
+    jpeg \
     libc-dev \
     libffi-dev \
     libpq \
@@ -43,14 +42,18 @@ RUN apk add --no-cache --update \
     pv \
     jq \
     wget \
+    python \
+    python-dev \
+    python3 \
     python3-dev \
     readline-dev \
     ffmpeg \
     figlet \
     sqlite-dev \
     sudo \
+    chromium \
+    chromium-chromedriver \
     zlib-dev \
-    python-dev \
     zip
 
 
