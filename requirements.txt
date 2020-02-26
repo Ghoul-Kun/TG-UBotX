@@ -34,6 +34,7 @@ PyGithub>=1.45
 youtube-dl>=2020.1.24
 pytz
 requests>=2.18.4
+spamwatch
 search-engine-parser>=0.4.2
 speedtest-cli>=2.0.2
 sqlalchemy>=1.2
@@ -41,5 +42,3 @@ telethon>=1.10.10
 telethon-session-sqlalchemy>=0.2.6
 tgcrypto
 wikipedia>=1.4.0
-spamwatch
-pymongo[srv]

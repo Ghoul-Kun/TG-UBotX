@@ -14,7 +14,6 @@ from distutils.util import strtobool as sb
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from github import Github
-from pymongo import MongoClient
 from spamwatch import Client as SpamWatch
 from dotenv import load_dotenv
 from requests import get
@@ -98,16 +97,8 @@ else:
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
-# GBan Group ID for gban module
-GBAN_GROUP = os.environ.get("GBAN_GROUP", None)
-if GBAN_GROUP:
-	GBAN_GROUP = int(GBAN_GROUP)
-
 # SQL Database URI
 DB_URI = os.environ.get("DATABASE_URL", None)
-
-# MongoDB URI
-MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
 
 # remove.bg API key
 REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
@@ -123,10 +114,6 @@ WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
 # Deepfry
 FACE_API_KEY = os.environ.get("FACE_API_KEY", None)
 FACE_API_URL = os.environ.get("FACE_API_URL", None)
-
-# Anti Spambot Config
-ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
-ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
 
 # Youtube API key
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
@@ -208,19 +195,6 @@ async def check_botlog_chatid():
                 "Your account doesn't have rights to send messages to BOTLOG_CHATID "
                 "group. Check if you typed the Chat ID correctly.")
             quit(1)
-
-
-# Init Mongo
-MONGOCLIENT = MongoClient(MONGO_DB_URI, 27017, serverSelectionTimeoutMS=1)
-MONGO = MONGOCLIENT.userbot
-
-
-def is_mongo_alive():
-    try:
-        MONGOCLIENT.server_info()
-    except BaseException:
-        return False
-    return True
 
 
 with bot:

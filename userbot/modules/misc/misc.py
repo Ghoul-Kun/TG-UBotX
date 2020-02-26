@@ -154,10 +154,7 @@ add_help_item(
 
     `.creator`
     **Usage:** Know who created this awesome userbot!
-
-    `.community`
-    **Usage:** Join the awesome Paperplane userbot community!
-
+    
     `.repo`
     **Usage:** If you are curious what makes the userbot work, this is what you need.
 
