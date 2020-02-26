@@ -64,6 +64,8 @@ RUN python3 -m ensurepip \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache
 
+RUN python -m pip install --upgrade pip setuptools
+
 #
 # Clone repo and prepare working directory
 #
