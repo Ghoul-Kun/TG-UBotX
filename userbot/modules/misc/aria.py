@@ -2,17 +2,30 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-#
-""" Download files and torrents using the aria module """
 
 import aria2p
+
 from asyncio import sleep
-from os import system
+from subprocess import PIPE, Popen
+from requests import get
 
 from ..help import add_help_item
-from userbot import LOGS
 from userbot.events import register
-from requests import get
+
+
+def subprocess_run(cmd):
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
+                    shell=True, universal_newlines=True,
+                    executable="bash")
+    talk = subproc.communicate()
+    exitCode = subproc.returncode
+    if exitCode != 0:
+        print('An error was detected while running the subprocess:\n'
+              f'exit code: {exitCode}\n'
+              f'stdout: {talk[0]}\n'
+              f'stderr: {talk[1]}')
+    return talk
+
 
 # Get best trackers for improved download speeds, thanks K-E-N-W-A-Y.
 trackers_list = get(
@@ -36,7 +49,7 @@ cmd = f"aria2c \
 --daemon=true \
 --allow-overwrite=true"
 
-aria2_is_running = system(cmd)
+aria2_is_running = subprocess_run(cmd)
 
 aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800,
                                  secret=""))
@@ -100,7 +113,7 @@ async def remove_all(event):
     except:
         pass
     if not removed:  # If API returns False Try to Remove Through System Call.
-        system("aria2p remove-all")
+        subprocess_run("aria2p remove-all")
     await event.edit("`Clearing on-going downloads... `")
     await sleep(2.5)
     await event.edit("`Successfully cleared all downloads.`")
@@ -117,7 +130,7 @@ async def pause_all(event):
     await sleep(2.5)
 
 
-@register(outgoing=True, pattern="^\.aresume(?: |$)(.*)")
+@register(outgoing=True, pattern="^.aresume(?: |$)(.*)")
 async def resume_all(event):
     resumed = aria2.resume_all()
     await event.edit("`Resuming downloads...`")

@@ -1,5 +1,6 @@
 # Copyright (C) 2020 Adek Maulana.
 # All rights reserved.
+#
 
 from subprocess import PIPE, Popen
 
@@ -15,12 +16,13 @@ from urllib.error import HTTPError
 from ..help import add_help_item
 from userbot import LOGS
 from userbot.events import register
-from userbot.modules.misc.upload_download import humanbytes
+from userbot.modules.upload_download import humanbytes
 
 
 async def subprocess_run(cmd, megadl):
     subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
-                    shell=True, universal_newlines=True)
+                    shell=True, universal_newlines=True,
+                    executable="bash")
     talk = subproc.communicate()
     exitCode = subproc.returncode
     if exitCode != 0:
@@ -43,7 +45,7 @@ async def mega_downloader(megadl):
     elif msg_link:
         link = msg_link.text
     else:
-        await megadl.edit("**Usage:** `.mega <mega url>`")
+        await megadl.edit("Usage: `.mega <mega url>`")
         return
     try:
         link = re.findall(r'\bhttps?://.*mega.*\.nz\S+', link)[0]
