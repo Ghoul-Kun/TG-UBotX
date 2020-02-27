@@ -176,13 +176,12 @@ add_help_item(
     "Userbot module for getting the Date and time of any country or the userbot server.",
     """
     `.date` <country name/code> <timezone number>
-    **Usage:** Get the date of a country. If a country has 
-    multiple timezones, it will list all of them 
+    **Usage:** Get the date of a country. If a country has
+    multiple timezones, it will list all of them
     and let you select one.
 
     `.time` <country name/code> <timezone number>
-    **Usage:** Get the time of a country. If a country has 
-    multiple timezones, it will list all of them 
+    **Usage:** Get the time of a country. If a country has
+    multiple timezones, it will list all of them
     and let you select one.
-    """
-)
+    """)

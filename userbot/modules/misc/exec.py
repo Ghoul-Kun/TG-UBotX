@@ -51,7 +51,7 @@ execute. Use .help exec for an example.```")
         stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) \
-             + str(stderr.decode().strip())
+        + str(stderr.decode().strip())
 
     if result:
         if len(result) > 4096:
@@ -88,7 +88,7 @@ add_help_item(
     "Execute a dynamically created Python program.",
     """
     `.exec (program)`
-    
+
     Or, in response to a message containing Python code
     `.exec`
     """

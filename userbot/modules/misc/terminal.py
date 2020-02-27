@@ -45,7 +45,7 @@ async def terminal_runner(term):
         stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) \
-             + str(stderr.decode().strip())
+        + str(stderr.decode().strip())
 
     if len(result) > 4096:
         output = open("output.txt", "w+")

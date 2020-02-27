@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 # This script wont run your bot, it just generates a session.
- 
+
 from telethon import TelegramClient
 from dotenv import load_dotenv
 import os

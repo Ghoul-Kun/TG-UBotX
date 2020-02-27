@@ -39,7 +39,8 @@ async def follow_url(event):
 
     message = []
     for follow in follows:
-        message.append(f"**Original URL:** {follow[0]} \n**Followed URL:** {follow[1]}")
+        message.append(
+            f"**Original URL:** {follow[0]} \n**Followed URL:** {follow[1]}")
 
     message = '\n \n'.join(message)
     await event.edit(message, link_preview=False)
@@ -79,7 +80,7 @@ add_help_item(
     "destination. Mainly for use with short URLs.",
     """
     `.f(ollow) (link1) (link2) ... (linkN)`
-    
+
     Or, in reply to a message containing links
     `.f(ollow)`
     """

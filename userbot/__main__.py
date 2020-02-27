@@ -12,7 +12,6 @@ from os import execle
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from userbot import LOGS, bot
 from userbot.modules import ALL_MODULES
-from userbot import VERSION
 
 
 INVALID_PH = '\nERROR: The phone no. entered is incorrect' \
@@ -28,7 +27,7 @@ except PhoneNumberInvalidError:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("You are running TG-UBotX v{VERSION}")
+LOGS.info("You are running Telegram UserBot X")
 
 LOGS.info("UBotX is alive! Test it by typing .alive on any chat.")
 
