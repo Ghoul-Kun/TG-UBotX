@@ -44,7 +44,7 @@ KANGING_STR = [
 ]
 
 
-@register(outgoing=True, pattern="^\.kang")
+@register(outgoing=True, pattern=r"^\.kang")
 async def kang(args):
     """ For .kang command, kangs stickers or creates new ones. """
     kang_meme = random.choice(KANGING_STR)
@@ -278,7 +278,7 @@ async def resize_photo(photo):
     return image
 
 
-@register(outgoing=True, pattern="^\.stkrinfo$")
+@register(outgoing=True, pattern=r"^\.stkrinfo$")
 async def get_pack_info(event):
     if not event.is_reply:
         await event.edit("`I can't fetch info from nothing, can I ?!`")

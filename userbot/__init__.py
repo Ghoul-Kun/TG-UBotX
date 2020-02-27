@@ -147,7 +147,7 @@ binaries = {
     "https://raw.githubusercontent.com/TG-UBotX/cmrudl.py/master/cmrudl.py":
     "bin/cmrudl",
 }
- 
+
 for binary, path in binaries.items():
     downloader = SmartDL(binary, path, progress_bar=False)
     downloader.start()
@@ -157,19 +157,19 @@ for binary, path in binaries.items():
 if STRING_SESSION:
     # pylint: disable=invalid-name
     bot = UserBot(StringSession(STRING_SESSION),
-                         API_KEY,
-                         API_HASH,
-                         connection_retries=None,
-                         auto_reconnect=False,
-                         lang_code='en')
+                  API_KEY,
+                  API_HASH,
+                  connection_retries=None,
+                  auto_reconnect=False,
+                  lang_code='en')
 else:
     # pylint: disable=invalid-name
     bot = UserBot("userbot",
-                         API_KEY,
-                         API_HASH,
-                         connection_retries=None,
-                         auto_reconnect=False,
-                         lang_code='en')
+                  API_KEY,
+                  API_HASH,
+                  connection_retries=None,
+                  auto_reconnect=False,
+                  lang_code='en')
 
 
 async def check_botlog_chatid():
@@ -200,7 +200,7 @@ async def check_botlog_chatid():
 with bot:
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
-    except:
+    except BaseException:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't a "
             "valid entity. Check your environment variables/config.env file.")

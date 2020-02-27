@@ -17,7 +17,7 @@ from userbot.events import register
 from userbot.utils.tgdoc import *
 
 
-@register(outgoing=True, pattern="^\.eval(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.eval(?: |$)(.*)")
 async def evaluate(query):
     """ For .eval command, evaluates the given Python expression. """
     if query.is_channel and not query.is_group:
@@ -77,7 +77,7 @@ add_help_item(
     "Evaluates a small Python expression using `eval()`.",
     """
     `.eval (expression)`
-    
+
     Or, in response to a message
     `.eval`
     """

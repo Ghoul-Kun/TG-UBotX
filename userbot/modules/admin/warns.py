@@ -19,24 +19,29 @@ async def _(event):
     warn_reason = event.pattern_match.group(1)
     reply_message = await event.get_reply_message()
     limit, soft_warn = sql.get_warn_setting(event.chat_id)
-    num_warns, reasons = sql.warn_user(reply_message.from_id, event.chat_id, warn_reason)
+    num_warns, reasons = sql.warn_user(
+        reply_message.from_id, event.chat_id, warn_reason)
     if num_warns >= limit:
         sql.reset_warns(reply_message.from_id, event.chat_id)
         if soft_warn:
             logger.info("TODO: kick user")
-            reply = "<code>{}</code> warnings, <u><a href='tg://user?id={}'>user</a></u> has been kicked!".format(limit, reply_message.from_id)
+            reply = "<code>{}</code> warnings, <u><a href='tg://user?id={}'>user</a></u> has been kicked!".format(
+                limit, reply_message.from_id)
         else:
             logger.info("TODO: ban user")
-            reply = "<code>{}</code> warnings, <u><a href='tg://user?id={}'>user</a></u> has been banned!".format(limit, reply_message.from_id)
+            reply = "<code>{}</code> warnings, <u><a href='tg://user?id={}'>user</a></u> has been banned!".format(
+                limit, reply_message.from_id)
     else:
-        reply = "<u><a href='tg://user?id={}'>User</a></u> has <code>{}/{}</code> warnings... watch out!".format(reply_message.from_id, num_warns, limit)
+        reply = "<u><a href='tg://user?id={}'>User</a></u> has <code>{}/{}</code> warnings... watch out!".format(
+            reply_message.from_id, num_warns, limit)
         if warn_reason:
-            reply += "\nReason for last warn:\n<code>{}</code>".format(html.escape(warn_reason))
+            reply += "\nReason for last warn:\n<code>{}</code>".format(
+                html.escape(warn_reason))
     #
     await event.edit(reply, parse_mode="html")
 
 
-@register(outgoing=True, pattern="^\.warns$")
+@register(outgoing=True, pattern=r"^\.warns$")
 async def _(event):
     if event.fwd_from:
         return
@@ -46,7 +51,8 @@ async def _(event):
         num_warns, reasons = result
         limit, soft_warn = sql.get_warn_setting(event.chat_id)
         if reasons:
-            text = "This user has `{}/{}` warnings, for the following reasons:".format(num_warns, limit)
+            text = "This user has `{}/{}` warnings, for the following reasons:".format(
+                num_warns, limit)
             text += "\n"
             text += reasons
             await event.edit(text)
@@ -56,7 +62,7 @@ async def _(event):
         await event.edit("This user hasn't got any warnings!")
 
 
-@register(outgoing=True, pattern="^\.resetwarns$")
+@register(outgoing=True, pattern=r"^\.resetwarns$")
 async def _(event):
     if event.fwd_from:
         return

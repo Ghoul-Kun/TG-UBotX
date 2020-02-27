@@ -15,7 +15,7 @@ from ..help import add_help_item
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^\.speedtest$")
+@register(outgoing=True, pattern=r"^\.speedtest$")
 async def speedtst(spd):
     """ For .speed command, use SpeedTest to check server speeds. """
     await spd.edit("`Running speed test ...`")
@@ -28,16 +28,16 @@ async def speedtst(spd):
     result = test.results.dict()
 
     await spd.edit(
-                   "**Speedtest Results:** \n\n"
-                   "**Download** "
-                   f"`{speed_convert(result['download'])}` \n"
-                   "**Upload** "
-                   f"`{speed_convert(result['upload'])}` \n"
-                   "**Ping** "
-                   f"`{result['ping']}` \n"
-                   "**ISP** "
-                   f"`{result['client']['isp']}`"
-                   )
+        "**Speedtest Results:** \n\n"
+        "**Download** "
+        f"`{speed_convert(result['download'])}` \n"
+        "**Upload** "
+        f"`{speed_convert(result['upload'])}` \n"
+        "**Ping** "
+        f"`{result['ping']}` \n"
+        "**ISP** "
+        f"`{result['client']['isp']}`"
+    )
 
 
 def speed_convert(size):
@@ -53,7 +53,7 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-@register(outgoing=True, pattern="^\.dc$")
+@register(outgoing=True, pattern=r"^\.dc$")
 async def neardc(event):
     """ For .dc command, get the nearest datacenter information. """
     result = await event.client(functions.help.GetNearestDcRequest())
@@ -62,7 +62,7 @@ async def neardc(event):
                      f"**This Datacenter:** `{result.this_dc}`")
 
 
-@register(outgoing=True, pattern="^\.ping$")
+@register(outgoing=True, pattern=r"^\.ping$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
     start = datetime.now()

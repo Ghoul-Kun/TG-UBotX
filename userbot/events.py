@@ -65,7 +65,8 @@ def register(**args):
 
             except events.StopPropagation:
                 raise events.StopPropagation
-            # This is a gay exception and must be passed out. So that it doesnt spam chats
+            # This is a gay exception and must be passed out. So that it doesnt
+            # spam chats
             except KeyboardInterrupt:
                 pass
             except BaseException:
@@ -80,7 +81,7 @@ def register(**args):
                     text = "#ERROR\n"
                     text += "**Sorry, I encountered a error!**\n"
                     text += "I won't log anything except the fact of error and date\n"
- 
+
                     ftext = "========== DISCLAIMER =========="
                     ftext += "\nThis file uploaded ONLY here,"
                     ftext += "\nwe logged only fact of error and date,"

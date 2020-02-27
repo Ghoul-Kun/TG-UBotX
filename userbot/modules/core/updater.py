@@ -44,7 +44,7 @@ async def update_requirements():
         return repr(e)
 
 
-@register(outgoing=True, pattern="^\.update(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.update(?: |$)(.*)")
 async def upstream(ups):
     await ups.edit("`Checking for updates, please wait....`")
     conf = ups.pattern_match.group(1)

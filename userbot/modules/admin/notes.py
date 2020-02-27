@@ -12,7 +12,7 @@ from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^\.notes$")
+@register(outgoing=True, pattern=r"^\.notes$")
 async def notes_active(svd):
     """ For .notes command, list all of the notes saved in a chat. """
     try:
