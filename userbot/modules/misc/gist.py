@@ -45,7 +45,7 @@ add_help_item(
     "replied to message.",
     """
     `.gist (content)`
-    
+
     Or, in reply to a message
     `.gist`
     """

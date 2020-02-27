@@ -55,7 +55,7 @@ aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800,
                                  secret=""))
 
 
-@register(outgoing=True, pattern="^\.amag(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.amag(?: |$)(.*)")
 async def magnet_download(event):
     magnet_uri = event.pattern_match.group(1)
     # Add Magnet URI Into Queue
@@ -88,7 +88,7 @@ async def torrent_download(event):
     await check_progress_for_dl(gid=gid, event=event, previous=None)
 
 
-@register(outgoing=True, pattern="^\.aurl(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.aurl(?: |$)(.*)")
 async def magnet_download(event):
     uri = [event.pattern_match.group(1)]
     try:  # Add URL Into Queue
@@ -105,12 +105,12 @@ async def magnet_download(event):
         await progress_status(gid=new_gid, event=event, previous=None)
 
 
-@register(outgoing=True, pattern="^\.aclear(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.aclear(?: |$)(.*)")
 async def remove_all(event):
     try:
         removed = aria2.remove_all(force=True)
         aria2.purge_all()
-    except:
+    except BaseException:
         pass
     if not removed:  # If API returns False Try to Remove Through System Call.
         subprocess_run("aria2p remove-all")
@@ -120,7 +120,7 @@ async def remove_all(event):
     await sleep(2.5)
 
 
-@register(outgoing=True, pattern="^\.apause(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.apause(?: |$)(.*)")
 async def pause_all(event):
     # Pause ALL Currently Running Downloads.
     paused = aria2.pause_all(force=True)
@@ -140,7 +140,7 @@ async def resume_all(event):
     await event.delete()
 
 
-@register(outgoing=True, pattern="^\.ashow(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.ashow(?: |$)(.*)")
 async def show_all(event):
     output = "output.txt"
     downloads = aria2.get_downloads()
@@ -226,13 +226,13 @@ add_help_item(
     """
     `.aurl` [URL] (or) `.amag` [Magnet Link] (or) `.ator` [path to torrent file]
     **Usage:** Downloads the file into your userbot server storage.
-    
+
     `.apause` (or) `.aresume`
     **Usage:** Pauses/resumes on-going downloads.
-    
+
     `.aclear`
     **Usage:** Clears the download queue, deleting all on-going downloads.
-    
+
     `.ashow`
     **Usage:** Shows progress of the on-going downloads.
     """

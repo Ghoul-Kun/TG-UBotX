@@ -411,8 +411,7 @@ add_help_item(
     """
     `.download <link|filename>` or reply to media
     **Usage:** Downloads file to the server.
-    
+
     `.upload <path in server>`
     **Usage:** Uploads a locally stored file to the chat.
-    """
-)
+    """)

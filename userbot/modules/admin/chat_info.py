@@ -17,7 +17,8 @@ from userbot.utils.tgdoc import *
 @register(outgoing=True, pattern=r"^\.c(?:hat)?(\s+[\S\s]+|$)")
 async def chat_info(e):
     params = e.pattern_match.group(1) or ""
-    args, chat = parse_arguments(params, ['id', 'general', 'admins', 'bots', 'all'])
+    args, chat = parse_arguments(
+        params, ['id', 'general', 'admins', 'bots', 'all'])
     args['chat'] = chat
 
     if isinstance(e.chat, User):
@@ -64,18 +65,27 @@ async def fetch_info(event, full_chat, **kwargs):
 
     if show_general:
         exported_invite = full_chat.full_chat.exported_invite
-        invite_link = exported_invite.link if isinstance(exported_invite, ChatInviteExported) else None
+        invite_link = exported_invite.link if isinstance(
+            exported_invite, ChatInviteExported) else None
         admin_count = full_chat.full_chat.admins_count or len(admin_list)
 
         general = SubSection(Bold("general"),
-                             KeyValueItem("id", Code(str(chat.id))),
-                             KeyValueItem("title", Code(chat.title)),
-                             KeyValueItem("private", Code(str(is_private))),
-                             KeyValueItem("invite link", Link(invite_link.split('/')[-1], invite_link)) if invite_link else None,
+                             KeyValueItem("id",
+                                          Code(str(chat.id))),
+                             KeyValueItem("title",
+                                          Code(chat.title)),
+                             KeyValueItem("private",
+                                          Code(str(is_private))),
+                             KeyValueItem("invite link",
+                                          Link(invite_link.split('/')[-1],
+                                               invite_link)) if invite_link else None,
                              SubSubSection("participants",
-                                           KeyValueItem("admins", Code(str(admin_count))),
-                                           KeyValueItem("online", Code(str(full_chat.full_chat.online_count))),
-                                           KeyValueItem("total", Code(str(full_chat.full_chat.participants_count)))))
+                                           KeyValueItem("admins",
+                                                        Code(str(admin_count))),
+                                           KeyValueItem("online",
+                                                        Code(str(full_chat.full_chat.online_count))),
+                                           KeyValueItem("total",
+                                                        Code(str(full_chat.full_chat.participants_count)))))
     else:
         general = None
 

@@ -125,12 +125,12 @@ add_help_item(
     "Similar to `.user`.",
     """
     `.gh (repo)`
-    
+
     Or, in response to a message containing a github repo
     `.gh`
-    
+
     Repos can be in the format `https://github.com/user/repo` or just `user/repo`.
-    
+
     **Options:**
     `.general`: Display general information related to the repo.
     `.owner`: Display information about the repo owner.

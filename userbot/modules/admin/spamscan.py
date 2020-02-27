@@ -46,8 +46,12 @@ async def spamscan(e):
             user_id, score = item
             user_full = await e.client(GetFullUserRequest(user_id))
             score_total = sum([i for i in score.values()])
-            output.items.append(KeyValueItem(String(make_mention(user_full.user)),
-                                             Bold(str(score_total))))
+            output.items.append(
+                KeyValueItem(
+                    String(
+                        make_mention(
+                            user_full.user)), Bold(
+                        str(score_total))))
     else:
         output.items.append(String("No potential spammers found"))
 

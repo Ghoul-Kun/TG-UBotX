@@ -33,7 +33,6 @@ def subprocess_run(cmd):
     return talk
 
 
-
 @register(outgoing=True, pattern=r"^\.direct(?: |$)([\s\S]*)")
 async def direct_link_generator(request):
     """ direct links generator """
@@ -370,11 +369,11 @@ add_help_item(
     "Userbot module containing various sites direct links generators",
     """
     `.direct` <url>
-    **Usage:** Reply to a link or paste a URL to 
+    **Usage:** Reply to a link or paste a URL to
     generate a direct download link.
-    
+
     **List of supported URLs:**
-    `Google Drive - Cloud Mail - Yandex.Disk - AFH - 
+    `Google Drive - Cloud Mail - Yandex.Disk - AFH -
     ZippyShare - MediaFire - SourceForge - OSDN - GitHub`
     """
 )

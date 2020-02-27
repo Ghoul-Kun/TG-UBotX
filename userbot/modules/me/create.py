@@ -3,7 +3,8 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-# This module originally created by @spechide https://github.com/SpEcHiDe/UniBorg/blob/master/stdplugins/create_private_group.py
+# This module originally created by @spechide
+# https://github.com/SpEcHiDe/UniBorg/blob/master/stdplugins/create_private_group.py
 
 from telethon.tl import functions, types
 
@@ -11,7 +12,7 @@ from ..help import add_help_item
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^\.create (b|g|c)(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.create (b|g|c)(?: |$)(.*)")
 async def telegraphs(grop):
     """ For .create command, Creating New Group & Channel """
     if not grop.text[0].isalpha() and grop.text[0] not in ("/", "#", "@", "!"):
