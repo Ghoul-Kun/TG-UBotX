@@ -1196,21 +1196,12 @@ async def tf(e):
         await e.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")  
 
 
-@register(outgoing=True, pattern="^\.gey$")            
-async def gey(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
-                     "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
-                     "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈NIGGA U GEY`"
-                    "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")    
-
-
 @register(outgoing=True, pattern="^\.gay$")            
 async def gey(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
                      "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
-                     "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈BAPAQ U GAY`"
+                     "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈NIGGA U GEY`"
                     "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")    
 
 
@@ -1337,7 +1328,7 @@ add_help_item(
     [Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]
     **Usage:** Create fake chat actions, for fun. (Default action: typing).
     
-    `.bot ; .nou ; .hey ; .gey ; .gey ; .tf ; .paw ; .taco ;
+    `.bot ; .nou ; .hey ; .gay ; .tf ; .paw ; .taco ;
     .fag ; .lol ; .lool ; .fail ;
     .love ; .rain ; .earth`
     """
