@@ -3,11 +3,12 @@
 #
 
 from subprocess import PIPE, Popen
+from progress.bar import Bar
 
+import subprocess
 import re
 import json
 import os
-import time
 
 from pySmartDL import SmartDL
 from os.path import exists
@@ -95,8 +96,9 @@ async def mega_downloader(megadl):
                 f"\nETA: {estimated_total_time}"
             )
             if status == "Downloading":
-                await megadl.edit(current_message)
-                time.sleep(0.2)
+                if display_message != current_message:
+                    await megadl.edit(current_message)
+                    display_message = current_message
             elif status == "Combining":
                 if display_message != current_message:
                     await megadl.edit(current_message)
@@ -120,10 +122,27 @@ async def mega_downloader(megadl):
 
 async def decrypt_file(file_name, temp_file_name,
                        hex_key, hex_raw_key, megadl):
-    await megadl.edit("Decrypting file...")
+    if exists(temp_file_name):
+        os.remove(temp_file_name)
+    await megadl.edit("\n`Decrypting file`...\n")
+    progress_bar = Bar("Decrypting")
     cmd = ("cat '{}' | openssl enc -d -aes-128-ctr -K {} -iv {} > '{}'"
            .format(temp_file_name, hex_key, hex_raw_key, file_name))
-    await subprocess_run(cmd, megadl)
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
+                    shell=True, universal_newlines=True,
+                    executable='bash')
+    complete = subproc.poll()
+    display_message = None
+    while not complete or None:
+        current_message = progress_bar.update()
+        try:
+            if display_message != current_message:
+                await megadl.edit(current_message)
+                display_message = current_message
+        except Exception:
+            pass
+    if complete:
+        progress_bar.finish()
     os.remove(temp_file_name)
     return
 
