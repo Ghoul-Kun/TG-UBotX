@@ -3,9 +3,7 @@
 #
 
 from subprocess import PIPE, Popen
-from progress.bar import Bar
 
-import subprocess
 import re
 import json
 import os
@@ -122,27 +120,10 @@ async def mega_downloader(megadl):
 
 async def decrypt_file(file_name, temp_file_name,
                        hex_key, hex_raw_key, megadl):
-    if exists(temp_file_name):
-        os.remove(temp_file_name)
     await megadl.edit("\n`Decrypting file`...\n")
-    progress_bar = Bar("Decrypting")
     cmd = ("cat '{}' | openssl enc -d -aes-128-ctr -K {} -iv {} > '{}'"
            .format(temp_file_name, hex_key, hex_raw_key, file_name))
-    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
-                    shell=True, universal_newlines=True,
-                    executable='bash')
-    complete = subproc.poll()
-    display_message = None
-    while not complete or None:
-        current_message = progress_bar.update()
-        try:
-            if display_message != current_message:
-                await megadl.edit(current_message)
-                display_message = current_message
-        except Exception:
-            pass
-    if complete:
-        progress_bar.finish()
+    await subprocess_run(cmd, megadl)
     os.remove(temp_file_name)
     return
 
