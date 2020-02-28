@@ -1,7 +1,7 @@
 # UBotX - Telegram UserBot
 
 [![Build](https://github.com/TG-UBotX/TG-UBotX/workflows/FailedChecker/badge.svg?branch=master)](https://github.com/TG-UBotX/TG-UBotX/actions "Build")
-[![@ubotx](https://img.shields.io/badge/%F0%9F%92%AC%20Telegram-%40UBotX-blue.svg)](https://telegram.me/ubotx)
+[![@ubotx](https://img.shields.io/badge/%F0%9F%92%AC%20Telegram-%40UBotX-blue.svg)](https://telegram.me/TGUBotX)
 
 
 ```
@@ -24,7 +24,7 @@
 
 UBotX is a modular Telegram UserBot running on Python3 with an sqlalchemy database.
 
-You can learn more about the project through our [Telegram channel](https://t.me/UBotX)
+You can learn more about the project through our [Telegram channel](https://t.me/TGUBotX)
 
 ## Disclaimer
 

@@ -34,7 +34,7 @@ async def reedme(e):
         "**Our wiki and other useful links::**\n"
         "\n[TG-UBotX - Wiki](https://tg-ubotx.github.io/#/)"
         "\n[Setup Guide - GDive](https://telegra.ph/How-To-Setup-GDrive-11-02)"
-        "\n[News Channel](https://t.me/UBotX)")
+        "\n[News Channel](https://t.me/TGUBotX)")
 
 
 @register(outgoing=True, pattern="^\.random")
