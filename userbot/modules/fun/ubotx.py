@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
@@ -8,7 +8,7 @@ from userbot.events import register
 from ..help import add_help_item
 
 
-@register(outgoing=True, pattern="^.ubo$")
+@register(outgoing=True, pattern=r"^\.ubo$")
 async def shalom(e):
     await e.edit(
         "\n💰💰💰💰💰💰💰💰💰"
@@ -104,6 +104,3 @@ add_help_item(
     `.ubo`
     """
 )
-
-
-

@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 # Ported from SpEcHiDe UniBorg
@@ -11,13 +11,13 @@ from ..help import add_help_item
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.invite(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.invite(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
     to_add_users = event.pattern_match.group(1)
     if event.is_private:
-        await event.edit("`.invite` users to a chat, not to a Private Message.")
+        await event.edit("`.invite` users to a chat, not to a Private Message")
     else:
         if not event.is_channel and event.is_group:
             # https://lonamiwebs.github.io/Telethon/methods/messages/add_chat_user.html
@@ -29,8 +29,9 @@ async def _(event):
                         fwd_limit=1000000
                     ))
                 except Exception as e:
-                    await event.reply(str(e))
-            await event.edit("`Invited Successfully!`")
+                    await event.edit(str(e))
+                    return
+            await event.edit("`Invited Successfully`")
         else:
             # https://lonamiwebs.github.io/Telethon/methods/channels/invite_to_channel.html
             for user_id in to_add_users.split(" "):
@@ -40,8 +41,9 @@ async def _(event):
                         users=[user_id]
                     ))
                 except Exception as e:
-                    await event.reply(str(e))
-            await event.edit("`Invited Successfully!`")
+                    await event.edit(str(e))
+                    return
+            await event.edit("`Invited Successfully`")
 
 
 add_help_item(

@@ -1,10 +1,11 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
 import asyncio
+
 from getpass import getuser
 from os import remove
 
@@ -44,7 +45,7 @@ async def terminal_runner(term):
         stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) \
-             + str(stderr.decode().strip())
+        + str(stderr.decode().strip())
 
     if len(result) > 4096:
         output = open("output.txt", "w+")
@@ -67,7 +68,7 @@ async def terminal_runner(term):
     if BOTLOG:
         await term.client.send_message(
             BOTLOG_CHATID,
-            "#TERM\nTerminal Command " + command + " was executed sucessfully",
+            "Terminal Command " + command + " was executed sucessfully",
         )
 
 

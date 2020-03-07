@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module containing commands for interacting with dogbin(https://del.dog)"""
@@ -74,7 +74,7 @@ async def paste(pstl):
         )
 
 
-@register(outgoing=True, pattern="^\.getpaste(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.getpaste(?: |$)(.*)")
 async def get_dogbin_content(dog_url):
     """ For .getpaste command, fetches the content of a dogbin URL. """
     textx = await dog_url.get_reply_message()
@@ -134,5 +134,4 @@ add_help_item(
 
     `.getpaste`
     **Usage:** Gets the content of a paste or shortened url from dogbin (https://del.dog/)
-    """
-)
+    """)

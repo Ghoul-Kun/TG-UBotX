@@ -1,16 +1,17 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module containing various sites direct links generators """
+""" Userbot module containing various sites direct links generators"""
 
-from os import popen
 import re
 import urllib.parse
 import json
-from random import choice
 import requests
+
+from subprocess import PIPE, Popen
+from random import choice
 from bs4 import BeautifulSoup
 from humanize import naturalsize
 
@@ -18,7 +19,21 @@ from ..help import add_help_item
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^.direct(?: |$)([\s\S]*)")
+def subprocess_run(cmd):
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
+                    shell=True, universal_newlines=True,
+                    executable="bash")
+    talk = subproc.communicate()
+    exitCode = subproc.returncode
+    if exitCode != 0:
+        print('An error was detected while running the subprocess:\n'
+              f'exit code: {exitCode}\n'
+              f'stdout: {talk[0]}\n'
+              f'stderr: {talk[1]}')
+    return talk
+
+
+@register(outgoing=True, pattern=r"^\.direct(?: |$)([\s\S]*)")
 async def direct_link_generator(request):
     """ direct links generator """
     await request.edit("`Processing...`")
@@ -164,10 +179,10 @@ def mega_dl(url: str) -> str:
     except IndexError:
         reply = "`No MEGA.nz links found`\n"
         return reply
-    command = f'bin/megadown -q -m {link}'
-    result = popen(command).read()
+    cmd = f'bin/megadown -q -m {link}'
+    result = subprocess_run(cmd)
     try:
-        data = json.loads(result)
+        data = json.loads(result[0])
         print(data)
     except json.JSONDecodeError:
         reply += "`Error: Can't extract the link`\n"
@@ -188,9 +203,9 @@ def cm_ru(url: str) -> str:
     except IndexError:
         reply = "`No cloud.mail.ru links found`\n"
         return reply
-    command = f'bin/cmrudl -s {link}'
-    result = popen(command).read()
-    result = result.splitlines()[-1]
+    cmd = f'bin/cmrudl -s {link}'
+    result = subprocess_run(cmd)
+    result = result[0].splitlines()[-1]
     try:
         data = json.loads(result)
     except json.decoder.JSONDecodeError:
@@ -354,11 +369,11 @@ add_help_item(
     "Userbot module containing various sites direct links generators",
     """
     `.direct` <url>
-    **Usage:** Reply to a link or paste a URL to 
+    **Usage:** Reply to a link or paste a URL to
     generate a direct download link.
-    
+
     **List of supported URLs:**
-    `Google Drive - MEGA.nz - Cloud Mail - Yandex.Disk - AFH - 
+    `Google Drive - Cloud Mail - Yandex.Disk - AFH -
     ZippyShare - MediaFire - SourceForge - OSDN - GitHub`
     """
 )

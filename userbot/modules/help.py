@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot help command """
@@ -14,7 +14,7 @@ HELP_ITEMS = {}
 
 
 def add_help_item(command, category, description, examples, keywords=None):
-    if not category in CAT_ITEMS:
+    if category not in CAT_ITEMS:
         CAT_ITEMS.update({category: []})
 
     HELP_ITEMS.update({
@@ -45,8 +45,7 @@ async def show_help(event):
         else:
             await event.edit("**Please specify a valid module name.**")
     else:
-        categories = list(CAT_ITEMS.keys())
-        categories.sort()
+        categories = sorted(CAT_ITEMS.keys())
 
         categorized = []
         for cat in categories:
@@ -54,5 +53,6 @@ async def show_help(event):
             msg = f"**{cat}** \n```{', '.join(cat_items)}```"
             categorized.append(msg)
 
-        message = "**Please specify which module do you want help for!** \n\n" + '\n\n'.join(categorized)
+        message = "**Please specify which module do you want help for!** \n\n" + \
+            '\n\n'.join(categorized)
         await event.edit(message)

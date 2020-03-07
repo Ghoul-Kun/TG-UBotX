@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ UserBot module to welcome the new members """
@@ -123,7 +123,7 @@ async def save_welcome(event):
         await event.edit(success.format('updated'))
 
 
-@register(outgoing=True, pattern="^\.checkwelcome$")
+@register(outgoing=True, pattern=r"^\.checkwelcome$")
 async def show_welcome(event):
     try:
         from userbot.modules.sql_helper.welcome_sql import get_current_welcome_settings
@@ -146,7 +146,7 @@ async def show_welcome(event):
         await event.reply(cws.reply)
 
 
-@register(outgoing=True, pattern="^\.rmwelcome$")
+@register(outgoing=True, pattern=r"^\.rmwelcome$")
 async def del_welcome(event):
     try:
         from userbot.modules.sql_helper.welcome_sql import rm_welcome_setting

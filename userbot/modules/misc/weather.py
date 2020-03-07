@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for getting the weather of a city. """
@@ -38,7 +38,7 @@ async def get_tz(con):
         return
 
 
-@register(outgoing=True, pattern="^\.weather(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.weather(?: |$)(.*)")
 async def get_weather(weather):
     """ For .weather command, gets the current weather of a city. """
 

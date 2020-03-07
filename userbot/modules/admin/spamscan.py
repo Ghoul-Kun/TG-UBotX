@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
@@ -46,8 +46,12 @@ async def spamscan(e):
             user_id, score = item
             user_full = await e.client(GetFullUserRequest(user_id))
             score_total = sum([i for i in score.values()])
-            output.items.append(KeyValueItem(String(make_mention(user_full.user)),
-                                             Bold(str(score_total))))
+            output.items.append(
+                KeyValueItem(
+                    String(
+                        make_mention(
+                            user_full.user)), Bold(
+                        str(score_total))))
     else:
         output.items.append(String("No potential spammers found"))
 

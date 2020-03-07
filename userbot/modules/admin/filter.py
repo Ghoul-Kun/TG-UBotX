@@ -1,12 +1,12 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for filter commands """
 
 from asyncio import sleep
-from re import fullmatch, IGNORECASE, escape
+from re import fullmatch, IGNORECASE
 
 from ..help import add_help_item
 from userbot import BOTLOG, BOTLOG_CHATID
@@ -39,7 +39,7 @@ async def filter_incoming_handler(handler):
         pass
 
 
-@register(outgoing=True, pattern="^\.filter (\w*)")
+@register(outgoing=True, pattern=r"^\.filter (\w*)")
 async def add_new_filter(new_handler):
     """ For .filter command, allows adding new filters in a chat """
     try:
@@ -80,7 +80,7 @@ async def add_new_filter(new_handler):
         await new_handler.edit(success.format(keyword, 'updated'))
 
 
-@register(outgoing=True, pattern="^\.stop (\w*)")
+@register(outgoing=True, pattern=r"^\.stop (\w*)")
 async def remove_a_filter(r_handler):
     """ For .stop command, allows you to remove a filter from a chat. """
     try:
@@ -96,7 +96,7 @@ async def remove_a_filter(r_handler):
             "`Filter` **{}** `was deleted successfully`".format(filt))
 
 
-@register(outgoing=True, pattern="^\.rmbotfilters (.*)")
+@register(outgoing=True, pattern=r"^\.rmbotfilters (.*)")
 async def kick_marie_filter(event):
     """ For .rmfilters command, allows you to kick all \
         Marie(or her clones) filters from a chat. """
@@ -123,7 +123,7 @@ async def kick_marie_filter(event):
             BOTLOG_CHATID, "I cleaned all filters at " + str(event.chat_id))
 
 
-@register(outgoing=True, pattern="^\.filters$")
+@register(outgoing=True, pattern=r"^\.filters$")
 async def filters_active(event):
     """ For .filters command, lists all of the active filters in a chat. """
     try:

@@ -1,7 +1,8 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
+#
 
 import re
 from typing import List
@@ -22,7 +23,7 @@ GITHUB_REPO_RE = r"(?:github\.com\/|^|\s+)([\w\d_\-]+)\/([\w\d_\-.]+)"
 @register(outgoing=True, pattern=r"^\.gh(\s+[\S\s]+|$)")
 async def github_info(e):
     if not github:
-        await e.edit("Github information has not been set up")
+        await e.edit("Github information has not been set up", delete_in=3)
         return
 
     message = e.pattern_match.group(1)
@@ -124,12 +125,12 @@ add_help_item(
     "Similar to `.user`.",
     """
     `.gh (repo)`
-    
+
     Or, in response to a message containing a github repo
     `.gh`
-    
+
     Repos can be in the format `https://github.com/user/repo` or just `user/repo`.
-    
+
     **Options:**
     `.general`: Display general information related to the repo.
     `.owner`: Display information about the repo owner.

@@ -23,9 +23,8 @@ RUN apk add --no-cache --update \
     util-linux \
     libevent \
     libjpeg-turbo-dev \
-    chromium \
-    chromium-chromedriver \
     jpeg-dev \
+    jpeg \
     libc-dev \
     libffi-dev \
     libpq \
@@ -36,19 +35,26 @@ RUN apk add --no-cache --update \
     musl-dev \
     neofetch \
     openssl-dev \
+    postgresql \
     postgresql-client \
     postgresql-dev \
+    openssl \
     pv \
     jq \
     wget \
+    python \
+    python-dev \
+    python3 \
     python3-dev \
     readline-dev \
     ffmpeg \
     figlet \
     sqlite-dev \
     sudo \
+    chromium \
+    chromium-chromedriver \
     zlib-dev \
-    python-dev
+    zip
 
 
 RUN python3 -m ensurepip \
@@ -61,7 +67,7 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone 'https://github.com/HitaloKun/TG-UBotX.git' /root/userbot
+RUN git clone 'https://github.com/TG-UBotX/TG-UBotX.git' /root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
 

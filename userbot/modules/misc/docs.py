@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
@@ -31,7 +31,7 @@ async def doc_search(e):
             response = f"[Documentation for {lib} on Read the Docs]({readthedocs_url})"
             await e.edit(response)
     else:
-        await e.edit(f"No docs found for `{lib}`...")
+        await e.edit(f"No docs found for `{lib}`...", delete_in=3)
 
 add_help_item(
     "docs",

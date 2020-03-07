@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ UserBot module to view GitHub profiles """
@@ -11,7 +11,7 @@ from ..help import add_help_item
 from userbot.events import register
 
 
-@register(pattern=r".git (.*)", outgoing=True)
+@register(pattern=r"\.git (.*)", outgoing=True)
 async def github(event):
     URL = f"https://api.github.com/users/{event.pattern_match.group(1)}"
     chat = await event.get_chat()
@@ -31,9 +31,8 @@ async def github(event):
             created_at = result.get("created_at", "Not Found")
 
             REPLY = f"**GitHub Info for** `{event.pattern_match.group(1)}`\
-            \n**Username:** `{name}`\
+            \n\n**Username:** [{name}]({url})\
             \n**Bio:** `{bio}`\
-            \n**URL:** {url}\
             \n**Company:** `{company}`\
             \n**Created at:** `{created_at}`"
 
@@ -48,7 +47,7 @@ async def github(event):
 
                 result = await request.json()
 
-                REPLY += "\n**Repos:**\n"
+                REPLY += "\n\n**Repos:**\n"
 
                 for nr in range(len(result)):
                     REPLY += f"[{result[nr].get('name', None)}]({result[nr].get('html_url', None)})\n"

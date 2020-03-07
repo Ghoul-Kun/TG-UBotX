@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot initialization. """
@@ -14,12 +14,13 @@ from distutils.util import strtobool as sb
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from github import Github
-from pymongo import MongoClient
 from spamwatch import Client as SpamWatch
 from dotenv import load_dotenv
 from requests import get
 from telethon import TelegramClient
 from telethon.sessions import StringSession
+
+from userbot.client import UserBot
 
 load_dotenv("config.env")
 
@@ -84,7 +85,7 @@ HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
 # Custom (forked) repo URL for updater.
 UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",
-    "https://github.com/HitaloKun/TG-UBotX.git")
+    "https://github.com/TG-UBotX/TG-UBotX.git")
 
 # Spamwatch API Key
 SPAMWATCH_API_KEY = os.environ.get("SPAMWATCH_API_KEY", None)
@@ -96,22 +97,11 @@ else:
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
-# GBan Group ID for gban module
-GBAN_GROUP = os.environ.get("GBAN_GROUP", None)
-if GBAN_GROUP:
-	GBAN_GROUP = int(GBAN_GROUP)
-
 # SQL Database URI
 DB_URI = os.environ.get("DATABASE_URL", None)
 
-# MongoDB URI
-MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
-
 # remove.bg API key
 REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
-
-# For Telegraph module
-TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "UBotX")
 
 # Chrome Driver and Headless Google Chrome Binaries
 CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
@@ -124,10 +114,6 @@ WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
 # Deepfry
 FACE_API_KEY = os.environ.get("FACE_API_KEY", None)
 FACE_API_URL = os.environ.get("FACE_API_URL", None)
-
-# Anti Spambot Config
-ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
-ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
 
 # Youtube API key
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
@@ -156,10 +142,10 @@ if not os.path.exists('bin'):
     os.mkdir('bin')
 
 binaries = {
-    "https://raw.githubusercontent.com/yshalsager/megadown/master/megadown":
+    "https://raw.githubusercontent.com/TG-UBotX/megadown/master/megadown":
     "bin/megadown",
-    "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py":
-    "bin/cmrudl"
+    "https://raw.githubusercontent.com/TG-UBotX/cmrudl.py/master/cmrudl.py":
+    "bin/cmrudl",
 }
 
 for binary, path in binaries.items():
@@ -170,20 +156,20 @@ for binary, path in binaries.items():
 # 'bot' variable
 if STRING_SESSION:
     # pylint: disable=invalid-name
-    bot = TelegramClient(StringSession(STRING_SESSION),
-                         API_KEY,
-                         API_HASH,
-                         connection_retries=None,
-                         auto_reconnect=False,
-                         lang_code='en')
+    bot = UserBot(StringSession(STRING_SESSION),
+                  API_KEY,
+                  API_HASH,
+                  connection_retries=None,
+                  auto_reconnect=False,
+                  lang_code='en')
 else:
     # pylint: disable=invalid-name
-    bot = TelegramClient("userbot",
-                         API_KEY,
-                         API_HASH,
-                         connection_retries=None,
-                         auto_reconnect=False,
-                         lang_code='en')
+    bot = UserBot("userbot",
+                  API_KEY,
+                  API_HASH,
+                  connection_retries=None,
+                  auto_reconnect=False,
+                  lang_code='en')
 
 
 async def check_botlog_chatid():
@@ -211,23 +197,10 @@ async def check_botlog_chatid():
             quit(1)
 
 
-# Init Mongo
-MONGOCLIENT = MongoClient(MONGO_DB_URI, 27017, serverSelectionTimeoutMS=1)
-MONGO = MONGOCLIENT.userbot
-
-
-def is_mongo_alive():
-    try:
-        MONGOCLIENT.server_info()
-    except BaseException:
-        return False
-    return True
-
-
 with bot:
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
-    except:
+    except BaseException:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't a "
             "valid entity. Check your environment variables/config.env file.")
@@ -241,4 +214,4 @@ LASTMSG = {}
 CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
-VERSION = "6.0.0"
+VERSION = "6.4.7"

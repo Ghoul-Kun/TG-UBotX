@@ -1,9 +1,8 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-
 """ Userbot module for getting info
     about any user on Telegram(including you!). """
 
@@ -71,18 +70,28 @@ async def fetch_info(replied_user, **kwargs):
     if id_only:
         return KeyValueItem(title, Code(user.id))
 
-    general = SubSection(Bold('general'),
-                         KeyValueItem('id', Code(user.id)),
-                         KeyValueItem('first_name', Code(user.first_name)),
-                         KeyValueItem('last_name', Code(user.last_name)),
-                         KeyValueItem('username', Code(user.username)),
-                         KeyValueItem('mutual_contact', Code(user.mutual_contact)),
-                         KeyValueItem('common groups', Code(replied_user.common_chats_count)))
+    general = SubSection(
+        Bold('general'), KeyValueItem(
+            'id', Code(
+                user.id)), KeyValueItem(
+            'first_name', Code(
+                user.first_name)), KeyValueItem(
+            'last_name', Code(
+                user.last_name)), KeyValueItem(
+            'username', Code(
+                user.username)), KeyValueItem(
+            'mutual_contact', Code(
+                user.mutual_contact)), KeyValueItem(
+            'common groups', Code(
+                replied_user.common_chats_count)))
 
     if spamwatch:
         banobj = spamwatch.get_ban(user.id)
         if banobj:
-            general.items.append(KeyValueItem('gbanned', f'True / {banobj.reason}'))
+            general.items.append(
+                KeyValueItem(
+                    'gbanned',
+                    f'True / {banobj.reason}'))
         else:
             general.items.append(KeyValueItem('gbanned', 'False'))
 
@@ -95,13 +104,20 @@ async def fetch_info(replied_user, **kwargs):
                                   Code(user.bot_inline_placeholder)),
                      KeyValueItem('bot_nochats', Code(user.bot_nochats)))
 
-    misc = SubSection(Bold('misc'),
-                      KeyValueItem('restricted', Code(user.restricted)),
-                      KeyValueItem('restriction_reason', Code(user.restriction_reason)),
-                      KeyValueItem('deleted', Code(user.deleted)),
-                      KeyValueItem('verified', Code(user.verified)),
-                      KeyValueItem('min', Code(user.min)),
-                      KeyValueItem('lang_code', Code(user.lang_code)))
+    misc = SubSection(
+        Bold('misc'), KeyValueItem(
+            'restricted', Code(
+                user.restricted)), KeyValueItem(
+            'restriction_reason', Code(
+                user.restriction_reason)), KeyValueItem(
+            'deleted', Code(
+                user.deleted)), KeyValueItem(
+            'verified', Code(
+                user.verified)), KeyValueItem(
+            'min', Code(
+                user.min)), KeyValueItem(
+            'lang_code', Code(
+                user.lang_code)))
 
     return Section(title,
                    general if show_general else None,
@@ -111,14 +127,14 @@ async def fetch_info(replied_user, **kwargs):
 
 add_help_item(
     "userinfo",
-    "Me",
+    "Admin",
     "List information about a particular user.",
     """
     `.u(ser) [options] (username|id)`
-    
+
     Or, in response to a message
     `.u(ser) [options]`
-    
+
     Options:
     `.id`: Show only the user's ID
     `.general`: Show general user info

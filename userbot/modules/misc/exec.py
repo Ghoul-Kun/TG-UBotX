@@ -1,10 +1,11 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
 import asyncio
+
 from os import remove
 from sys import executable
 
@@ -50,7 +51,7 @@ execute. Use .help exec for an example.```")
         stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) \
-             + str(stderr.decode().strip())
+        + str(stderr.decode().strip())
 
     if result:
         if len(result) > 4096:
@@ -78,7 +79,8 @@ execute. Use .help exec for an example.```")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#EXEC\nExec query: \n```\n" + codepre + "\n```\n was executed successfully")
+            "Exec query: \n```\n" + codepre + "\n```\n was executed successfully")
+
 
 add_help_item(
     "exec",
@@ -86,7 +88,7 @@ add_help_item(
     "Execute a dynamically created Python program.",
     """
     `.exec (program)`
-    
+
     Or, in response to a message containing Python code
     `.exec`
     """

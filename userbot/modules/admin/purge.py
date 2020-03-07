@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for purging unneeded messages(usually spam or ot). """
@@ -14,7 +14,7 @@ from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^\.purge$")
+@register(outgoing=True, pattern=r"^\.purge$")
 async def fastpurger(purg):
     """ For .purge command, purge all messages starting from the reply. """
     chat = await purg.get_input_chat()
@@ -48,7 +48,7 @@ async def fastpurger(purg):
     await done.delete()
 
 
-@register(outgoing=True, pattern="^\.purgeme")
+@register(outgoing=True, pattern=r"^\.purgeme")
 async def purgeme(delme):
     """ For .purgeme, delete x count of your latest message."""
     message = delme.text
@@ -75,7 +75,7 @@ async def purgeme(delme):
     await smsg.delete()
 
 
-@register(outgoing=True, pattern="^\.del$")
+@register(outgoing=True, pattern=r"^\.del$")
 async def delete_it(delme):
     """ For .del command, delete the replied message. """
     msg_src = await delme.get_reply_message()
@@ -92,7 +92,7 @@ async def delete_it(delme):
                     BOTLOG_CHATID, "#DEL\nWell, I can't delete a message")
 
 
-@register(outgoing=True, pattern="^\.edit")
+@register(outgoing=True, pattern=r"^\.edit")
 async def editer(edit):
     """ For .editme command, edit your last message. """
     message = edit.text
@@ -111,7 +111,7 @@ async def editer(edit):
                                        "#EDIT\nEdit query was executed successfully")
 
 
-@register(outgoing=True, pattern="^\.sd")
+@register(outgoing=True, pattern=r"^\.sd")
 async def selfdestruct(destroy):
     """ For .sd command, make seflf-destructable messages. """
     message = destroy.text

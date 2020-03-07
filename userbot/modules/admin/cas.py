@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 # Adapted module from https://github.com/nunopenim/tguserbot
@@ -19,8 +19,8 @@ from userbot import BOTLOG_CHATID, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.cascheck ?(.*)")
-async def cascheck(cas): #checks if a user, or all users in a group are cas banned
+@register(outgoing=True, pattern=r"^\.cascheck ?(.*)")
+async def cascheck(cas):  # checks if a user, or all users in a group are cas banned
     if not cas.text[0].isalpha() and cas.text[0] in ("."):
         if cas.reply_to_msg_id:
             replied_msg = await cas.get_reply_message()
@@ -54,7 +54,7 @@ async def cascheck(cas): #checks if a user, or all users in a group are cas bann
             await cas.edit("`CAS data not found. Please use .casupdate command to get the latest CAS data`")
             return
         try:
-            if type(info) is User:  # check an user only
+            if isinstance(info, User):  # check an user only
                 if info.id in user_ids:
                     if not info.deleted:
                         text = f"Warning! [{info.first_name}](tg://user?id={info.id}) [ID: `{info.id}`] is CAS Banned!"
@@ -64,7 +64,7 @@ async def cascheck(cas): #checks if a user, or all users in a group are cas bann
                     text = f"[{info.first_name}](tg://user?id={info.id}) is not CAS Banned"
             else:  # check for all members in a chat
                 title = info.title if info.title else "this chat"
-                cas_count, members_count = (0,)*2
+                cas_count, members_count = (0,) * 2
                 text_users = ""
                 async for user in cas.client.iter_participants(info.id):
                     if user.id in user_ids:
@@ -74,7 +74,8 @@ async def cascheck(cas): #checks if a user, or all users in a group are cas bann
                         else:
                             text_users += f"\n{cas_count}. Deleted Account `{user.id}`"
                     members_count += 1
-                text = "Warning! `{}` of `{}` users are CAS Banned in **{}**:\n".format(cas_count, members_count, title)
+                text = "Warning! `{}` of `{}` users are CAS Banned in **{}**:\n".format(
+                    cas_count, members_count, title)
                 text += text_users
                 if not cas_count:
                     text = f"`No CAS Banned users found in {title}`"
@@ -107,7 +108,8 @@ async def cascheck(cas): #checks if a user, or all users in a group are cas bann
             remove("caslist.txt")
             return
 
-def isCSVoutdated() -> bool: #checks if csv is a day or more old
+
+def isCSVoutdated() -> bool:  # checks if csv is a day or more old
     csv_file = TEMP_DOWNLOAD_DIRECTORY + "/export.csv"
     if not path.exists(csv_file):
         return False
@@ -118,13 +120,15 @@ def isCSVoutdated() -> bool: #checks if csv is a day or more old
     else:
         return False
 
-@register(outgoing=True, pattern="^.casupdate$")
-async def casupdate(event): #updates cas csv
+
+@register(outgoing=True, pattern=r"^\.casupdate$")
+async def casupdate(event):  # updates cas csv
     if not event.text[0].isalpha() and event.text[0] in ("."):
         await casupdater(event, showinfo=True)
         return
 
-async def casupdater(down, showinfo: bool): #csv downloader
+
+async def casupdater(down, showinfo: bool):  # csv downloader
     url = "https://combot.org/api/cas/export.csv"
     filename = TEMP_DOWNLOAD_DIRECTORY + "/export.csv"
     if showinfo:
@@ -155,7 +159,8 @@ async def casupdater(down, showinfo: bool): #csv downloader
             await down.edit("`Successfully updated latest CAS CSV data`")
         print("CASUPATE download speed: %s" % downloader.get_speed(human=True))
         print("CASUPATE status: %s" % downloader.get_status())
-        print("CASUPATE download time: %s seconds" % round(downloader.get_dl_time(), 2))
+        print("CASUPATE download time: %s seconds" %
+              round(downloader.get_dl_time(), 2))
     else:
         await down.edit("`Update failed`")
         for error in downloader.get_errors():

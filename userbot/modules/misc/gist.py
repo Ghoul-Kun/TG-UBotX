@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
@@ -37,6 +37,7 @@ async def create_gist(e):
 
     await e.edit(f"Gist created. You can find it here {gist.html_url}.")
 
+
 add_help_item(
     "gist",
     "Misc",
@@ -44,7 +45,7 @@ add_help_item(
     "replied to message.",
     """
     `.gist (content)`
-    
+
     Or, in reply to a message
     `.gist`
     """

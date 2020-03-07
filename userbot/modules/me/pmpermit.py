@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for keeping control who PM you. """
@@ -18,12 +18,10 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "Hey there stranger. If you're seeing this message it "
-    "means I haven't approved you for PMs yet. If I know "
-    "you this doesn't pose a problem, just wait a bit for "
-    "me to check my messages and approve you. If I don't "
-    "know you please go back to whatever group you found me "
-    "in and remove yourself before I report you 😁")
+    "`Hello! This is an automated message.\n\n`"
+    "`I haven't approved you to PM yet.`"
+    "`Please wait for me to look in, I mostly approve PMs.\n\n`"
+    "`Until then, please don't spam my PM, you'll get blocked and reported!`")
 # =================================================================
 
 
@@ -136,7 +134,7 @@ async def auto_accept(event):
                     )
 
 
-@register(outgoing=True, pattern="^\.notifoff$")
+@register(outgoing=True, pattern=r"^\.notifoff$")
 async def notifoff(noff_event):
     """ For .notifoff command, stop getting notifications from unapproved PMs. """
     try:
@@ -148,7 +146,7 @@ async def notifoff(noff_event):
     await noff_event.edit("`Notifications from unapproved PM's are silenced!`")
 
 
-@register(outgoing=True, pattern="^\.notifon$")
+@register(outgoing=True, pattern=r"^\.notifon$")
 async def notifon(non_event):
     """ For .notifoff command, get notifications from unapproved PMs. """
     try:
@@ -160,7 +158,7 @@ async def notifon(non_event):
     await non_event.edit("`Notifications from unapproved PM's unmuted!`")
 
 
-@register(outgoing=True, pattern="^\.approve$")
+@register(outgoing=True, pattern=r"^\.approve$")
 async def approvepm(apprvpm):
     """ For .approve command, give someone the permissions to PM you. """
     try:
@@ -201,7 +199,7 @@ async def approvepm(apprvpm):
         )
 
 
-@register(outgoing=True, pattern="^\.disapprove$")
+@register(outgoing=True, pattern=r"^\.disapprove$")
 async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
@@ -231,7 +229,7 @@ async def disapprovepm(disapprvpm):
         )
 
 
-@register(outgoing=True, pattern="^\.block$")
+@register(outgoing=True, pattern=r"^\.block$")
 async def blockpm(block):
     """ For .block command, block people from PMing you! """
     if block.reply_to_msg_id:
@@ -262,7 +260,7 @@ async def blockpm(block):
         )
 
 
-@register(outgoing=True, pattern="^\.unblock$")
+@register(outgoing=True, pattern=r"^\.unblock$")
 async def unblockpm(unblock):
     """ For .unblock command, let people PMing you again! """
     if unblock.reply_to_msg_id:
@@ -287,7 +285,7 @@ add_help_item(
     """
     `.approve`
     **Usage:** Approves the mentioned/replied person to PM.
-    
+
     `.disapprove`
     **Usage:** Disapproves the mentioned/replied person to PM.
 

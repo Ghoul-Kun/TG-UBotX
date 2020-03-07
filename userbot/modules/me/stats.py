@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
@@ -15,7 +15,7 @@ from userbot.utils import inline_mention
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=f'^.stats')
+@register(outgoing=True, pattern=rf'^\.stats')
 async def stats(event: NewMessage.Event) -> None:  # pylint: disable = R0912, R0914, R0915
     """Command to get stats about the account"""
     waiting_message = await event.edit('Collecting stats. This might take a while.')
@@ -37,7 +37,8 @@ async def stats(event: NewMessage.Event) -> None:  # pylint: disable = R0912, R0
         entity = dialog.entity
 
         if isinstance(entity, Channel):
-            # participants_count = (await event.get_participants(dialog, limit=0)).total
+            # participants_count = (await event.get_participants(dialog,
+            # limit=0)).total
             if entity.broadcast:
                 broadcast_channels += 1
                 if entity.creator or entity.admin_rights:

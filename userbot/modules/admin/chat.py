@@ -1,7 +1,8 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
+#
 """ Userbot module containing userid, chatid and log commands"""
 
 from ..help import add_help_item
@@ -11,7 +12,7 @@ from userbot.events import register
 from userbot.modules.admin.admin import get_user_from_event
 
 
-@register(outgoing=True, pattern="^\.userid$")
+@register(outgoing=True, pattern=r"^\.userid$")
 async def useridgetter(target):
     """ For .userid command, returns the ID of the target user. """
     message = await target.get_reply_message()
@@ -32,7 +33,7 @@ async def useridgetter(target):
             name, user_id))
 
 
-@register(outgoing=True, pattern="^\.link(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.link(?: |$)(.*)")
 async def permalink(mention):
     """ For .link command, generates a link to the user's PM with a custom text. """
     user, custom = await get_user_from_event(mention)
@@ -46,7 +47,7 @@ async def permalink(mention):
         await mention.edit(f"[{tag}](tg://user?id={user.id})")
 
 
-@register(outgoing=True, pattern="^\.chatid$")
+@register(outgoing=True, pattern=r"^\.chatid$")
 async def chatidgetter(chat):
     """ For .chatid, returns the ID of the chat you are in at that moment. """
     await chat.edit("Chat ID: `" + str(chat.chat_id) + "`")
@@ -73,14 +74,14 @@ async def log(log_text):
     await log_text.delete()
 
 
-@register(outgoing=True, pattern="^\.kickme$")
+@register(outgoing=True, pattern=r"^\.kickme$")
 async def kickme(leave):
     """ Basically it's .kickme command """
     await leave.edit("Nope, no, no, I go away")
     await leave.client.kick_participant(leave.chat_id, 'me')
 
 
-@register(outgoing=True, pattern="^\.unmutechat$")
+@register(outgoing=True, pattern=r"^\.unmutechat$")
 async def unmute_chat(unm_e):
     """ For .unmutechat command, unmute a muted chat. """
     try:
@@ -94,7 +95,7 @@ async def unmute_chat(unm_e):
     await unm_e.delete()
 
 
-@register(outgoing=True, pattern="^\.mutechat$")
+@register(outgoing=True, pattern=r"^\.mutechat$")
 async def mute_chat(mute_e):
     """ For .mutechat command, mute any chat. """
     try:
@@ -139,7 +140,7 @@ async def sedNinja(event):
         await event.delete()
 
 
-@register(outgoing=True, pattern="^\.regexninja (on|off)$")
+@register(outgoing=True, pattern=r"^\.regexninja (on|off)$")
 async def sedNinjaToggle(event):
     """ Enables or disables the regex ninja module. """
     global regexNinja
@@ -160,20 +161,26 @@ add_help_item(
     "Admin",
     "Some group-related commands",
     """
-    .chatid\
-    \nUsage: Fetches the current chat's ID\
-    \n\n.userid\
-    \nUsage: Fetches the ID of the user in reply, if its a forwarded message, finds the ID for the source.\
-    \n\n.log\
-    \nUsage: Forwards the message you've replied to in your bot logs group.\
-    \n\n.kickme\
-    \nUsage: Leave from a targeted group.\
-    \n\n.unmutechat\
-    \nUsage: Unmutes a muted chat.\
-    \n\n.mutechat\
-    \nUsage: Allows you to mute any chat.\
-    \n\n.regexninja on/off\
-    \nUsage: Globally enable/disables the regex ninja module.\
-    \nRegex Ninja module helps to delete the regex bot's triggering messages
+    `.chatid`
+    **Usage:** Fetches the current chat's ID
+
+    `.userid`
+    **Usage:** Fetches the ID of the user in reply, if its a forwarded message, finds the ID for the source.
+
+    `.log`
+    **Usage:** Forwards the message you've replied to in your bot logs group.
+
+    `.kickme`
+    **Usage:** Leave from a targeted group.
+
+    `.unmutechat`
+    **Usage:** Unmutes a muted chat.
+
+    `.mutechat`
+    **Usage:** Allows you to mute any chat.
+
+    `.regexninja on/off`
+    **Usage:** Globally enable/disables the regex ninja module.
+    Regex Ninja module helps to delete the regex bot's triggering messages
     """
 )

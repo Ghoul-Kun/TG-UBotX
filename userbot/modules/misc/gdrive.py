@@ -1,12 +1,16 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
+#
 
 import asyncio
 import math
 import os
 import time
+import httplib2
+import subprocess
+
 from pySmartDL import SmartDL
 from telethon import events
 from googleapiclient.discovery import build
@@ -15,14 +19,13 @@ from googleapiclient.errors import ResumableUploadError
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.file import Storage
 from oauth2client import file, client, tools
+
 from ..help import add_help_item
 from userbot import (G_DRIVE_CLIENT_ID, G_DRIVE_CLIENT_SECRET,
                      G_DRIVE_AUTH_TOKEN_DATA, GDRIVE_FOLDER_ID, BOTLOG_CHATID,
                      TEMP_DOWNLOAD_DIRECTORY, LOGS)
 from userbot.events import register
 from mimetypes import guess_type
-import httplib2
-import subprocess
 from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
 
 # Path to token json file, it should be in same directory as script
@@ -166,7 +169,8 @@ async def upload_dir_to_gdrive(event):
         if G_DRIVE_AUTH_TOKEN_DATA is not None:
             with open(G_DRIVE_TOKEN_FILE, "w") as t_file:
                 t_file.write(G_DRIVE_AUTH_TOKEN_DATA)
-        # Check if token file exists, if not create it by requesting authorization code
+        # Check if token file exists, if not create it by requesting
+        # authorization code
         storage = None
         if not os.path.isfile(G_DRIVE_TOKEN_FILE):
             storage = await create_token_file(G_DRIVE_TOKEN_FILE, event)
@@ -192,20 +196,21 @@ async def gdrive_search_list(event):
     if G_DRIVE_AUTH_TOKEN_DATA is not None:
         with open(G_DRIVE_TOKEN_FILE, "w") as t_file:
             t_file.write(G_DRIVE_AUTH_TOKEN_DATA)
-    # Check if token file exists, if not create it by requesting authorization code
+    # Check if token file exists, if not create it by requesting authorization
+    # code
     storage = None
     if not os.path.isfile(G_DRIVE_TOKEN_FILE):
         storage = await create_token_file(G_DRIVE_TOKEN_FILE, event)
     http = authorize(G_DRIVE_TOKEN_FILE, storage)
-    # Authorize, get file parameters, upload file and print out result URL for download
+    # Authorize, get file parameters, upload file and print out result URL for
+    # download
     await event.edit(f"Searching for {input_str} in your Google Drive ...")
     gsearch_results = await gdrive_search(http, input_str)
     await event.edit(gsearch_results, link_preview=False)
 
 
 @register(
-    pattern=
-    r"^\.gsetf https?://drive\.google\.com/drive/u/\d/folders/([-\w]{25,})",
+    pattern=r"^\.gsetf https?://drive\.google\.com/drive/u/\d/folders/([-\w]{25,})",
     outgoing=True)
 async def download(set):
     """For .gsetf command, allows you to set path"""
@@ -223,7 +228,7 @@ async def download(set):
         )
 
 
-@register(pattern="^\.gsetclear$", outgoing=True)
+@register(pattern=r"^\.gsetclear$", outgoing=True)
 async def download(gclr):
     """For .gsetclear command, allows you clear ur curnt custom path"""
     await gclr.reply("Processing ...")
@@ -231,7 +236,7 @@ async def download(gclr):
     await gclr.edit("Custom Folder ID cleared successfully!")
 
 
-@register(pattern="^\.gfolder$", outgoing=True)
+@register(pattern=r"^\.gfolder$", outgoing=True)
 async def show_current_gdrove_folder(event):
     if parent_id:
         folder_link = f"https://drive.google.com/drive/folders/" + parent_id
@@ -298,7 +303,8 @@ async def upload_file(http, file_path, file_name, mime_type, event, parent_id):
     if parent_id:
         body["parents"] = [{"id": parent_id}]
     # Permissions body description: anyone who has link can upload
-    # Other permissions can be found at https://developers.google.com/drive/v2/reference/permissions
+    # Other permissions can be found at
+    # https://developers.google.com/drive/v2/reference/permissions
     permissions = {
         "role": "reader",
         "type": "anyone",
@@ -448,19 +454,19 @@ add_help_item(
     """
     `.gdrive` <file_path / reply / URL|file_name>
     **Usage:** Uploads the file in reply, URL or file path in server to your Google Drive.
-    
+
     `.gsetf` <GDrive Folder URL>
     **Usage:** Sets the folder to upload new files to.
-    
+
     `.gsetclear`
     **Usage:** Reverts to default upload destination.
-    
+
     `.gfolder`
     **Usage:** Shows your current upload destination/folder.
-    
+
     `.list` <query>
     **Usage:** Looks for files and folders in your Google Drive.
-    
+
     `.ggd` <path_to_folder_in_server>
     **Usage:** Uploads all the files in the directory to a folder in Google Drive
     """

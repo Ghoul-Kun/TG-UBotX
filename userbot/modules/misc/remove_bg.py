@@ -1,8 +1,8 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-
+#
 # (c) Shrimadhav U K - UniBorg
 # Thanks to Prakasaka for porting.
 
@@ -15,7 +15,7 @@ from ..help import add_help_item
 from userbot import REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
 
 
-@register(outgoing=True, pattern="^\.rbg(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.rbg(?: |$)(.*)")
 async def kbg(remob):
     """ For .rbg command, Remove Image Background. """
     if REM_BG_API_KEY is None:

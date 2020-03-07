@@ -1,9 +1,10 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-# Adapted from https://github.com/mojurasu/kantek/blob/develop/kantek/utils/mdtex.py
+# Adapted from
+# https://github.com/mojurasu/kantek/blob/develop/kantek/utils/mdtex.py
 
 from typing import Union
 
@@ -65,7 +66,8 @@ class Mention(Link):
 
 class KeyValueItem(FormattedBase):
 
-    def __init__(self, key: Union[str, FormattedBase], value: Union[str, FormattedBase]) -> None:
+    def __init__(self, key: Union[str, FormattedBase],
+                 value: Union[str, FormattedBase]) -> None:
         self.key = key
         self.value = value
         self.text = f'{key}: {value}'
@@ -79,7 +81,11 @@ class Item(FormattedBase):
 
 class Section:
 
-    def __init__(self, *args: Union[String, 'FormattedBase'], spacing: int = 1, indent: int = 4) -> None:
+    def __init__(self,
+                 *args: Union[String,
+                              'FormattedBase'],
+                 spacing: int = 1,
+                 indent: int = 4) -> None:
         self.header = args[0]
         self.items = list(args[1:])
         self.indent = indent
@@ -89,14 +95,19 @@ class Section:
         return str(self) + '\n\n' + str(other)
 
     def __str__(self) -> str:
-        return ('\n' * self.spacing).join(
-            [str(self.header)] + [' ' * self.indent + str(item) for item in self.items
-                                  if item is not None])
+        return ('\n' *
+                self.spacing).join([str(self.header)] +
+                                   [' ' *
+                                    self.indent +
+                                    str(item) for item in self.items if item is not None])
 
 
 class SubSection(Section):
 
-    def __init__(self, *args: Union[String, 'SubSubSection'], indent: int = 8) -> None:
+    def __init__(self,
+                 *args: Union[String,
+                              'SubSubSection'],
+                 indent: int = 8) -> None:
         super().__init__(*args, indent=indent)
 
 

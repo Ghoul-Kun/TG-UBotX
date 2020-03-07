@@ -1,12 +1,9 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
-import inspect
-
-from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types.messages import ChatFull
 from telethon.tl.types import Channel, User, ChatInviteExported
@@ -20,11 +17,12 @@ from userbot.utils.tgdoc import *
 @register(outgoing=True, pattern=r"^\.c(?:hat)?(\s+[\S\s]+|$)")
 async def chat_info(e):
     params = e.pattern_match.group(1) or ""
-    args, chat = parse_arguments(params, ['id', 'general', 'admins', 'bots', 'all'])
+    args, chat = parse_arguments(
+        params, ['id', 'general', 'admins', 'bots', 'all'])
     args['chat'] = chat
 
     if isinstance(e.chat, User):
-        from .userinfo import fetch_info as fetch_user_info
+        from .user_info import fetch_info as fetch_user_info
         replied_user = await e.client(GetFullUserRequest(e.chat.id))
         response = await fetch_user_info(replied_user, **args)
     else:
@@ -67,18 +65,27 @@ async def fetch_info(event, full_chat, **kwargs):
 
     if show_general:
         exported_invite = full_chat.full_chat.exported_invite
-        invite_link = exported_invite.link if isinstance(exported_invite, ChatInviteExported) else None
+        invite_link = exported_invite.link if isinstance(
+            exported_invite, ChatInviteExported) else None
         admin_count = full_chat.full_chat.admins_count or len(admin_list)
 
         general = SubSection(Bold("general"),
-                             KeyValueItem("id", Code(str(chat.id))),
-                             KeyValueItem("title", Code(chat.title)),
-                             KeyValueItem("private", Code(str(is_private))),
-                             KeyValueItem("invite link", Link(invite_link.split('/')[-1], invite_link)) if invite_link else None,
+                             KeyValueItem("id",
+                                          Code(str(chat.id))),
+                             KeyValueItem("title",
+                                          Code(chat.title)),
+                             KeyValueItem("private",
+                                          Code(str(is_private))),
+                             KeyValueItem("invite link",
+                                          Link(invite_link.split('/')[-1],
+                                               invite_link)) if invite_link else None,
                              SubSubSection("participants",
-                                           KeyValueItem("admins", Code(str(admin_count))),
-                                           KeyValueItem("online", Code(str(full_chat.full_chat.online_count))),
-                                           KeyValueItem("total", Code(str(full_chat.full_chat.participants_count)))))
+                                           KeyValueItem("admins",
+                                                        Code(str(admin_count))),
+                                           KeyValueItem("online",
+                                                        Code(str(full_chat.full_chat.online_count))),
+                                           KeyValueItem("total",
+                                                        Code(str(full_chat.full_chat.participants_count)))))
     else:
         general = None
 

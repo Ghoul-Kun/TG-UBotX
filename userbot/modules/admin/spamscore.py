@@ -1,12 +1,12 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
 import re
-from io import BytesIO
 
+from io import BytesIO
 from PIL import Image
 from photohash import average_hash
 
@@ -85,7 +85,8 @@ async def score_user(event, userfull):
 
     if matching_hashes > 0:
         # If there are matching hashes that's an automatic +5
-        score.update({f'blacklisted photos ({total_hashes}/{matching_hashes})': 5})
+        score.update(
+            {f'blacklisted photos ({total_hashes}/{matching_hashes})': 5})
 
     # Lots of spammers try and look normal by having a normal(ish)
     # first and last name. A first AND last name with no special
@@ -146,7 +147,8 @@ async def score_user(event, userfull):
             if word in userfull.about.lower():
                 total_red_flags += 1
         if total_red_flags > 0:
-            score.update({f'red flag words x{total_red_flags}': total_red_flags * 3})
+            score.update(
+                {f'red flag words x{total_red_flags}': total_red_flags * 3})
 
     # No bio is also an indicator worth an extra 2 points
     else:
@@ -163,9 +165,8 @@ async def score_user(event, userfull):
 
 
 def is_cjk(string):
-    return unicode_block_match(string, [(4352, 4607), (11904, 42191), (43072, 43135), (44032, 55215),
-                                        (63744, 64255), (65072, 65103), (65381, 65500),
-                                        (131072, 196607)])
+    return unicode_block_match(string, [(4352, 4607), (11904, 42191), (43072, 43135), (
+        44032, 55215), (63744, 64255), (65072, 65103), (65381, 65500), (131072, 196607)])
 
 
 def is_arabic(string):

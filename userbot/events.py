@@ -1,8 +1,9 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
+
 """ Userbot module for managing events.
  One of the main components of the userbot. """
 
@@ -64,7 +65,8 @@ def register(**args):
 
             except events.StopPropagation:
                 raise events.StopPropagation
-            # This is a gay exception and must be passed out. So that it doesnt spam chats
+            # This is a gay exception and must be passed out. So that it doesnt
+            # spam chats
             except KeyboardInterrupt:
                 pass
             except BaseException:
@@ -77,8 +79,8 @@ def register(**args):
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                     text = "#ERROR\n"
-                    text += "**USERBOT ERROR REPORT**\n"
-                    text += "Nothing is logged except the fact of error and date\n"
+                    text += "**Sorry, I encountered a error!**\n"
+                    text += "I won't log anything except the fact of error and date\n"
 
                     ftext = "========== DISCLAIMER =========="
                     ftext += "\nThis file uploaded ONLY here,"

@@ -1,16 +1,18 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module containing various scrapers. """
 
 import os
+import re
 import time
 import asyncio
 import shutil
+import asyncurban
+
 from bs4 import BeautifulSoup
-import re
 from time import sleep
 from html import unescape
 from re import findall
@@ -21,7 +23,6 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
-import asyncurban
 from requests import get
 from search_engine_parser import GoogleSearch
 from googleapiclient.discovery import build
@@ -35,26 +36,28 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
+
+from telethon.tl.types import DocumentAttributeAudio
 from ..help import add_help_item
 from asyncio import sleep
 from userbot import BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.events import register
-from telethon.tl.types import DocumentAttributeAudio
 from userbot.modules.misc.upload_download import progress, humanbytes, time_formatter
+from userbot.utils.google_images_download import googleimagesdownload
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
 TRT_LANG = "en"
 
 
-@register(outgoing=True, pattern="^\.crblang (.*)")
+@register(outgoing=True, pattern=r"^\.crblang (.*)")
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Language for carbon.now.sh set to {CARBONLANG}")
 
 
-@register(outgoing=True, pattern="^\.carbon")
+@register(outgoing=True, pattern=r"^\.carbon")
 async def carbon_api(e):
     """ A Wrapper for carbon.now.sh """
     await e.edit("`Processing..`")
@@ -120,7 +123,38 @@ async def carbon_api(e):
     await e.delete()  # Deleting msg
 
 
-@register(outgoing=True, pattern="^\.currency (.*)")
+@register(outgoing=True, pattern=r"^\.img (.*)")
+async def img_sampler(event):
+    """ For .img command, search and return images matching the query. """
+    await event.edit("Processing...")
+    query = event.pattern_match.group(1)
+    lim = findall(r"lim=\d+", query)
+    try:
+        lim = lim[0]
+        lim = lim.replace("lim=", "")
+        query = query.replace("lim=" + lim[0], "")
+    except IndexError:
+        lim = 6
+    response = googleimagesdownload()
+
+    # creating list of arguments
+    arguments = {
+        "keywords": query,
+        "limit": lim,
+        "format": "jpg",
+        "no_directory": "no_directory"
+    }
+
+    # passing the arguments to the function
+    paths = response.download(arguments)
+    lst = paths[0][query]
+    await event.client.send_file(
+        await event.client.get_input_entity(event.chat_id), lst)
+    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
+    await event.delete()
+
+
+@register(outgoing=True, pattern=r"^\.currency (.*)")
 async def moni(event):
     input_str = event.pattern_match.group(1)
     input_sgra = input_str.split(" ")
@@ -214,7 +248,7 @@ async def wiki(wiki_q):
             BOTLOG_CHATID, f"#WIKI\nWiki query `{match}` was executed successfully")
 
 
-@register(outgoing=True, pattern="^\.ud (.*)")
+@register(outgoing=True, pattern=r"^\.ud (.*)")
 async def urban_dict(ud_e):
     """ For .ud command, fetch content from Urban Dictionary. """
     await ud_e.edit("Processing...")
@@ -301,7 +335,7 @@ async def text_to_speech(query):
 
 
 # kanged from Blank-x ;---;
-@register(outgoing=True, pattern="^\.imdb (.*)")
+@register(outgoing=True, pattern=r"^\.imdb (.*)")
 async def imdb(e):
     try:
         movie_name = e.pattern_match.group(1)
@@ -416,7 +450,7 @@ async def translateme(trans):
         )
 
 
-@register(pattern="^\.lang (trt|tts) (.*)", outgoing=True)
+@register(pattern=r"^\.lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
     """ For .lang command, change the default langauge of userbot scrapers. """
     util = value.pattern_match.group(1).lower()
@@ -451,7 +485,7 @@ async def lang(value):
             f"`Language for {scraper} changed to {LANG.title()}.`")
 
 
-@register(outgoing=True, pattern="^\.yt (.*)")
+@register(outgoing=True, pattern=r"^\.yt (.*)")
 async def yt_search(video_q):
     """ For .yt command, do a YouTube search from Telegram. """
     query = video_q.pattern_match.group(1)
@@ -661,25 +695,40 @@ add_help_item(
     "Misc",
     "Userbot module containing various scrapers.",
     """
-    .imdb <movie-name>\
-    \nUsage: Shows movie info and other stuff.\
-    .ripaudio <url> or ripvideo <url>\
-    \nUsage: Download videos and songs from YouTube (and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).\
-    \n\n.yt <text>\
-    \nUsage: Does a YouTube search.\
-    \n\n.trt <text> [or reply]\
-    \nUsage: Translates text to the language which is set.\nUse .lang trt <language code> to set language for trt. (Default is English)\
-    \n\n.tts <text> [or reply]\
-    \nUsage: Translates text to speech for the language which is set.\nUse .lang tts <language code> to set language for tts. (Default is English.)\
-    \n\n.ud <query>\
-    \nUsage: Does a search on Urban Dictionary.\
-    \n\n.google <query>\
-    \nUsage: Does a search on Google.\
-    \n\n.wiki <query>\
-    \nUsage: Does a search on Wikipedia.\
-    \n\n.carbon <text> [or reply]\
-    \nUsage: Beautify your code using carbon.now.sh\nUse .crblang <text> to set language for your code.\
-    \n\n.currency <amount> <from> <to>\
-    \nUsage: Converts various currencies for you.
+    `.imdb` <movie-name>
+    **Usage:** Shows movie info and other stuff.
+
+    `.ripaudio` <url> or ripvideo <url>
+    **Usage:** Download videos and songs from YouTube (and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).
+
+    `.yt` <text>
+    **Usage:** Does a YouTube search.
+
+    .trt <text> [or reply]
+    **Usage:** Translates text to the language which is set.
+    Use `.lang trt <language code>` to set language for trt. (Default is English)
+
+    `.tts` <text> [or reply]
+    **Usage:** Translates text to speech for the language which is set.
+    Use `.lang tts <language code>` to set language for tts. (Default is English.)
+
+    `.ud` <query>
+    **Usage:** Does a search on Urban Dictionary.
+
+    `.google` <query>
+    **Usage:** Does a search on Google.
+
+    `.wiki` <query>
+    **Usage:** Does a search on Wikipedia.
+
+    `.carbon` <text> [or reply]
+    **Usage:** Beautify your code using carbon.now.sh
+    Use .crblang <text> to set language for your code.
+
+    `.currency` <amount> <from> <to>
+    **Usage:** Converts various currencies for you.
+
+    `.img` <search_query>
+    **Usage:** Does an image search on Google and shows two images.
     """
 )

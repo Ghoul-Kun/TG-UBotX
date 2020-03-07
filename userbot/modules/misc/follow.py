@@ -1,11 +1,10 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 
 import urllib.parse
-
 import requests
 
 from ..help import add_help_item
@@ -13,7 +12,7 @@ from userbot.events import register
 from userbot.utils import parse_arguments, extract_urls
 
 
-@register(outgoing=True, pattern=r"^\.f(?:ollow)?(\s+[\S\s]+|$)")
+@register(outgoing=True, pattern=r"^\.follow(?: |$)([\s\S]*)")
 async def follow_url(event):
     reply_message = await event.get_reply_message()
     message_text = event.pattern_match.group(1) or ""
@@ -40,7 +39,8 @@ async def follow_url(event):
 
     message = []
     for follow in follows:
-        message.append(f"**Original URL:** {follow[0]} \n**Followed URL:** {follow[1]}")
+        message.append(
+            f"**Original URL:** {follow[0]} \n**Followed URL:** {follow[1]}")
 
     message = '\n \n'.join(message)
     await event.edit(message, link_preview=False)
@@ -74,13 +74,13 @@ async def resolve_url(url: str, base_domain: bool = True) -> str:
 
 
 add_help_item(
-    "followlink",
+    "follow",
     "Misc",
     "Follow a link or any number of links to their "
     "destination. Mainly for use with short URLs.",
     """
     `.f(ollow) (link1) (link2) ... (linkN)`
-    
+
     Or, in reply to a message containing links
     `.f(ollow)`
     """

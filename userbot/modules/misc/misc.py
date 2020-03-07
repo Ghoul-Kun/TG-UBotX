@@ -1,31 +1,19 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-# You can find misc modules, which dont fit in anything xD
-""" Userbot module for other small commands. """
+
+import sys
+import io
 
 from random import randint
 from asyncio import sleep
 from os import execl
-import sys
-import os
-import io
-import sys
-import json
+
 from ..help import add_help_item
-from userbot import BOTLOG, BOTLOG_CHATID, bot, UPSTREAM_REPO_URL
+from userbot import BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register
-
-
-@register(outgoing=True, pattern="^.community$")
-async def bot_community(community):
-    """ For .community command, just returns OG Paperplane's group link. """
-    await community.edit(
-        "Join RaphielGang's awesome userbot community: @userbot_support"
-        "\nDo note that TG-UBotX is an unoficial fork of their "
-        "Paperplane project and it may get limited or no support for bugs.")
 
 
 @register(outgoing=True, pattern="^.creator$")
@@ -33,13 +21,20 @@ async def creator(e):
     await e.edit("Here's my God: [Hitalo](https://t.me/HitaloSama)")
 
 
-@register(outgoing=True, pattern="^.readme$")
+@register(outgoing=True, pattern="^\.repo$")
+async def repo_is_here(wannasee):
+    """ For .repo command, just returns the repo URL. """
+    await wannasee.edit(
+        f"Click [here](https://github.com/TG-UBotX/TG-UBotX) to open my userbot's repository.")
+
+
+@register(outgoing=True, pattern="^.uwiki$")
 async def reedme(e):
     await e.edit(
-        "**Here's something for you to read:**\n"
-        "\n[TG-UBotX - Wiki](https://hitalokun.github.io/ubotx-docs/#/)"
+        "**Our wiki and other useful links::**\n"
+        "\n[TG-UBotX - Wiki](https://tg-ubotx.github.io/#/)"
         "\n[Setup Guide - GDive](https://telegra.ph/How-To-Setup-GDrive-11-02)"
-        "\n[News Channel](https://t.me/UBotX)")
+        "\n[News Channel](https://t.me/TGUBotX)")
 
 
 @register(outgoing=True, pattern="^\.random")
@@ -113,13 +108,6 @@ async def repeat(rep):
     await rep.edit(replyText)
 
 
-@register(outgoing=True, pattern="^\.repo$")
-async def repo_is_here(wannasee):
-    """ For .repo command, just returns the repo URL. """
-    await wannasee.edit(
-        f"Click [here](https://github.com/HitaloKun/TG-UBotX) to open my userbot's repository.")
-
-
 @register(outgoing=True, pattern="^\.raw$")
 async def raw(event):
     the_real_message = None
@@ -161,14 +149,11 @@ add_help_item(
     `.restart`
     **Usage:** Restarts the bot!
 
-    `.readme`
-    **Usage:** Provide links to setup the userbot and it's modules.
+    `.uwiki`
+    **Usage:** Provides the UBotX wiki
 
     `.creator`
     **Usage:** Know who created this awesome userbot!
-
-    `.community`
-    **Usage:** Join the awesome Paperplane userbot community!
 
     `.repo`
     **Usage:** If you are curious what makes the userbot work, this is what you need.

@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """
@@ -44,7 +44,7 @@ async def update_requirements():
         return repr(e)
 
 
-@register(outgoing=True, pattern="^\.update(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.update(?: |$)(.*)")
 async def upstream(ups):
     await ups.edit("`Checking for updates, please wait....`")
     conf = ups.pattern_match.group(1)
@@ -150,7 +150,7 @@ async def upstream(ups):
             repo.__del__()
             return
         await ups.edit('**[HEROKU UPDATER]**\
-                        \n`Userbot dyno build in progress, please wait for it to complete.`\n\n**Changelog:** @UBotX'
+                        \n`Userbot dyno build in progress, please wait for it to complete.`'
                        )
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
